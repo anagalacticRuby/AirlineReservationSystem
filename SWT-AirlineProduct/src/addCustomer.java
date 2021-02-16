@@ -23,6 +23,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.toedter.calendar.JDateChooser;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -85,6 +87,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtdob = new JDateChooser();
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 255));
 
@@ -212,14 +215,15 @@ public class addCustomer extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
+                        	.addComponent(jLabel8)
+                        	.addComponent(jLabel9)
                             .addComponent(jLabel10))
                         .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        		.addComponent(txtdob)
+                        	.addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(r1)
                                 .addGap(18, 18, 18)
                                 .addComponent(r2))
@@ -231,6 +235,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel8)
+                .addComponent(txtdob)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -527,5 +532,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtnic;
     private javax.swing.JTextField txtpassport;
     private javax.swing.JLabel txtphoto;
+    private JDateChooser txtdob;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -635,7 +637,7 @@ public class ticket extends javax.swing.JInternalFrame {
             pst.setString(2, flightid);
             pst.setString(3, custid);          
             pst.setString(4, flightclass);
-             pst.setString(5, price);
+            pst.setString(5, price);
             pst.setString(6, seats);
             pst.setString(7, date);
          
@@ -710,5 +712,6 @@ public class ticket extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> txtsource;
     private javax.swing.JLabel txtticketno;
     private javax.swing.JLabel txttotal;
+    private JDateChooser txtdate;
     // End of variables declaration//GEN-END:variables
 }
