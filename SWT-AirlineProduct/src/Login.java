@@ -119,15 +119,22 @@ public class Login extends javax.swing.JFrame {
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 
-		String username = txtuser.getText();
-		String password = txtpass.getText();
+		User user = handleLoginEnter(evt, txtuser.toString(), txtpass.toString());
+		System.out.println();
+
+
+
+
+	}// GEN-LAST:event_jButton1ActionPerformed
+
+	public User handleLoginEnter(java.awt.event.ActionEvent evt, String username, String password)  {
+		User currentUser = new User(username, password);
 
 		if (username.isEmpty() || password.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "UserName or Password Blank");
 		} else {
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+				con = DBUtil.dbConnect();
 				pst = con.prepareStatement("select * from user where username = ? and password = ?");
 				pst.setString(1, username);
 				pst.setString(2, password);
@@ -139,24 +146,30 @@ public class Login extends javax.swing.JFrame {
 					Main m = new Main();
 					this.hide();
 					m.setVisible(true);
-
 				} else {
 					JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
 					txtuser.setText("");
 					txtpass.setText("");
 					txtuser.requestFocus();
-
 				}
 
-			} catch (ClassNotFoundException ex) {
-				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
 			} catch (SQLException ex) {
 				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
 			}
-
 		}
+		return currentUser;
+	}
 
-	}// GEN-LAST:event_jButton1ActionPerformed
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * @param args the command line arguments
