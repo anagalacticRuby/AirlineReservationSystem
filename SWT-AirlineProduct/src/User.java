@@ -26,16 +26,11 @@ public class User {
     getUserInfo();
   }
 
-
-
-
-
-
   private void getUserInfo() {
     Connection con = DBUtil.dbConnect();
 
     try {
-      String sql = "SELECT * FROM USER WHERE USERNAME = ?";
+      String sql = "SELECT * FROM USERFi WHERE USERNAME = ?";
       PreparedStatement ps = con.prepareStatement(sql);
       ps.setString(1, username);
 
