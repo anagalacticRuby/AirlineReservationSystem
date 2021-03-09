@@ -11,6 +11,14 @@ public class User {
   private String lastname;
   private String id;
 
+  /**
+   * Default User constructor used to create or store a new User.
+   * @param username — String parameter used to hold a User's username.
+   * @param password — String parameter used to hold a User's password.
+   * @param firstname — String parameter used to hold a User's firstname.
+   * @param lastname — String parameter used to hold a User's lastname.
+   * @param id — String parameter used to hold a User's ID.
+   */
   public User(String username, String password, String firstname, String lastname, String id) {
     this.username = username;
     this.password = password;
@@ -19,6 +27,11 @@ public class User {
     this.id = id;
   }
 
+  /**
+   * User constructor used to obtain information pertaining to a User.
+   * @param username — String parameter used to hold a User's username.
+   * @param password — String parameter used to hold a User's password.
+   */
   public User (String username, String password)  {
     this.username = username;
     this.password = password;
@@ -26,11 +39,16 @@ public class User {
     getUserInfo();
   }
 
+  /**
+   * This method is called within the User constructor to obtain a User's username, password,
+   * firstname, lastname, and id. The information is obtained using a SQL statement tied to the
+   * username input.
+   */
   private void getUserInfo() {
     Connection con = DBUtil.dbConnect();
 
     try {
-      String sql = "SELECT * FROM USERFi WHERE USERNAME = ?";
+      String sql = "SELECT * FROM USER WHERE USERNAME = ?";
       PreparedStatement ps = con.prepareStatement(sql);
       ps.setString(1, username);
 
@@ -50,42 +68,82 @@ public class User {
     DBUtil.dbDisconnect();
   }
 
+  /**
+   * Username Getter method.
+   * @return username.
+   */
   public String getUsername() {
     return username;
   }
 
+  /**
+   * Username Setter method.
+   * @param username
+   */
   public void setUsername(String username) {
     this.username = username;
   }
 
+  /**
+   * Password Getter method.
+   * @return password.
+   */
   public String getPassword() {
     return password;
   }
 
+  /**
+   * Password Setter method.
+   * @param password
+   */
   public void setPassword(String password) {
     this.password = password;
   }
 
+  /**
+   * Firstname Getter method.
+   * @return firstname.
+   */
   public String getFirstname() {
     return firstname;
   }
 
+  /**
+   * Firstname Setter method.
+   * @param firstname
+   */
   public void setFirstname(String firstname) {
     this.firstname = firstname;
   }
 
+  /**
+   * Lastname Getter method.
+   * @return lastname.
+   */
   public String getLastname() {
     return lastname;
   }
 
+  /**
+   * Lastname Setter method.
+   * @param lastname
+   */
   public void setLastname(String lastname) {
     this.lastname = lastname;
   }
 
+  /**
+   * ID Getter method.
+   * @return id.
+   */
   public String getId() {
     return id;
   }
 
+  /**
+   * ID Setter method.
+   * @param id
+   */
   public void setId(String id) {
     this.id = id;
   }
