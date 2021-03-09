@@ -13,7 +13,7 @@ public class LoginTest {
   private User user;
 
   /**
-   * The code within @setUp is run before each test method execution. An object of class User is
+   * The code within @BeforeEach is run before each test method execution. An object of class User is
    * created so that the expected and actual are compared.
    */
   @BeforeEach
