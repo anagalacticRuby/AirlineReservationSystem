@@ -16,7 +16,7 @@ public class DBUtil {
   // Database Credentials
   private static final String DB_URL = "jdbc:mysql://localhost/airline";
   private static final String USER = "root";
-  private static final String PASS = "1234";
+  private static final String PASS = "";
 
   /**
    * Method used to connect to the database.

@@ -11,13 +11,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -317,8 +317,92 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
+	
+	public Customer findCustomerByLastName(String lastname) {
+		Customer customer = null;
+		try {
+        	con = DBUtil.dbConnect();
+			pst = con.prepareStatement("select * from customer where lastname = ?");
+			pst.setString(1, lastname);
+			
+		   ResultSet rs;
+	       rs = pst.executeQuery();
+	       //This means we found a record
+	       if (rs.next()) {
+				String fname = rs.getString("firstname");
+				String lname = rs.getString("lastname");
+				String nic = rs.getString("nic");
+				String passport = rs.getString("passport");
+
+				String address = rs.getString("address");
+				String dob = rs.getString("dob");
+				Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+				String gender = rs.getString("gender");
+
+				
+
+				if (gender.equals("Female")) {
+					r1.setSelected(false);
+					r2.setSelected(true);
+
+				} else {
+					r1.setSelected(true);
+					r2.setSelected(false);
+				}
+				String contact = rs.getString("contact");
+				Blob blob = rs.getBlob("photo");
+				
+				customer = new Customer();
+				customer.setFirstname(fname.trim());
+				customer.setLastname(lname.trim());
+				customer.setNic(nic.trim());
+				customer.setPassport(passport.trim());
+				customer.setAddressString(address.trim());
+				customer.setContact(contact.trim());
+				customer.setDob(date1);
+				customer.setPhoto(blob);
+			} else {
+				//No record found in database, show record not found
+				JOptionPane.showMessageDialog(this, "Record not Found");
+			}
+		} catch (SQLException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return customer;
+	}
+	
 	private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtlastnameActionPerformed
 		// TODO add your handling code here:
+		System.out.println("This is the last name action being performed: " + txtlastname.getText());
+	        
+		Customer customer = findCustomerByLastName(txtlastname.getText());
+		//Customer is not null, database returned a value
+		if (customer != null) {
+			Blob blob = customer.getPhoto();
+			byte[] _imagebytes = null;
+			try {
+				_imagebytes = blob.getBytes(1, (int) blob.length());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ImageIcon image = new ImageIcon(_imagebytes);
+			Image im = image.getImage();
+			Image myImg = im.getScaledInstance(txtphoto.getWidth(), txtphoto.getHeight(), Image.SCALE_SMOOTH);
+			ImageIcon newImage = new ImageIcon(myImg);
+			
+			txtfirstname.setText(customer.getFirstname());
+			txtlastname.setText(customer.getLastname());
+			txtnic.setText(customer.getNic());
+			txtpassport.setText(customer.getPassport());
+			txtaddress.setText(customer.getAddressString());
+			txtcontact.setText(customer.getContact());
+			txtdob.setDate(customer.getDob());
+			txtphoto.setIcon(newImage);
+		}
+		
 	}// GEN-LAST:event_txtlastnameActionPerformed
 
 	private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtpassportActionPerformed

@@ -30,7 +30,7 @@ public class User {
     Connection con = DBUtil.dbConnect();
 
     try {
-      String sql = "SELECT * FROM USERFi WHERE USERNAME = ?";
+      String sql = "SELECT * FROM USER WHERE USERNAME = ?";
       PreparedStatement ps = con.prepareStatement(sql);
       ps.setString(1, username);
 
