@@ -34,4 +34,23 @@ public class LoginTest {
             ""));
     assertEquals("Username or Password cannot be blank.", exception.getMessage());
   }
+
+  @Test
+  @DisplayName("User login should be invalid due to an incorrect username.")
+  void handleInvalidUsernameLogin() {
+    Exception exception =
+        assertThrows(ArithmeticException.class, () -> login.handleLoginEnter(null, "rjumarr",
+            "123"));
+    assertEquals("Username or password do not match.", exception.getMessage());
+  }
+
+  @Test
+  @DisplayName("User login should be invalid due to an incorrect password.")
+  void handleInvalidPasswordLogin() {
+    Exception exception =
+        assertThrows(ArithmeticException.class, () -> login.handleLoginEnter(null, "rjumar",
+            "1234"));
+    assertEquals("Username or password do not match.", exception.getMessage());
+  }
+
 }

@@ -24,7 +24,7 @@ public class SearchCustomerTest {
   }
 
   @Test
-  @DisplayName("Testing searhCustomer with no record being returned.")
+  @DisplayName("Testing searchCustomer with no record being returned.")
   void testSearchByLastnameNegative() {
     Customer customer = searchCustomer.findCustomerByLastName(null);
     assertNull(customer);
