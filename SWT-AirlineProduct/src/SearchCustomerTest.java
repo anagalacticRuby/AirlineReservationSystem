@@ -1,5 +1,5 @@
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ public class SearchCustomerTest {
   }
 
   @Test
-  @DisplayName("")
+  @DisplayName("Testing searchCustomer by last name.")
   void testSearchByLastnamePositive() {
 	Customer customer = searchCustomer.findCustomerByLastName(this.customer.getLastname());
     assertEquals(customer.getFirstname(), customer.getFirstname());
@@ -24,7 +24,7 @@ public class SearchCustomerTest {
   }
 
   @Test
-  @DisplayName("")
+  @DisplayName("Testing searhCustomer with no record being returned.")
   void testSearchByLastnameNegative() {
     Customer customer = searchCustomer.findCustomerByLastName(null);
     assertNull(customer);
