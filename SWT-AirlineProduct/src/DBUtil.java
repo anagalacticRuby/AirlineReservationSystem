@@ -44,8 +44,6 @@ public class DBUtil {
 
   /**
    * Method used to disconnect to the database.
-   *
-   * @throws SQLException
    */
   public static void dbDisconnect(){
     try {
@@ -58,6 +56,10 @@ public class DBUtil {
     }
   }
 
+  /**
+   * Method used to close the ResultSet.
+   * @param rs — ResultSet.
+   */
   public static void closeResultSet(ResultSet rs) {
     try {
       rs.close();
@@ -67,6 +69,10 @@ public class DBUtil {
     }
   }
 
+  /**
+   * Method used to close the PreparedStatement.
+   * @param ps — PreparedStatement.
+   */
   public static void closePreparedStatement(PreparedStatement ps) {
     try {
       ps.close();

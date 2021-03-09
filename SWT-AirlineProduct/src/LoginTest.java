@@ -19,9 +19,11 @@ public class LoginTest {
 
   @Test
   @DisplayName("User login credentials shall allow access to the Airline Reservation System.")
-  void handleLoginEnter() {
-    assertEquals(user.getUsername(), login.handleLoginEnter(null, "rjumar", "123").getUsername());
+  void handleValidLogin() {
+    User result = login.handleLoginEnter(null, "rjumar", "123");
 
+    assertEquals("rjumar", result.getUsername(), "Username matches.");
+    assertEquals("123", result.getPassword(), "Password matches.");
   }
 
   @Test

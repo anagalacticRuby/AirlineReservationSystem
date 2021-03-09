@@ -134,9 +134,17 @@ public class Login extends javax.swing.JFrame {
     User user = handleLoginEnter(evt, txtuser.getText(), txtpass.getText());
     System.out.println();
 
-
   }// GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method is called from within JButton1ActionPerformed to handle user login attempts and
+   * verify accordingly. It also instantiates an new User object to store the user's information so
+   * that the test cases can verify it against.
+   * @param evt — ActionEvent, user clicks on the 'Login' JButton.
+   * @param username — String converted input from the JTextField.
+   * @param password — String converted input from the JPasswordField.
+   * @return User — Object of class User.
+   */
   public User handleLoginEnter(java.awt.event.ActionEvent evt, String username, String password) {
   	User currentUser = new User(username, password);
 
@@ -158,15 +166,18 @@ public class Login extends javax.swing.JFrame {
           this.hide();
           m.setVisible(true);
         } else {
-          JOptionPane.showMessageDialog(this, "UserName or Password do not Match");
+          JOptionPane.showMessageDialog(this, "Username or password do not match");
           txtuser.setText("");
           txtpass.setText("");
           txtuser.requestFocus();
         }
+        DBUtil.closeResultSet(rs);
+        DBUtil.closePreparedStatement(pst);
       } catch (SQLException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
+    DBUtil.dbDisconnect();
     return currentUser;
   }
 
