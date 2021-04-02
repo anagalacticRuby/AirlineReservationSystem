@@ -216,9 +216,17 @@ public class userCreation extends javax.swing.JInternalFrame {
 				pst.setString(4, username);
 				pst.setString(5, password);
 
-				pst.executeUpdate();
+				String selectQuery;
+				selectQuery = "select * from user where username ='" + newUser.getUsername() + "'";
+				ResultSet rs = pst.executeQuery(selectQuery);
 
-				JOptionPane.showMessageDialog(null, "User Created");
+				if (rs.next() == false) {
+					pst.executeUpdate();
+					JOptionPane.showMessageDialog(null, "User Created");
+				} else {
+					JOptionPane.showMessageDialog(null, "Duplicate username!");
+					throw new ArithmeticException("Username cannot be a duplicate.");
+				}
 			} catch (SQLException ex) {
 				Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 			}
