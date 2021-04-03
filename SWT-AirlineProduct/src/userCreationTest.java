@@ -20,7 +20,7 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: PosTest—UserCreation1
    * Requirement ID/Description: REQ-5 The system shall require the user to create a password for
    *                             their profile.
    * Purpose:
@@ -78,11 +78,14 @@ public class userCreationTest {
     assertEquals("321", result.getPassword(), "Password matches.");
   }
 
-
-
-
-
-
-
-
+  /**
+   *
+   */
+  @Test
+  void handleDuplicateUsername() {
+    Exception exception =
+        assertThrows(ArithmeticException.class, () -> userCreation.handleCreation(null, "rjumar",
+            "4321", "Ravi", "Kumar", "UO004"));
+    assertEquals("Username cannot be a duplicate.", exception.getMessage());
+  }
 }
