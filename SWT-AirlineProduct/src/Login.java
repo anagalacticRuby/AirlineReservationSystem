@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
+  int totalAttempt = 3;
   /**
    * Creates new form Login
    */
@@ -153,26 +154,37 @@ public class Login extends javax.swing.JFrame {
       throw new ArithmeticException("Username or Password cannot be blank.");
     } else {
       try {
-        con = DBUtil.dbConnect();
-        pst = con.prepareStatement("select * from user where username = ? and password = ?");
-        pst.setString(1, username);
-        pst.setString(2, password);
+        if (totalAttempt !=0) {
+          con = DBUtil.dbConnect();
+          pst = con.prepareStatement("select * from user where username = ? and password = ?");
+          pst.setString(1, username);
+          pst.setString(2, password);
 
-        ResultSet rs;
-        rs = pst.executeQuery();
+          ResultSet rs;
+          rs = pst.executeQuery();
 
-        if (rs.next()) {
+          if (rs.next()) {
+            Main m = new Main();
+            this.hide();
+            m.setVisible(true);
+            System.out.println("Successful Login!");
+          } else {
+            JOptionPane.showMessageDialog(this, "Username or password do not match");
+            txtuser.setText("");
+            txtpass.setText("");
+            txtuser.requestFocus();
+            JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
+            totalAttempt--;
+            System.out.println("Attempts left: " + totalAttempt);
+          }
+          DBUtil.closeResultSet(rs);
+          DBUtil.closePreparedStatement(pst);
+        } else {
+          JOptionPane.showMessageDialog(this, "Maximum number of attempts exceeded.");
+          System.out.println("Maximum number of attempts exceeded.");
           Main m = new Main();
           this.hide();
-          m.setVisible(true);
-        } else {
-          JOptionPane.showMessageDialog(this, "Username or password do not match");
-          txtuser.setText("");
-          txtpass.setText("");
-          txtuser.requestFocus();
         }
-        DBUtil.closeResultSet(rs);
-        DBUtil.closePreparedStatement(pst);
       } catch (SQLException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
       }
