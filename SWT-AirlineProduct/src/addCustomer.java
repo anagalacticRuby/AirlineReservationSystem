@@ -387,7 +387,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 		if (r1.isSelected()) {
 			Gender = "Male";
 		} else {
-			Gender = "FeMale";
+			Gender = "Female";
 		}
 
 		String contact = txtcontact.getText();
@@ -410,7 +410,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 			pst.setBytes(10, userimage);
 			pst.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Registation Createdd.........");
+			JOptionPane.showMessageDialog(null, "Registration Created.");
 
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);

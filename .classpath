@@ -6,10 +6,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="SWT-AirlineProduct/jars/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="SWT-AirlineProduct/jars/mysql-connector-java-5.1.49.jar"/>
 	<classpathentry kind="lib" path="SWT-AirlineProduct/jars/selenium-server-standalone-3.141.59.jar"/>
-	<classpathentry kind="lib" path="SWT-AirlineProduct/jars/junit-jupiter-5.4.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="SWT-AirlineProduct/jars/junit-jupiter-api-5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/aries/Desktop/Repos/AirlineReservationSystem/SWT-AirlineProduct/jars/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

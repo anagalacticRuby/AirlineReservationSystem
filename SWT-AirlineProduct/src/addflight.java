@@ -109,10 +109,10 @@ public class addflight extends javax.swing.JInternalFrame {
 		});
 
 		txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+				new String[] { "India", "Srilanka", "UK", "USA", "Canada", "China" }));
 
 		txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+				new String[] { "India", "Srilanka", "UK", "USA", "Canada", "China" }));
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -280,7 +280,7 @@ public class addflight extends javax.swing.JInternalFrame {
 
 			pst.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Flight Createdd.........");
+			JOptionPane.showMessageDialog(null, "Flight Created.");
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException ex) {

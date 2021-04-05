@@ -50,7 +50,7 @@ public class Login extends javax.swing.JFrame {
         javax.swing.border.TitledBorder.DEFAULT_POSITION,
         new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-    jLabel1.setText("UserName");
+    jLabel1.setText("Username");
 
     jLabel2.setText("Password");
 

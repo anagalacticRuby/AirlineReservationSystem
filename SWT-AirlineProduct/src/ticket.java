@@ -230,7 +230,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		jLabel12.setText("Flight no");
 
-		jLabel13.setText("Filght Name");
+		jLabel13.setText("Flight Name");
 
 		jLabel14.setText("Depart Time");
 
@@ -557,7 +557,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 			pst.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Ticket Bookeed.........");
+			JOptionPane.showMessageDialog(null, "Ticket Booked.");
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException ex) {
