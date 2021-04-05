@@ -163,26 +163,6 @@ public class userCreation extends javax.swing.JInternalFrame {
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
-			pst = con.prepareStatement("insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
-
-			pst.setString(1, id);
-			pst.setString(2, firstname);
-			pst.setString(3, lastname);
-			pst.setString(4, username);
-			pst.setString(5, password);
-
-			pst.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "User Created.");
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SQLException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-		}
 		User newUser = handleCreation(evt, txtusername.getText(), txtpassword.getText(), txtfirstname.getText(),
 				txtlastname.getText(), txtuserid.getText());
 
@@ -212,7 +192,6 @@ public class userCreation extends javax.swing.JInternalFrame {
 		} catch (SQLException ex) {
 			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
 	}
 
 	public User handleCreation (java.awt.event.ActionEvent evt, String username, String password,
@@ -253,8 +232,6 @@ public class userCreation extends javax.swing.JInternalFrame {
 		DBUtil.dbDisconnect();
 		return newUser;
 	}
-
-
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton jButton1;
