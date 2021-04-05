@@ -11,13 +11,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.OngoingStubbing;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserCreationIntegrationTest {
 
-  private User tempUser;
+  private User dummyUser;
   private userCreation userCreation;
 
   /**
@@ -26,7 +27,7 @@ public class UserCreationIntegrationTest {
    */
   @BeforeEach
   public void setUp() {
-    tempUser = new User("Rmontoya", "1234", "Ricardo", "Montoya", "UO014");
+    dummyUser = new User("Rmontoya", "1234", "Ricardo", "Montoya", "UO014");
     userCreation = new userCreation();
   }
 
@@ -37,10 +38,11 @@ public class UserCreationIntegrationTest {
   public void mockDuplicateUsername(){
     userCreation mockCreation = Mockito.mock(userCreation.class);
     Exception exception = new NullPointerException("Username cannot be a duplicate.");
-    when(mockCreation.handleCreation(null, "Rmontoya", "1234", "Ricardo",
-        "Montoya", "UO014")).thenThrow(exception);
 
-    assertEquals("Username cannot be a duplicate.", exception.getMessage() );
+    when(mockCreation.handleCreation(null, dummyUser.getUsername(), dummyUser.getPassword(), dummyUser.getFirstname(),
+        dummyUser.getPassword(), dummyUser.getId())).thenThrow(exception);
+
+    assertEquals("Username cannot be a duplicate.", exception.getMessage());
   }
 }
 
