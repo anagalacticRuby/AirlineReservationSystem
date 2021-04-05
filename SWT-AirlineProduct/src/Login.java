@@ -63,6 +63,11 @@ public class Login extends javax.swing.JFrame {
     });
 
     jButton2.setText("Cancel");
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2ActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -136,6 +141,16 @@ public class Login extends javax.swing.JFrame {
     System.out.println();
 
   }// GEN-LAST:event_jButton1ActionPerformed
+
+  private void jButton2ActionPerformed(
+      java.awt.event.ActionEvent evt) {
+
+    JOptionPane.showMessageDialog(this, "Canceled Login.");
+    System.out.println("Canceled Login.");
+    Main m = new Main();
+    this.hide();
+  }
+
 
   /**
    * This method is called from within JButton1ActionPerformed to handle user login attempts and
