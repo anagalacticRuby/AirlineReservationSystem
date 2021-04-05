@@ -149,6 +149,7 @@ public class Login extends javax.swing.JFrame {
     System.out.println("Canceled Login.");
     Main m = new Main();
     this.hide();
+    System.exit(0);
   }
 
 
@@ -199,6 +200,7 @@ public class Login extends javax.swing.JFrame {
           System.out.println("Maximum number of attempts exceeded.");
           Main m = new Main();
           this.hide();
+          System.exit(0);
         }
       } catch (SQLException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
