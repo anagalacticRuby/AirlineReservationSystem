@@ -12,7 +12,7 @@ public class User {
   private String id;
 
   /**
-   * Default User constructor used to create or store a new User.
+   * User constructor used to create or store a new User.
    * @param username — String parameter used to hold a User's username.
    * @param password — String parameter used to hold a User's password.
    * @param firstname — String parameter used to hold a User's firstname.
@@ -25,6 +25,20 @@ public class User {
     this.firstname = firstname;
     this.lastname = lastname;
     this.id = id;
+  }
+
+  /**
+   * User constructor used to create a new user.
+   * @param username — String parameter used to hold a User's username.
+   * @param password — String parameter used to hold a User's password.
+   * @param firstname — String parameter used to hold a User's firstname.
+   * @param lastname — String parameter used to hold a User's lastname.
+   */
+  public User(String username, String password, String firstname, String lastname) {
+    this.username = username;
+    this.password = password;
+    this.firstname = firstname;
+    this.lastname = lastname;
   }
 
   /**

@@ -163,11 +163,6 @@ public class userCreation extends javax.swing.JInternalFrame {
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 
-		String id = txtuserid.getText();
-		String firstname = txtfirstname.getText();
-		String lastname = txtlastname.getText();
-		String username = txtusername.getText();
-		String password = txtpassword.getText();
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -188,6 +183,8 @@ public class userCreation extends javax.swing.JInternalFrame {
 		} catch (SQLException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		User newUser = handleCreation(evt, txtusername.getText(), txtpassword.getText(), txtfirstname.getText(),
+				txtlastname.getText(), txtuserid.getText());
 
 	}// GEN-LAST:event_jButton1ActionPerformed
 
@@ -198,8 +195,7 @@ public class userCreation extends javax.swing.JInternalFrame {
 
 	public void autoID() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery("select MAX(id) from user");
 			rs.next();
@@ -213,13 +209,52 @@ public class userCreation extends javax.swing.JInternalFrame {
 
 			}
 
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException ex) {
 			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
+
+	public User handleCreation (java.awt.event.ActionEvent evt, String username, String password,
+			String firstname, String lastname, String id) {
+
+		User newUser = new User(username, password, firstname, lastname, id);
+
+		if (username.isEmpty() || password.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Username or Password is blank");
+			throw new NullPointerException("Username or Password cannot be blank.");
+		} else {
+			try {
+				con = DBUtil.dbConnect();
+				pst = con.prepareStatement(
+						"insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
+
+				pst.setString(1, id);
+				pst.setString(2, firstname);
+				pst.setString(3, lastname);
+				pst.setString(4, username);
+				pst.setString(5, password);
+
+				String selectQuery;
+				selectQuery = "select * from user where username ='" + newUser.getUsername() + "'";
+				ResultSet rs = pst.executeQuery(selectQuery);
+
+				if (rs.next() == false) {
+					pst.executeUpdate();
+					JOptionPane.showMessageDialog(null, "User Created");
+				} else {
+					JOptionPane.showMessageDialog(null, "Duplicate username!");
+					throw new ArithmeticException("Username cannot be a duplicate.");
+				}
+			} catch (SQLException ex) {
+				Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		DBUtil.dbDisconnect();
+		return newUser;
+	}
+
+
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton jButton1;
