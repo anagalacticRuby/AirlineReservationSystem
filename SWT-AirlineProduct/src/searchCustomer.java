@@ -333,7 +333,6 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 				String lname = rs.getString("lastname");
 				String nic = rs.getString("nic");
 				String passport = rs.getString("passport");
-
 				String address = rs.getString("address");
 				String dob = rs.getString("dob");
 				Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
@@ -480,7 +479,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 			pst.setString(10, id);
 			pst.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Registation Updateddddd.........");
+			JOptionPane.showMessageDialog(null, "Registration Updated.");
 
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
