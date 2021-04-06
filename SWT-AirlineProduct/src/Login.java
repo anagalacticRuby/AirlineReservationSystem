@@ -167,7 +167,7 @@ public class Login extends javax.swing.JFrame {
 
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(this, "Username or Password is blank");
-      throw new ArithmeticException("Username or Password cannot be blank.");
+      throw new NullPointerException("Username or Password cannot be blank.");
     } else {
       try {
         if (totalAttempt !=0) {
