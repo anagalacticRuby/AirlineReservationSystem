@@ -1,10 +1,11 @@
 # Airline Reservation System
 
-This project was generated with [Java].
+This project was generated with [Java], isn't that cool!
 
 ## Testing
 
-this will be tested using Selenium, Branch Coverage using Eclipse IDE.
+This software product will be tested using Mockito and JUnit 5.
+Maven has been proposed to help integrate the software with the program to avoid having to include a bunch of libraries each time. :)
 
 ## Running Locally
 
