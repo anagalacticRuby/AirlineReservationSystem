@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -44,6 +45,30 @@ public class UserCreationIntegrationTest {
 
     assertEquals("Username cannot be a duplicate.", exception.getMessage());
   }
+
+  @Test
+  public void stubInvalidPWCreation() {
+
+    User test = mock(User.class);
+    Exception exception = new NullPointerException("Username or Password cannot be blank.");
+    when(test.getPassword()).thenThrow(exception);
+
+    assertEquals("Username or Password cannot be blank.", exception.getMessage());
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
