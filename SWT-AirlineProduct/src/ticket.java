@@ -1,6 +1,5 @@
 
-import java.awt.Image;
-import java.sql.Blob;
+import java.awt.Graphics;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,15 +8,15 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 import com.toedter.calendar.JDateChooser;
 
 /*
@@ -85,16 +84,19 @@ public class ticket extends javax.swing.JInternalFrame {
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
 		txttotal = new javax.swing.JLabel();
-
+		
+		txtdate = new com.toedter.calendar.JDateChooser();
+		txtdate.setVisible(false);
+		
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Select Country",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
 				new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
 		txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+				new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "China" }));
 
 		txtdepart.setModel(new javax.swing.DefaultComboBoxModel<>(
-				new String[] { "India\t", "Srilanka", "Uk", "Usa", "Canada", "Chinna" }));
+				new String[] { "India", "Srilanka", "Uk", "Usa", "Canada", "China" }));
 
 		jLabel1.setText("Source");
 
@@ -419,7 +421,7 @@ public class ticket extends javax.swing.JInternalFrame {
 			Df.setRowCount(0);
 
 			while (rs.next()) {
-				Vector v2 = new Vector();
+				Vector<String> v2 = new Vector<String>();
 
 				for (int i = 1; i <= c; i++) {
 					v2.add(rs.getString("id"));
@@ -512,6 +514,22 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		flightno.setText(Df.getValueAt(selectIndex, 0).toString());
 		flightname.setText(Df.getValueAt(selectIndex, 1).toString());
+		//
+	       DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+	       Date flightDate;
+        try {
+          flightDate = dateFormatter.parse((String) Df.getValueAt(selectIndex, 4));
+          Date today = new Date();
+          txtdate.setCalendar(Calendar.getInstance());
+          txtdate.setDate(today);
+          txtdate.setDate(flightDate);
+        } catch (ParseException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+		
+		//
+		
 		txtdept.setText(Df.getValueAt(selectIndex, 5).toString());
 		txtprice.setText(Df.getValueAt(selectIndex, 7).toString());
 
