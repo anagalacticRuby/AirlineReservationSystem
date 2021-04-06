@@ -317,7 +317,6 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	
 	public Customer findCustomerByLastName(String lastname) {
 		Customer customer = null;
 		try {

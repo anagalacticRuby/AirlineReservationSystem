@@ -97,7 +97,19 @@ public class addflight extends javax.swing.JInternalFrame {
 		jButton1.setText("Add");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
+				String id = txtflightid.getText();
+				String flightname = txtflightname.getText();
+
+				String source = txtsource.getSelectedItem().toString().trim();
+				String depart = txtdepart.getSelectedItem().toString().trim();
+
+				DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+				String date = da.format(txtdate.getDate());
+
+				String departtime = txtdtime.getText();
+				String arrtime = txtarrtime.getText();
+				String flightcharge = txtflightcharge.getText();
+				addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
 			}
 		});
 
@@ -247,25 +259,12 @@ public class addflight extends javax.swing.JInternalFrame {
 
 	}
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-
-		String id = txtflightid.getText();
-		String flightname = txtflightname.getText();
-
-		String source = txtsource.getSelectedItem().toString().trim();
-		String depart = txtdepart.getSelectedItem().toString().trim();
-
-		DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-		String date = da.format(txtdate.getDate());
-
-		String departtime = txtdtime.getText();
-		String arrtime = txtarrtime.getText();
-		String flightcharge = txtflightcharge.getText();
+	public void addFlight(String id, String flightname, String source, String depart, String date, String departtime,
+			String arrtime, String flightcharge) {// GEN-FIRST:event_jButton1ActionPerformed
+		// TODO add your handling code here:	
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement(
 					"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
 
@@ -281,11 +280,11 @@ public class addflight extends javax.swing.JInternalFrame {
 			pst.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Flight Created.");
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException ex) {
 			Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		
+		DBUtil.dbDisconnect();
 
 	}// GEN-LAST:event_jButton1ActionPerformed
 
