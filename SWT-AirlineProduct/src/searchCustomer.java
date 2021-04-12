@@ -462,7 +462,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement(
 					"update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
 
@@ -501,7 +501,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement("select * from customer where id = ?");
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();

@@ -406,7 +406,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
 
 			pst.setString(1, source);
@@ -449,7 +449,7 @@ public class ticket extends javax.swing.JInternalFrame {
 	public void autoID() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery("select MAX(id) from ticket");
 			rs.next();
@@ -477,7 +477,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement("select * from customer where id = ?");
 			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
@@ -561,7 +561,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/airline", "root", "");
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement(
 					"insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
 

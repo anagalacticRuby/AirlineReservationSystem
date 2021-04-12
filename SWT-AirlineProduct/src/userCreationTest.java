@@ -1,9 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 
 public class userCreationTest {
   private User user;
@@ -16,7 +18,7 @@ public class userCreationTest {
   @BeforeEach
   public void setUp() {
     userCreation = new userCreation();
-    user = new User("rjumar", "123", "Ravi", "Kumar", "UO004");
+    user = new User("rmontoya", "montoya1", "Ricardo", "Montoya", "UO014");
   }
 
   /**
@@ -88,4 +90,19 @@ public class userCreationTest {
             "4321", "Ravi", "Kumar", "UO004"));
     assertEquals("Username cannot be a duplicate.", exception.getMessage());
   }
+
+  /**
+   *
+   */
+  @Test
+  void handleUserCreation() {
+
+    User tempUser = userCreation.handleCreation(null, user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getId());
+
+    assertTrue(new ReflectionEquals(user).matches(tempUser));
+  }
+
+
+
+
 }
