@@ -27,15 +27,16 @@ public class AddFlightIntegrationTest {
 		String arrtime = "7:00 PM";
 		String flightcharge = "$729";
 
-		Mockito.mockStatic(DBUtil.class);
+    Mockito.mockStatic(DBUtil.class);
 
-		Connection conn = Mockito.mock(Connection.class);
-		PreparedStatement pst = Mockito.mock(PreparedStatement.class);
-		when(DBUtil.dbConnect()).thenReturn(conn);
-		when(conn.prepareStatement(
-				"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)"))
-						.thenReturn(pst);
-
-		addflight.addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
-	}
+    Connection conn = Mockito.mock(Connection.class);
+    PreparedStatement pst = Mockito.mock(PreparedStatement.class);
+    when(DBUtil.dbConnect()).thenReturn(conn);
+    when(conn.prepareStatement(
+        "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
+        + "values(?,?,?,?,?,?,?,?)"))
+            .thenReturn(pst);
+    addflight.addFlight(id, flightname, source, depart, 
+        date, departtime, arrtime, flightcharge);
+  }
 }
