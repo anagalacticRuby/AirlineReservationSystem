@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 
+
 public class userCreationTest {
   private User user;
   private userCreation userCreation;
@@ -18,7 +19,6 @@ public class userCreationTest {
   @BeforeEach
   public void setUp() {
     userCreation = new userCreation();
-    user = new User("rmontoya", "montoya1", "Ricardo", "Montoya", "UO014");
   }
 
   /**
@@ -74,14 +74,15 @@ public class userCreationTest {
   @Test
   @DisplayName("User creation should be valid due to an full password.")
   void handleValidPWCreation() {
-    User result = userCreation.handleCreation(null, "rjumar",
-        "321", "Ravi", "Kumar", "UO004");
+    User result = userCreation.handleCreation(null, "rjumar2",
+        "4321", "Ravi", "Kumar", "UO008");
 
-    assertEquals("321", result.getPassword(), "Password matches.");
+    assertEquals("4321", result.getPassword(), "Password matches.");
   }
 
   /**
-   *
+   * Test Case ID:
+   * Requirement ID/Description:
    */
   @Test
   void handleDuplicateUsername() {
@@ -92,17 +93,33 @@ public class userCreationTest {
   }
 
   /**
-   *
+   * Test Case ID:
+   * Requirement ID/Description: REQ-1 The user shall be able to create their profile in the system.
    */
   @Test
   void handleUserCreation() {
+    user = new User("rmontoya", "montoya1", "Ricardo", "Montoya", "UO014");
 
     User tempUser = userCreation.handleCreation(null, user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getId());
 
     assertTrue(new ReflectionEquals(user).matches(tempUser));
   }
 
+  /**
+   * Test Case ID:
+   * Requirement ID/Description: REQ-9 The system shall save all user profiles in a database.
+   */
+  @Test
+  void handleDatabaseStorage() {
 
+    User newUser = userCreation.handleCreation(null, "ronsmith", "rsmith32", "Ronald", "Smith", "UO0013");
+    User currentUser = new User("ronsmith", "rsmith32");
 
+    assertEquals(newUser.getUsername(), currentUser.getUsername());
+    assertEquals(newUser.getPassword(), currentUser.getPassword());
+    assertEquals(newUser.getFirstname(), currentUser.getFirstname());
+    assertEquals(newUser.getLastname(), currentUser.getLastname());
+    assertEquals(newUser.getId(), currentUser.getId());
+  }
 
 }
