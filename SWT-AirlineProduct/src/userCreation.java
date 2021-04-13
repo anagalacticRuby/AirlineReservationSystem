@@ -223,7 +223,7 @@ public class userCreation extends javax.swing.JInternalFrame {
 					JOptionPane.showMessageDialog(null, "User Created");
 				} else {
 					JOptionPane.showMessageDialog(null, "Duplicate username!");
-					throw new ArithmeticException("Username cannot be a duplicate.");
+					throw new IllegalArgumentException("Username cannot be a duplicate.");
 				}
 			} catch (SQLException ex) {
 				Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
