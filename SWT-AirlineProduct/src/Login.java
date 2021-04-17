@@ -1,6 +1,5 @@
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,14 +8,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties. To change this
+ * template file, choose Tools | Templates and open the template in the editor.
  */
 
 public class Login extends javax.swing.JFrame {
 
   int totalAttempt = 3;
+
   /**
    * Creates new form Login
    */
@@ -48,8 +47,7 @@ public class Login extends javax.swing.JFrame {
 
     jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login",
         javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-        javax.swing.border.TitledBorder.DEFAULT_POSITION,
-        new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
     jLabel1.setText("Username");
 
@@ -71,51 +69,45 @@ public class Login extends javax.swing.JFrame {
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup().addGap(50, 50, 50)
-                    .addGroup(
-                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    jPanel1Layout
+        .setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
+                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup().addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1).addComponent(jLabel2))
-                    .addGap(52, 52, 52)
-                    .addGroup(jPanel1Layout
-                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtuser).addComponent(txtpass,
-                            javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createSequentialGroup().addGap(136, 136, 136)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE)));
-    jPanel1Layout.setVerticalGroup(
-        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup().addGap(46, 46, 46)
-                .addGroup(
-                    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE,
-                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                            javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(
-                    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE,
-                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                            javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31,
-                    Short.MAX_VALUE)
-                .addGroup(
-                    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39,
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtuser).addComponent(txtpass,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup().addGap(136, 136, 136)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
                             javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                            javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)));
+                        .addGap(18, 18, 18).addComponent(jButton2,
+                            javax.swing.GroupLayout.PREFERRED_SIZE, 116,
+                            javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(25, Short.MAX_VALUE)));
+    jPanel1Layout.setVerticalGroup(jPanel1Layout
+        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup().addGap(46, 46, 46)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel1).addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE,
+                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(43, 43, 43)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel2).addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE,
+                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31,
+                Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39,
+                    javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
+                    javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(45, 45, 45)));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -134,43 +126,64 @@ public class Login extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+  /**
+   * This method is called each time the 'Login' button is pressed by a user.
+   * 
+   * @param evt Obtained from an ActionListener attached to jButton1, the 'Login' button.
+   */
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton1ActionPerformed
 
     User user = handleLoginEnter(evt, txtuser.getText(), txtpass.getText());
     System.out.println();
 
   }// GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(
-      java.awt.event.ActionEvent evt) {
+  /**
+   * This method is tied to the 'Cancel' button on the Login screen. Formally known as jButton2.
+   * <p>
+   * When a user clicks on the 'Cancel' button while on the Login screen, the program will
+   * terminate.
+   * 
+   * @param evt Whenever a user clicks on the 'Cancel' button, an ActionListener is invoked.
+   */
+  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
 
     JOptionPane.showMessageDialog(this, "Canceled Login.");
     System.out.println("Canceled Login.");
-    Main m = new Main();
-    this.hide();
     System.exit(0);
+    // Terminate program if user clicks on the 'Cancel' button while on the Login screen.
   }
 
 
   /**
-   * This method is called from within JButton1ActionPerformed to handle user login attempts and
-   * verify accordingly. It also instantiates an new User object to store the user's information so
-   * that the test cases can verify it against.
-   * @param evt — ActionEvent, user clicks on the 'Login' JButton.
-   * @param username — String converted input from the JTextField.
-   * @param password — String converted input from the JPasswordField.
-   * @return User — Object of class User.
+   * This method is invoked after a user clicks on the 'Login' button, which is jButton1.
+   * <p>
+   * When this method is invoked, it first creates a User object with the username and password
+   * values that have been passed in from the txtpass element and the txtuser element. Then a check
+   * is performed to make sure that the username and password fields are not empty. If the username
+   * and password are valid and exist within the user table of the 'airline' database, then the user
+   * is able to proceed into the Main Menu of the program, Main.java Else, a series of smaller
+   * queries are performed to determine if both the username and password are invalid, or just the
+   * password. A simple switch case is utilized to decide what error message to print to the user so
+   * they understand what information was incorrect. A user has only 3 attempts to login before the
+   * system will lock them out and terminate itself. This is done to increase security and prevent
+   * easy brute force attempts to access the program.
+   * 
+   * @param evt ActionEvent, user clicks on the 'Login' JButton.
+   * @param username A String containing a username, obtained from the JTextField named txtuser
+   * @param password A string containing a password, obtained from the JPasswordField named txtpass
+   * @return User Object of class User.
    */
   public User handleLoginEnter(java.awt.event.ActionEvent evt, String username, String password) {
-  	User currentUser = new User(username, password);
+    User currentUser = new User(username, password);
 
     if (username.isEmpty() || password.isEmpty()) {
-      JOptionPane.showMessageDialog(this, "Username or Password is blank");
+      JOptionPane.showMessageDialog(this, "Username or Password is blank.");
       throw new NullPointerException("Username or Password cannot be blank.");
     } else {
       try {
-        if (totalAttempt !=0) {
+        if (totalAttempt != 0) {
           con = DBUtil.dbConnect();
           pst = con.prepareStatement("select * from user where username = ? and password = ?");
           pst.setString(1, username);
@@ -185,21 +198,75 @@ public class Login extends javax.swing.JFrame {
             m.setVisible(true);
             System.out.println("Successful Login!");
           } else {
-            JOptionPane.showMessageDialog(this, "Username or password do not match");
-            txtuser.setText("");
-            txtpass.setText("");
-            txtuser.requestFocus();
-            JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
-            totalAttempt--;
-            System.out.println("Attempts left: " + totalAttempt);
+
+            // Initialize variable to determine what error message to display
+            int invalidCase = 0;
+            // This segment of code determines what elements input by the user are invalid,
+            // And makes an appropriate error message appear.
+            // -------//
+            pst = con.prepareStatement("select * from user where exists "
+                + "(select * from user where username = ? and password = ?)");
+            pst.setString(1, username);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+            if (!rs.next()) {
+              invalidCase = 1;
+              // Case 1, invalid username and password.
+            }
+            pst = con.prepareStatement(
+                "select * from user where exists " + "(select * from user where username = ?)");
+            pst.setString(1, username);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+              /*
+               * The EXISTS keyword for SQL will make the query return TRUE if there exists at least
+               * one record
+               */
+              invalidCase = 2;
+              // Case 2, valid username but invalid password.
+            }
+
+            /*
+             * A switch case system is implemented to determine what error message to display based
+             * on what the user has input into the system.
+             */
+            switch (invalidCase) {
+              case 1:
+                JOptionPane.showMessageDialog(this, "Invalid username and password.");
+                txtuser.setText("");
+                txtpass.setText("");
+                txtuser.requestFocus();
+                JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
+                totalAttempt--;
+                System.out.println("Attempts left: " + totalAttempt);
+                break;
+              case 2:
+                JOptionPane.showMessageDialog(this, "Invalid password.");
+                txtpass.setText("");
+                txtpass.requestFocus();
+                JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
+                totalAttempt--;
+                System.out.println("Attempts left: " + totalAttempt);
+                break;
+              default:
+                JOptionPane.showMessageDialog(this,
+                    "Invalid input. Please enter valid characters.");
+                txtuser.setText("");
+                txtpass.setText("");
+                txtuser.requestFocus();
+                JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
+                totalAttempt--;
+                System.out.println("Attempts left: " + totalAttempt);
+            }
+            // ------//
+
           }
           DBUtil.closeResultSet(rs);
           DBUtil.closePreparedStatement(pst);
+          // Close resources after they are done being used.
         } else {
           JOptionPane.showMessageDialog(this, "Maximum number of attempts exceeded.");
           System.out.println("Maximum number of attempts exceeded.");
-          Main m = new Main();
-          this.hide();
           System.exit(0);
         }
       } catch (SQLException ex) {
@@ -207,10 +274,14 @@ public class Login extends javax.swing.JFrame {
       }
     }
     DBUtil.dbDisconnect();
+    // Close connection to the database when finished.
     return currentUser;
+    // The currentUser is returned to tell the system who is currently logged in.
   }
 
   /**
+   * All this method does is determine the 'look and feel' of all the swing elements.
+   * 
    * @param args the command line arguments
    */
   public static void main(String args[]) {
@@ -218,9 +289,8 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
     // (optional) ">
     /*
-     * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-     * look and feel. For details see
-     * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+     * If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
      */
     try {
       for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
@@ -231,17 +301,17 @@ public class Login extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(Login.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+          null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(Login.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+          null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(Login.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+          null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(Login.class.getName())
-          .log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE,
+          null, ex);
     }
     // </editor-fold>
 
