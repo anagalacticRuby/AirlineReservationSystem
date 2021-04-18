@@ -347,11 +347,27 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
   }
 
-  private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtlastnameActionPerformed
+  /**
+   * A method left over from the original project.
+   * <p>
+   * It does nothing currently, but remains because it is part of form generation.
+   * 
+   * @param evt An ActionListener tied to the txtlastname field.
+   */
+  private void txtlastnameActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_txtlastnameActionPerformed
     // TODO add your handling code here:
   }// GEN-LAST:event_txtlastnameActionPerformed
 
-  private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtpassportActionPerformed
+  /**
+   * A method left over from the original project.
+   * <p>
+   * It does nothing currently, but remains because it is part of form generation.
+   * 
+   * @param evt An ActionListener tied to the txtpassport field.
+   */
+  private void txtpassportActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_txtpassportActionPerformed
     // TODO add your handling code here:
   }// GEN-LAST:event_txtpassportActionPerformed
 
@@ -367,7 +383,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * is set to the path which was provided by the user to the image. This is a required step for the
    * addition of a customer into the database.
    * 
-   * @param evt Whenever the "Browse" button is clicked, this method is called
+   * @param evt Whenever the "Browse" button is clicked, this method is called.
    */
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -408,7 +424,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * customer object, then this method will add a new customer object with the provided values. A
    * connection to the database is required for this function to work.
    * 
-   * @param evt Whenever the "Add" button is clicked this method is called
+   * @param evt Whenever the "Add" button is clicked this method is called.
    */
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
@@ -463,7 +479,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton2ActionPerformed
 
-  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+  /**
+   * This method closes the 'Add Customer' screen and returns a user to the 'Main' screen.
+   * @param evt An ActionListener tied to jButton3, the 'Cancel' button.
+   */
+  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
 
     this.hide();
