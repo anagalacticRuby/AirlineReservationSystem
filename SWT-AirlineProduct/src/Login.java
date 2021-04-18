@@ -223,7 +223,7 @@ public class Login extends javax.swing.JFrame {
             rs = pst.executeQuery();
             if (!rs.next()) {
               invalidCase = 1;
-              // Case 1, invalid username and password.
+              // Case 1, invalid username.
             }
             pst = con.prepareStatement(
                 "select * from user where exists " + "(select * from user where username = ?)");
@@ -249,7 +249,7 @@ public class Login extends javax.swing.JFrame {
                 txtuser.requestFocus();
                 break;
               case 1:
-                JOptionPane.showMessageDialog(this, "Invalid username and password.");
+                JOptionPane.showMessageDialog(this, "Invalid username.");
                 txtuser.setText("");
                 txtpass.setText("");
                 txtuser.requestFocus();

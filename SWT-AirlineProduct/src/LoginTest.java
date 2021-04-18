@@ -70,7 +70,7 @@ public class LoginTest {
    *              'Username or password do not match.'                Execute        Execute      Execute
    * Input: Call method handleLoginEnter(null, "rjumar", "1234")
    * Expected Output: Method handleLoginEnter returns an exception message 'Username or Password
-   *                  do not match.'
+   *                  do not match.', as well as a dialog box displaying the number of attempts left.
    */
   @Test
   @DisplayName("Login Case 2: Valid username, invalid password")
@@ -101,7 +101,7 @@ public class LoginTest {
   @DisplayName("Login Case 3: Invalid username, valid password")
   void handleInvalidUsernameLogin() {
     login.handleLoginEnter(null, "rjumarr", "123");
-    assertFalse(login.getLoginValidity(), "Username and Password do not match.");
+    assertFalse(login.getLoginValidity(), "Invalid username.");
   }
 
   /**
