@@ -1,4 +1,5 @@
 
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,20 @@ import javax.swing.JOptionPane;
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-
+/**
+ * addFlight is a class designed to construct Flight objects and insert their data into 'airline'
+ * database.
+ * <p>
+ * A flight requires fields such as a departing and source location, a time of departure, arrival
+ * time, and a date of the flight itself. Most importantly, each flight is given a unique flight ID
+ * by the system, via the autoID() method.
+ * 
+ * jButton1 is the 'Add' button, which will grab values input by a user in the appropriate fields on
+ * the 'Add Flight' screen and then construct a Flight object from them. Then it will insert the
+ * values of that Flight's attributes into the 'airline' database's 'Flight' table.
+ * 
+ * @see #autoID() autoID()
+ */
 public class addflight extends javax.swing.JInternalFrame {
 
   /**
@@ -94,19 +108,7 @@ public class addflight extends javax.swing.JInternalFrame {
     jButton1.setText("Add");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        String id = txtflightid.getText();
-        String flightname = txtflightname.getText();
-
-        String source = txtsource.getSelectedItem().toString().trim();
-        String depart = txtdepart.getSelectedItem().toString().trim();
-
-        DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-        String date = da.format(txtdate.getDate());
-
-        String departtime = txtdtime.getText();
-        String arrtime = txtarrtime.getText();
-        String flightcharge = txtflightcharge.getText();
-        addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+        jButton1ActionPerformed(evt);
       }
     });
 
@@ -246,6 +248,34 @@ public class addflight extends javax.swing.JInternalFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   /**
+   * This method is tied to the 'Add' button on the 'Add Flight' screen accessed from the Main
+   * screen.
+   * <p>
+   * When a user presses the 'Add' button, the values that have been provided by the user in the
+   * appropriate text fields, date picker, and such will be grabbed and put into variable form.
+   * Then, these newly set variables will be passed as arguments into the addFlight method.
+   * 
+   * @see #addFlight(String, String, String, String, String, String, String, String) addFlight()
+   * @param evt An ActionListener that is invoked when the 'Add' button (jButton1) is pressed.
+   */
+  private void jButton1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // TODO Auto-generated method stub
+    String id = txtflightid.getText();
+    String flightname = txtflightname.getText();
+
+    String source = txtsource.getSelectedItem().toString().trim();
+    String depart = txtdepart.getSelectedItem().toString().trim();
+
+    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+    String date = da.format(txtdate.getDate());
+
+    String departtime = txtdtime.getText();
+    String arrtime = txtarrtime.getText();
+    String flightcharge = txtflightcharge.getText();
+    addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+  }// GEN-LAST:event_jButton1ActionPerformed
+
+  /**
    * This method automatically generates an ID for a flight before they are added to the system.
    * 
    * <p>
@@ -283,16 +313,33 @@ public class addflight extends javax.swing.JInternalFrame {
 
   }
 
-  
+  /**
+   * addFlight is a method that is designed to insert Flight objects into 'airline' database.
+   * <p>
+   * First a statement is constructed using the values that have been passed in as parameters to
+   * addFlight. Every field must be filled out before a Flight object is inserted into the database
+   * otherwise an error will occur. If all of the passed parameters contain valid strings, then the
+   * statement can successfully execute and insert a Flight into the database with values
+   * corresponding to the ones passed in as parameters.
+   * 
+   * @param id A string that contains the ID of the flight to add into the database.
+   * @param flightname A string that contains the name of the flight being added into the database.
+   * @param source A string containing the source location of the flight being added
+   * @param depart A string containing the departure location of the flight to be added
+   * @param date A string that describes the date of the flight's departure
+   * @param departtime A string that tells what time a flight will be departing
+   * @param arrtime A string explaining what time a flight will be arriving
+   * @param flightcharge A string that describes the cost of the flight.
+   */
   public void addFlight(String id, String flightname, String source, String depart, String date,
-      String departtime, String arrtime, String flightcharge) {// GEN-FIRST:event_jButton1ActionPerformed
+      String departtime, String arrtime, String flightcharge) {
     // TODO add your handling code here:
 
     try {
       con = DBUtil.dbConnect();
       pst = con.prepareStatement(
           "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
-          + "values(?,?,?,?,?,?,?,?)");
+              + "values(?,?,?,?,?,?,?,?)");
 
       pst.setString(1, id);
       pst.setString(2, flightname);
@@ -312,10 +359,11 @@ public class addflight extends javax.swing.JInternalFrame {
 
     DBUtil.dbDisconnect();
 
-  }// GEN-LAST:event_jButton1ActionPerformed
+  }
 
   /**
    * This method closes the 'Add Flight' screen and returns a user to the 'Main' screen.
+   * 
    * @param evt An ActionListener tied to jButton2, the 'Cancel' button.
    */
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
