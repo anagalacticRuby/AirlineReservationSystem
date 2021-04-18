@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-  int totalAttempt = 3;
+  private int attemptsLeft = 3;
+  private boolean validLogin = false;
 
   /**
    * Creates new form Login
@@ -179,11 +180,12 @@ public class Login extends javax.swing.JFrame {
     User currentUser = new User(username, password);
 
     if (username.isEmpty() || password.isEmpty()) {
+      setLoginValidity(false);
+      // Set validLogin flag to be false, because the login attempt was unsuccessful.
       JOptionPane.showMessageDialog(this, "Username or Password is blank.");
-      throw new NullPointerException("Username or Password cannot be blank.");
     } else {
       try {
-        if (totalAttempt != 0) {
+        if (attemptsLeft != 0) {
           con = DBUtil.dbConnect();
           pst = con.prepareStatement("select * from user where username = ? and password = ?");
           pst.setString(1, username);
@@ -193,16 +195,28 @@ public class Login extends javax.swing.JFrame {
           rs = pst.executeQuery();
 
           if (rs.next()) {
+            setLoginValidity(true);
+            // Update the validLogin flag to True, indicating a successful login attempt.
             Main m = new Main();
-            this.hide();
+            this.setVisible(false);
+            // Set the Login window to become invisible, which also hides it from interaction.
             m.setVisible(true);
+            // Set the Main window to become visible, and thus enables interaction.
             System.out.println("Successful Login!");
           } else {
 
             // Initialize variable to determine what error message to display
             int invalidCase = 0;
-            // This segment of code determines what elements input by the user are invalid,
-            // And makes an appropriate error message appear.
+            /*
+             * Case 0 is a valid password, but not a matching username. In order to ensure security,
+             * a user is simply informed that the username and password do not match.
+             */
+
+
+            /*
+             * The following segment of code determines what elements input by the user are invalid,
+             * And makes an appropriate error message appear.
+             */
             // -------//
             pst = con.prepareStatement("select * from user where exists "
                 + "(select * from user where username = ? and password = ?)");
@@ -225,28 +239,27 @@ public class Login extends javax.swing.JFrame {
               invalidCase = 2;
               // Case 2, valid username but invalid password.
             }
-
             /*
              * A switch case system is implemented to determine what error message to display based
              * on what the user has input into the system.
              */
             switch (invalidCase) {
+              case 0:
+                JOptionPane.showMessageDialog(this, "Username and Password do not match.");
+                txtuser.setText("");
+                txtpass.setText("");
+                txtuser.requestFocus();
+                break;
               case 1:
                 JOptionPane.showMessageDialog(this, "Invalid username and password.");
                 txtuser.setText("");
                 txtpass.setText("");
                 txtuser.requestFocus();
-                JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
-                totalAttempt--;
-                System.out.println("Attempts left: " + totalAttempt);
                 break;
               case 2:
                 JOptionPane.showMessageDialog(this, "Invalid password.");
                 txtpass.setText("");
                 txtpass.requestFocus();
-                JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
-                totalAttempt--;
-                System.out.println("Attempts left: " + totalAttempt);
                 break;
               default:
                 JOptionPane.showMessageDialog(this,
@@ -254,12 +267,13 @@ public class Login extends javax.swing.JFrame {
                 txtuser.setText("");
                 txtpass.setText("");
                 txtuser.requestFocus();
-                JOptionPane.showMessageDialog(this, "Attempts left: " + totalAttempt);
-                totalAttempt--;
-                System.out.println("Attempts left: " + totalAttempt);
             }
             // ------//
-
+            JOptionPane.showMessageDialog(this, "Attempts left: " + attemptsLeft);
+            attemptsLeft--;
+            System.out.println("Attempts left: " + attemptsLeft);
+            setLoginValidity(false);
+            // Set validLogin flag to be false, because the login attempt was unsuccessful.
           }
           DBUtil.closeResultSet(rs);
           DBUtil.closePreparedStatement(pst);
@@ -321,6 +335,28 @@ public class Login extends javax.swing.JFrame {
         new Login().setVisible(true);
       }
     });
+  }
+
+  /**
+   * This method's only purpose is to obtain the boolean value of the validLogin attribute.
+   * <p>
+   * Used to encapsulate data and prevent users from brute forcing their way into the program.
+   * 
+   * @return Returns the boolean value currently stored in the validLogin flag.
+   */
+  public boolean getLoginValidity() {
+    return this.validLogin;
+  }
+
+  /**
+   * This method will update the value of the validLogin attribute to the passed parameter.
+   * <p>
+   * Assign a value of True to indicate a valid login attempt and False for invalid attempts.
+   * 
+   * @param loginStatus A boolean flag that indicates if a login attempt is valid or not.
+   */
+  public void setLoginValidity(boolean loginStatus) {
+    this.validLogin = loginStatus;
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

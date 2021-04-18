@@ -283,6 +283,7 @@ public class addflight extends javax.swing.JInternalFrame {
 
   }
 
+  
   public void addFlight(String id, String flightname, String source, String depart, String date,
       String departtime, String arrtime, String flightcharge) {// GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -290,7 +291,8 @@ public class addflight extends javax.swing.JInternalFrame {
     try {
       con = DBUtil.dbConnect();
       pst = con.prepareStatement(
-          "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
+          "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
+          + "values(?,?,?,?,?,?,?,?)");
 
       pst.setString(1, id);
       pst.setString(2, flightname);
@@ -312,6 +314,10 @@ public class addflight extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method closes the 'Add Flight' screen and returns a user to the 'Main' screen.
+   * @param evt An ActionListener tied to jButton2, the 'Cancel' button.
+   */
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
