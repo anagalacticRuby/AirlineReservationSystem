@@ -72,7 +72,7 @@ public class LoginTest {
   @DisplayName("User login should be invalid due to an invalid login and username.")
   void handleLoginEmpty() {
     Exception exception =
-        assertThrows(ArithmeticException.class, () -> login.handleLoginEnter(null, "",
+        assertThrows(NullPointerException.class, () -> login.handleLoginEnter(null, "",
             ""));
     assertEquals("Username or Password cannot be blank.", exception.getMessage());
   }
@@ -99,7 +99,7 @@ public class LoginTest {
   @DisplayName("User login should be invalid due to an incorrect username.")
   void handleInvalidUsernameLogin() {
     Exception exception =
-        assertThrows(ArithmeticException.class, () -> login.handleLoginEnter(null, "rjumarr",
+        assertThrows(NullPointerException.class, () -> login.handleLoginEnter(null, "rjumarr",
             "123"));
     assertEquals("Username or password do not match.", exception.getMessage());
   }
@@ -131,7 +131,14 @@ public class LoginTest {
     assertEquals("Username or password do not match.", exception.getMessage());
   }
 
+/**
+ * Test Case ID:
+ * Requirement ID/Description: REQ-31 The system shall prevent users from logging into the system
+ * upon three failed login attempts.
+ */
+  @Test
+  @DisplayName("The system should terminate on three invalid login attempts.")
+  void handleAttempts() {
 
-
-
+  }
 }

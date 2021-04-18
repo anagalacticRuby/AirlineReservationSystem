@@ -58,7 +58,7 @@ public class User {
    * firstname, lastname, and id. The information is obtained using a SQL statement tied to the
    * username input.
    */
-  private void getUserInfo() {
+  public void getUserInfo() {
     Connection con = DBUtil.dbConnect();
 
     try {

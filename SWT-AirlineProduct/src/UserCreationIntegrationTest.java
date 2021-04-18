@@ -46,20 +46,6 @@ public class UserCreationIntegrationTest {
 
     assertEquals("Username or Password cannot be blank.", exception.getMessage());
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

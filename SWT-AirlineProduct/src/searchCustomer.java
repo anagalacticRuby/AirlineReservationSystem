@@ -320,7 +320,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 	public Customer findCustomerByLastName(String lastname) {
 		Customer customer = null;
 		try {
-        	con = DBUtil.dbConnect();
+			con = DBUtil.dbConnect();
 			pst = con.prepareStatement("select * from customer where lastname = ?");
 			pst.setString(1, lastname);
 			
