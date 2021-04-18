@@ -136,7 +136,6 @@ public class Login extends javax.swing.JFrame {
     // GEN-FIRST:event_jButton1ActionPerformed
 
     User user = handleLoginEnter(evt, txtuser.getText(), txtpass.getText());
-    System.out.println();
 
   }// GEN-LAST:event_jButton1ActionPerformed
 
@@ -211,7 +210,6 @@ public class Login extends javax.swing.JFrame {
              * Case 0 is a valid password, but not a matching username. In order to ensure security,
              * a user is simply informed that the username and password do not match.
              */
-
 
             /*
              * The following segment of code determines what elements input by the user are invalid,

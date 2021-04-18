@@ -7,7 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
- * Class used to perform testing on the Login.java class.
+ * This class is solely designed to perform unit testing on requirements tied to the Login.Java
+ * class.
  */
 public class LoginTest {
   private Login login;

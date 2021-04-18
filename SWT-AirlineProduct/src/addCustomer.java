@@ -25,7 +25,21 @@ import com.toedter.calendar.JDateChooser;
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-
+/**
+ * The addCustomer class is primarily focused on adding Customer objects into the database.
+ * <p> This class is accessed from Main.Java, and uses swing elements to wait for a user to interact
+ * with the 'Add Customer' screen before doing anything.
+ * Every customer object is given a unique ID thanks to the autoID() method, ensuring that no two
+ * customers have the same ID. 
+ * jButton2 known as the 'Add' button on the 'Add Customer' screen, and will grab values input by a
+ * user in the appropriate fields in order to construct a Customer object to insert into a database.
+ * jButton1 is the 'Browse' button, which is solely used to browse for image files on a user's
+ * device.
+ * jButton3 is simply the 'Cancel' button, and all it does is close out of the 'Add Customer' 
+ * window.
+ * @see autoID()
+ *
+ */
 public class addCustomer extends javax.swing.JInternalFrame {
 
   /**
@@ -385,7 +399,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * 
    * @param evt Whenever the "Browse" button is clicked, this method is called.
    */
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     try {

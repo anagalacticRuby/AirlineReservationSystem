@@ -5,18 +5,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * A utility class designed to facilitate easier connections to the 'airline' database.
+ *
+ */
 public class DBUtil {
 
   // Declare JDBC Driver
-  private  final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+  private final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
   // Connection
-  private static  Connection con = null;
+  private static Connection con = null;
 
   // Database Credentials
-  private  final static String DB_URL = "jdbc:mysql://localhost/airline";
-  private  final static String USER = "root";
-  private  final static String PASS = "";
+  private final static String DB_URL = "jdbc:mysql://localhost/airline";
+  private final static String USER = "root";
+  private final static String PASS = "";
 
   /**
    * Method used to connect to the database.
@@ -24,9 +28,9 @@ public class DBUtil {
    * @throws SQLException
    * @throws ClassNotFoundException
    */
-  public static  Connection dbConnect() {
-    //Setting MySQL JDBC Driver
-    try{
+  public static Connection dbConnect() {
+    // Setting MySQL JDBC Driver
+    try {
       Class.forName(JDBC_DRIVER);
     } catch (ClassNotFoundException e) {
       System.out.println("Where is your JDBC Driver?");
@@ -45,7 +49,7 @@ public class DBUtil {
   /**
    * Method used to disconnect to the database.
    */
-  public static  void dbDisconnect(){
+  public static void dbDisconnect() {
     try {
       if (con != null && !con.isClosed()) {
         con.close();
@@ -58,9 +62,10 @@ public class DBUtil {
 
   /**
    * Method used to close the ResultSet.
-   * @param rs — ResultSet.
+   * 
+   * @param rs ResultSet.
    */
-  public static  void closeResultSet(ResultSet rs) {
+  public static void closeResultSet(ResultSet rs) {
     try {
       rs.close();
       System.out.println("ResultSet closed.");
@@ -71,9 +76,10 @@ public class DBUtil {
 
   /**
    * Method used to close the PreparedStatement.
-   * @param ps — PreparedStatement.
+   * 
+   * @param ps PreparedStatement.
    */
-  public static  void closePreparedStatement(PreparedStatement ps) {
+  public static void closePreparedStatement(PreparedStatement ps) {
     try {
       ps.close();
       System.out.println("PreparedStatement closed.");
