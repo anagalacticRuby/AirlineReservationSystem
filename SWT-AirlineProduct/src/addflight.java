@@ -272,7 +272,8 @@ public class addflight extends javax.swing.JInternalFrame {
     String departtime = txtdtime.getText();
     String arrtime = txtarrtime.getText();
     String flightcharge = txtflightcharge.getText();
-    addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+
+    Flight flight = addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
   }// GEN-LAST:event_jButton1ActionPerformed
 
   /**
@@ -331,9 +332,15 @@ public class addflight extends javax.swing.JInternalFrame {
    * @param arrtime A string explaining what time a flight will be arriving
    * @param flightcharge A string that describes the cost of the flight.
    */
-  public void addFlight(String id, String flightname, String source, String depart, String date,
+  public Flight addFlight(String id, String flightname, String source, String depart, String date,
       String departtime, String arrtime, String flightcharge) {
-    // TODO add your handling code here:
+
+    Flight flight = new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+
+    if(id.isEmpty() || flightname.isEmpty() || source.isEmpty() || depart.isEmpty() || date.isEmpty() || departtime.isEmpty() || arrtime.isEmpty() || flightcharge.isEmpty()) {
+      JOptionPane.showMessageDialog(this, "Fields must not be empty");
+      throw new NullPointerException("Fields must not be empty.");
+    }else {
 
     try {
       con = DBUtil.dbConnect();
@@ -352,12 +359,15 @@ public class addflight extends javax.swing.JInternalFrame {
 
       pst.executeUpdate();
 
+
       JOptionPane.showMessageDialog(null, "Flight Created.");
     } catch (SQLException ex) {
       Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     DBUtil.dbDisconnect();
+    return flight;
+    }
 
   }
 
