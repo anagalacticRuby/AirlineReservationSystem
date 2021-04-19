@@ -201,7 +201,11 @@ public class Login extends javax.swing.JFrame {
           if (rs.next()) {
             setLoginValidity(true);
             // Update the validLogin flag to True, indicating a successful login attempt.
-            Main m = new Main();
+            Main m = new Main(true);
+            /*
+             * //Because the user has successfully logged in, the Main window that is called needs
+             * to know that they have been granted permission to access the rest of the program.
+             */
             this.setVisible(false);
             // Set the Login window to become invisible, which also hides it from interaction.
             m.setVisible(true);

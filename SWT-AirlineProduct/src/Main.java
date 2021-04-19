@@ -1,3 +1,6 @@
+import javax.security.auth.login.LoginException;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
@@ -11,10 +14,57 @@ public class Main extends javax.swing.JFrame {
 
   /**
    * Creates new form Main
+   * 
+   * @throws LoginException
    */
   public Main() {
-    initComponents();
+    if (loginFlag == true) {
+      initComponents();
+    } else {
+      terminateSystem();
+    }
   }
+
+  /**
+   * A special constructor that allows the loginFlag to be specified at creation time.
+   * 
+   * @param loginFlag A boolean value that the loginFlag will be initialized with
+   */
+  public Main(boolean loginFlag) {
+    setLoginFlag(loginFlag);
+    if (getLoginFlag() == true) {
+      initComponents();
+    } else {
+      terminateSystem();
+    }
+  }
+
+  /**
+   * A security method that will throw a LoginException and tell the user that they are attempting
+   * to access the program illegally.
+   * <p>
+   * After the user clicks on the pop-up window that appears alongside the exception throwing, the
+   * program will terminate itself.
+   * @throws LoginException 
+   */
+  public void terminateSystem() {
+    try {
+      throw new LoginException();
+    } catch (LoginException e) {
+      JOptionPane.showMessageDialog(this,
+          "Illegal access to program. Shutting down to secure data.");
+      e.printStackTrace();
+      this.setVisible(false);
+      //System.exit(1);
+    }
+  }
+
+  private boolean loginFlag = false;
+  /*
+   * This boolean flag is designed to check if a user has logged in for authentication. By default
+   * it is set to false because a user must log in from Login.Java to have permission to access the
+   * entire program.
+   */
 
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -264,6 +314,24 @@ public class Main extends javax.swing.JFrame {
         new Main().setVisible(true);
       }
     });
+  }
+
+  /**
+   * Sets the loginFlag to the state passed in.
+   * 
+   * @param loginStatus The state to set the loginFlag to.
+   */
+  public void setLoginFlag(boolean loginStatus) {
+    this.loginFlag = loginStatus;
+  }
+
+  /**
+   * Gets the status of the loginFlag
+   * 
+   * @return The state of the loginFlag attribute
+   */
+  public boolean getLoginFlag() {
+    return loginFlag;
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
