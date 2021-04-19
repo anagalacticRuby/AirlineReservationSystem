@@ -45,7 +45,7 @@ public class userCreationTest {
   @DisplayName("User creation should be invalid due to an empty password.")
   void handleInvalidPWCreation() {
     Exception exception =
-        assertThrows(NullPointerException.class, () -> userCreation.handleCreation(null, "rjumar",
+        assertThrows(NullPointerException.class, () -> userCreation.createUser( "rjumar",
             "", "Ravi", "Kumar", "UO004"));
 
     assertEquals("Username or Password cannot be blank.", exception.getMessage());
@@ -74,7 +74,7 @@ public class userCreationTest {
   @Test
   @DisplayName("User creation should be valid due to an full password.")
   void handleValidPWCreation() {
-    User result = userCreation.handleCreation(null, "rjumar2",
+    User result = userCreation.createUser( "rjumar2",
         "4321", "Ravi", "Kumar", "UO008");
 
     assertEquals("4321", result.getPassword(), "Password matches.");
@@ -88,7 +88,7 @@ public class userCreationTest {
   @DisplayName("User creation should be invalid due to a duplicate username.")
   void handleDuplicateUsername() {
     Exception exception =
-        assertThrows(IllegalArgumentException.class, () -> userCreation.handleCreation(null, "rjumar",
+        assertThrows(IllegalArgumentException.class, () -> userCreation.createUser( "rjumar",
             "4321", "Ravi", "Kumar", "UO004"));
     assertEquals("Username cannot be a duplicate.", exception.getMessage());
   }
@@ -102,7 +102,7 @@ public class userCreationTest {
   void handleUserCreation() {
     user = new User("rmontoya", "montoya1", "Ricardo", "Montoya", "UO014");
 
-    User tempUser = userCreation.handleCreation(null, user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getId());
+    User tempUser = userCreation.createUser( user.getUsername(), user.getPassword(), user.getFirstname(), user.getLastname(), user.getId());
 
     assertTrue(new ReflectionEquals(user).matches(tempUser));
   }
@@ -115,7 +115,7 @@ public class userCreationTest {
   @DisplayName("The user credentials should be stored within the database.")
   void handleDatabaseStorage() {
 
-    User newUser = userCreation.handleCreation(null, "ronsmith", "rsmith32", "Ronald", "Smith", "UO0013");
+    User newUser = userCreation.createUser( "ronsmith", "rsmith32", "Ronald", "Smith", "UO0013");
     User currentUser = new User("ronsmith", "rsmith32");
 
     assertEquals(newUser.getUsername(), currentUser.getUsername());
@@ -133,7 +133,7 @@ public class userCreationTest {
   @Test
   @DisplayName("User creation should be invalid due to an empty username field.")
   void handleInvalidUNCreation() {
-    Exception exception = assertThrows(NullPointerException.class, () -> userCreation.handleCreation(null,
+    Exception exception = assertThrows(NullPointerException.class, () -> userCreation.createUser(
         "", "123", "Ravi", "Kumar", "UO004"));
 
     assertEquals("Username or Password cannot be blank.", exception.getMessage());

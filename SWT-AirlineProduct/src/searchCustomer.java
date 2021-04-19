@@ -46,7 +46,15 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   String path = null;
   byte[] userimage = null;
-  private Boolean testBlob;
+  private Boolean blobFlag;
+  /*
+   * blobFlag is a special attribute that is used primarily for testing. It is used to allow tests
+   * to bypass the obtaining of blob objects when testing the searchCustomer class. A blob is a
+   * 'binary large object' that mostly exists as a way to store image file paths within a SQL
+   * database. They only exist for the duration of the transaction they are created for and unlike
+   * other data types in Java they require a lot of hoops to jump through to create.
+   * 
+   */
 
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -339,7 +347,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     // GEN-FIRST:event_txtlastnameActionPerformed
     // TODO add your handling code here:
   }// GEN-LAST:event_txtlastnameActionPerformed
-  
+
   /**
    * A method left over from the original project.
    * <p>
@@ -352,6 +360,22 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
   }// GEN-LAST:event_txtpassportActionPerformed
 
+  /**
+   * This method is tied to the "Browse" button on the 'Search Customer' screen accessed from the
+   * Main Menu window.
+   * 
+   * <p>
+   * It opens a file input stream and then asks for the user to select a valid image file. The valid
+   * image file extensions are png, jpg, and .images type files. After a user has selected a valid
+   * image file from their device, the system reads the image path and sets the customer's photo to
+   * look through that path. When this is complete, the GUI will refresh and show the user the
+   * selected image within the 'Search Customer' screen. At the same time the userimage swing
+   * attribute is set to the path which was provided by the user to the image. This is a required
+   * step for the updating of customer data within the database.
+   * 
+   * @param evt Whenever the "Browse" button is clicked, this method is invoked.
+   * 
+   */
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -384,6 +408,20 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method is tied to the "Update" button on the 'Search Customer' screen accessed from the
+   * Main Menu window.
+   * 
+   * <p>
+   * If a user has filled out all of the fields on the 'Search Customer' screen and the customer
+   * data being updated correlates to an existing customer within the database then the update will
+   * be executed and the database will be refreshed with the new data. It is useful to know that
+   * while a user is still able to 'update' data for a customer not in the database and get the
+   * pop-up telling them that the update was succesful, nothing has actually been updated or added
+   * into the database. This is because 'update' in SQL is different from 'insert' operations.
+   * 
+   * @param evt Whenever the "Update" button is clicked, this method is invoked.
+   */
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
@@ -409,9 +447,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     try {
       Class.forName("com.mysql.jdbc.Driver");
       con = DBUtil.dbConnect();
-      pst = con.prepareStatement(
-          "update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,"
-          + "address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
+      pst = con
+          .prepareStatement("update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,"
+              + "address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
 
       pst.setString(1, firstname);
       pst.setString(2, lastname);
@@ -435,26 +473,47 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton2ActionPerformed
 
+  /**
+   * This method is bound to the "Cancel" button on the "Search Customer" screen.
+   * 
+   * <p>
+   * All it does is close the "Search Customer" screen and return the user to the Main Menu window.
+   * 
+   * @param evt Whenever the "Cancel" button is clicked, this method is invoked.
+   */
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
-
     this.hide();
   }// GEN-LAST:event_jButton3ActionPerformed
 
   /**
-   * Jbutton4 is the 'Find' button, and this method allows users to 'Find' customers by inputting a
-   * CustomerID value.
+   * The jButton4 element on the "Search Customer" screen is what calls the 'Find' feature.
    * <p>
+   * When a user clicks on the 'Find' button on the "Search Customer" screen, this method is invoked
+   * and calls the searchByID method. This separation of methods allows for the searchByID feature
+   * to be tested without having to invoke anything related to jButton4.
    * 
-   * @param evt
+   * @param evt Whenever the user clicks on the "Find" button this method is invoked.
    */
   private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton4ActionPerformed
     // TODO add your handling code here:
-    Customer searchHandler = searchByID(txtcustid.getText());
+    searchByID(txtcustid.getText());
   }// GEN-LAST:event_jButton4ActionPerformed
 
+  /**
+   * searchByID is a function that allows a user to search for Customers in the 'airline' database
+   * by providing a customerID on the 'Search Customer' screen.
+   * 
+   * <p>
+   * Normally this method is called when a user clicks on the "Find" button, but encapsulating data
+   * prevents users from tampering with elements that are not currently rendered on screen while
+   * also enabling testing to be performed within scope.
+   * 
+   * @param customerID A string containing a customerID to perform a query with.
+   * @return This method returns a customer object with fields set to the values found by queries.
+   */
   public Customer searchByID(String customerID) {
     Customer customerFinder = new Customer();
     customerFinder.setId(customerID);
@@ -479,7 +538,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
         String gender = rs.getString("gender");
 
-        if (testBlob = false) {
+        if (blobFlag = false) {
           Blob blob = rs.getBlob("photo");
           byte[] imageBytes = blob.getBytes(1, (int) blob.length());
           ImageIcon image = new ImageIcon(imageBytes);
@@ -528,12 +587,27 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   }
 
+  /**
+   * Mutator method to set the value of the blobFlag.
+   * 
+   * <p>
+   * In order to implement encapsulation, a user is prevented from directly modifying the value of
+   * the blobFlag. The blobFlag is used to allow tests to work properly without throwing exceptions
+   * due to the way that blob objects are handled, created, and set.
+   * 
+   * @param blobStatus A boolean value passed in to enable/disable the blobFlag.
+   */
   public void setBlobFlag(boolean blobStatus) {
-    this.testBlob = blobStatus;
+    this.blobFlag = blobStatus;
   }
 
+  /**
+   * Accessor method to retrieve the value of the blobFlag attribute.
+   * 
+   * @return Returns the status of the blobFlag attribute.
+   */
   public boolean getBlobFlag() {
-    return testBlob;
+    return blobFlag;
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

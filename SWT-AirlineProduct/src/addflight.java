@@ -258,7 +258,8 @@ public class addflight extends javax.swing.JInternalFrame {
    * @see #addFlight(String, String, String, String, String, String, String, String) addFlight()
    * @param evt An ActionListener that is invoked when the 'Add' button (jButton1) is pressed.
    */
-  private void jButton1ActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+  private void jButton1ActionPerformed(ActionEvent evt) {
+    // GEN-FIRST:event_jButton1ActionPerformed
     // TODO Auto-generated method stub
     String id = txtflightid.getText();
     String flightname = txtflightname.getText();
@@ -273,7 +274,7 @@ public class addflight extends javax.swing.JInternalFrame {
     String arrtime = txtarrtime.getText();
     String flightcharge = txtflightcharge.getText();
 
-    Flight flight = addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+    addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
   }// GEN-LAST:event_jButton1ActionPerformed
 
   /**
@@ -335,38 +336,40 @@ public class addflight extends javax.swing.JInternalFrame {
   public Flight addFlight(String id, String flightname, String source, String depart, String date,
       String departtime, String arrtime, String flightcharge) {
 
-    Flight flight = new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+    Flight flight =
+        new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
 
-    if(id.isEmpty() || flightname.isEmpty() || source.isEmpty() || depart.isEmpty() || date.isEmpty() || departtime.isEmpty() || arrtime.isEmpty() || flightcharge.isEmpty()) {
+    if (id.isEmpty() || flightname.isEmpty() || source.isEmpty() || depart.isEmpty()
+        || date.isEmpty() || departtime.isEmpty() || arrtime.isEmpty() || flightcharge.isEmpty()) {
       JOptionPane.showMessageDialog(this, "Fields must not be empty");
       throw new NullPointerException("Fields must not be empty.");
-    }else {
+    } else {
 
-    try {
-      con = DBUtil.dbConnect();
-      pst = con.prepareStatement(
-          "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
-              + "values(?,?,?,?,?,?,?,?)");
+      try {
+        con = DBUtil.dbConnect();
+        pst = con.prepareStatement(
+            "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
+                + "values(?,?,?,?,?,?,?,?)");
 
-      pst.setString(1, id);
-      pst.setString(2, flightname);
-      pst.setString(3, source);
-      pst.setString(4, depart);
-      pst.setString(5, date);
-      pst.setString(6, departtime);
-      pst.setString(7, arrtime);
-      pst.setString(8, flightcharge);
+        pst.setString(1, id);
+        pst.setString(2, flightname);
+        pst.setString(3, source);
+        pst.setString(4, depart);
+        pst.setString(5, date);
+        pst.setString(6, departtime);
+        pst.setString(7, arrtime);
+        pst.setString(8, flightcharge);
 
-      pst.executeUpdate();
+        pst.executeUpdate();
 
 
-      JOptionPane.showMessageDialog(null, "Flight Created.");
-    } catch (SQLException ex) {
-      Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        JOptionPane.showMessageDialog(null, "Flight Created.");
+      } catch (SQLException ex) {
+        Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
-    DBUtil.dbDisconnect();
-    return flight;
+      DBUtil.dbDisconnect();
+      return flight;
     }
 
   }
@@ -376,7 +379,8 @@ public class addflight extends javax.swing.JInternalFrame {
    * 
    * @param evt An ActionListener tied to jButton2, the 'Cancel' button.
    */
-  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
     this.hide();

@@ -11,7 +11,13 @@ import javax.swing.JOptionPane;
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-
+/**
+ * This class is essentially the controller for the 'Login' window of the AirlineReservationSystem
+ * program.
+ * <p>
+ * The methods here are invoked by buttons on the 'Login' window.
+ *
+ */
 public class Login extends javax.swing.JFrame {
 
   private int attemptsLeft = 3;
@@ -154,7 +160,6 @@ public class Login extends javax.swing.JFrame {
     System.exit(0);
     // Terminate program if user clicks on the 'Cancel' button while on the Login screen.
   }
-
 
   /**
    * This method is invoked after a user clicks on the 'Login' button, which is jButton1.

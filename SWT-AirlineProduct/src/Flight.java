@@ -1,12 +1,6 @@
-import java.sql.Blob;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * A class designed for the construction of Flight objects before they are inserted into the
  * database.
- *
  *
  */
 public class Flight {
@@ -21,14 +15,15 @@ public class Flight {
 
   /**
    * A constructor of type Flight with parameters:
-   * @param id — String parameter used to hold a Flight's ID.
-   * @param flightName — String parameter used to hold a Flight's name.
-   * @param source — String parameter used to hold a Flight's source.
-   * @param depart — String parameter used to hold a Flight's departure.
-   * @param date — String parameter used to hold a Flight's date.
-   * @param departTime — String parameter used to hold a Flight's departure time.
-   * @param arrivalTime — String parameter used to hold a Flight's arrival time.
-   * @param flightCharge — String parameter used to hold a Flight's charge.
+   * 
+   * @param id String parameter used to hold a Flight's ID.
+   * @param flightName String parameter used to hold a Flight's name.
+   * @param source String parameter used to hold a Flight's source.
+   * @param depart String parameter used to hold a Flight's departure.
+   * @param date String parameter used to hold a Flight's date.
+   * @param departTime String parameter used to hold a Flight's departure time.
+   * @param arrivalTime String parameter used to hold a Flight's arrival time.
+   * @param flightCharge String parameter used to hold a Flight's charge.
    */
   public Flight(String id, String flightName, String source, String depart, String date,
       String departTime, String arrivalTime, String flightCharge) {
@@ -44,7 +39,8 @@ public class Flight {
 
   /**
    * Getter method for ID attribute.
-   * @return id — String parameter used to hold a Flight's ID.
+   * 
+   * @return id String parameter used to hold a Flight's ID.
    */
   public String getId() {
     return id;
@@ -52,7 +48,8 @@ public class Flight {
 
   /**
    * Setter method for Flight ID attribute.
-   * @param id — String parameter used to hold a Flight's ID.
+   * 
+   * @param id String parameter used to hold a Flight's ID.
    */
   public void setId(String id) {
     this.id = id;
@@ -60,7 +57,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Name attribute.
-   * @return flightName — String parameter used to hold a Flight's name.
+   * 
+   * @return flightName String parameter used to hold a Flight's name.
    */
   public String getFlightName() {
     return flightName;
@@ -68,7 +66,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Name attribute.
-   * @param flightName — String parameter used to hold a Flight's name.
+   * 
+   * @param flightName String parameter used to hold a Flight's name.
    */
   public void setFlightName(String flightName) {
     this.flightName = flightName;
@@ -76,7 +75,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Source attribute.
-   * @return source — String parameter used to hold a Flight's source.
+   * 
+   * @return source String parameter used to hold a Flight's source.
    */
   public String getSource() {
     return source;
@@ -84,7 +84,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Source attribute.
-   * @param source — String parameter used to hold a Flight's source.
+   * 
+   * @param source String parameter used to hold a Flight's source.
    */
   public void setSource(String source) {
     this.source = source;
@@ -92,7 +93,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Departure attribute.
-   * @return depart — String parameter used to hold a Flight's departure.
+   * 
+   * @return depart String parameter used to hold a Flight's departure.
    */
   public String getDepart() {
     return depart;
@@ -100,7 +102,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Departure attribute.
-   * @param depart — String parameter used to hold a Flight's departure.
+   * 
+   * @param depart String parameter used to hold a Flight's departure.
    */
   public void setDepart(String depart) {
     this.depart = depart;
@@ -108,7 +111,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Date attribute.
-   * @return date — String parameter used to hold a Flight's date.
+   * 
+   * @return date String parameter used to hold a Flight's date.
    */
   public String getDate() {
     return date;
@@ -116,7 +120,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Date attribute.
-   * @param date — String parameter used to hold a Flight's date.
+   * 
+   * @param date String parameter used to hold a Flight's date.
    */
   public void setDate(String date) {
     this.date = date;
@@ -124,7 +129,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Departure Time attribute.
-   * @return departTime — String parameter used to hold a Flight's departure time.
+   * 
+   * @return departTime String parameter used to hold a Flight's departure time.
    */
   public String getDepartTime() {
     return departTime;
@@ -132,7 +138,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Departure Time attribute.
-   * @param departTime — String parameter used to hold a Flight's departure time.
+   * 
+   * @param departTime String parameter used to hold a Flight's departure time.
    */
   public void setDepartTime(String departTime) {
     this.departTime = departTime;
@@ -140,7 +147,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Arrival Time attribute.
-   * @return arrivalTime — String parameter used to hold a Flight's arrival time.
+   * 
+   * @return arrivalTime String parameter used to hold a Flight's arrival time.
    */
   public String getArrivalTime() {
     return arrivalTime;
@@ -148,7 +156,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Arrival Time attribute.
-   * @param arrivalTime — String parameter used to hold a Flight's arrival time.
+   * 
+   * @param arrivalTime String parameter used to hold a Flight's arrival time.
    */
   public void setArrivalTime(String arrivalTime) {
     this.arrivalTime = arrivalTime;
@@ -156,7 +165,8 @@ public class Flight {
 
   /**
    * Getter method for Flight Charge attribute.
-   * @return flightCharge — String parameter used to hold a Flight's charge.
+   * 
+   * @return flightCharge String parameter used to hold a Flight's charge.
    */
   public String getFlightCharge() {
     return flightCharge;
@@ -164,7 +174,8 @@ public class Flight {
 
   /**
    * Setter method for Flight Charge attribute.
-   * @param flightCharge — String parameter used to hold a Flight's charge.
+   * 
+   * @param flightCharge String parameter used to hold a Flight's charge.
    */
   public void setFlightCharge(String flightCharge) {
     this.flightCharge = flightCharge;

@@ -1,13 +1,7 @@
-
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import java.sql.Blob;
-import java.sql.SQLException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.mysql.jdbc.Connection;
 
 /**
  * Class used to perform testing on the searchCustomer.java class.

@@ -3,6 +3,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class is used to establish constructors for User objects as well as getters & setters to
+ * attributes of a User object.
+ */
 public class User {
 
   private String username;
@@ -13,11 +17,12 @@ public class User {
 
   /**
    * User constructor used to create or store a new User.
-   * @param username — String parameter used to hold a User's username.
-   * @param password — String parameter used to hold a User's password.
-   * @param firstname — String parameter used to hold a User's firstname.
-   * @param lastname — String parameter used to hold a User's lastname.
-   * @param id — String parameter used to hold a User's ID.
+   * 
+   * @param username String parameter used to hold a User's username.
+   * @param password String parameter used to hold a User's password.
+   * @param firstname String parameter used to hold a User's firstname.
+   * @param lastname String parameter used to hold a User's lastname.
+   * @param id String parameter used to hold a User's ID.
    */
   public User(String username, String password, String firstname, String lastname, String id) {
     this.username = username;
@@ -29,10 +34,11 @@ public class User {
 
   /**
    * User constructor used to create a new user.
-   * @param username — String parameter used to hold a User's username.
-   * @param password — String parameter used to hold a User's password.
-   * @param firstname — String parameter used to hold a User's firstname.
-   * @param lastname — String parameter used to hold a User's lastname.
+   * 
+   * @param username String parameter used to hold a User's username.
+   * @param password String parameter used to hold a User's password.
+   * @param firstname String parameter used to hold a User's firstname.
+   * @param lastname String parameter used to hold a User's lastname.
    */
   public User(String username, String password, String firstname, String lastname) {
     this.username = username;
@@ -43,10 +49,11 @@ public class User {
 
   /**
    * User constructor used to obtain information pertaining to a User.
-   * @param username — String parameter used to hold a User's username.
-   * @param password — String parameter used to hold a User's password.
+   * 
+   * @param username String parameter used to hold a User's username.
+   * @param password String parameter used to hold a User's password.
    */
-  public User (String username, String password)  {
+  public User(String username, String password) {
     this.username = username;
     this.password = password;
 
@@ -67,7 +74,7 @@ public class User {
       ps.setString(1, username);
 
       ResultSet rs = ps.executeQuery();
-      while(rs.next()){
+      while (rs.next()) {
         username = rs.getString("username");
         password = rs.getString("password");
         firstname = rs.getString("firstname");
@@ -84,6 +91,7 @@ public class User {
 
   /**
    * Username Getter method.
+   * 
    * @return username.
    */
   public String getUsername() {
@@ -92,6 +100,7 @@ public class User {
 
   /**
    * Username Setter method.
+   * 
    * @param username
    */
   public void setUsername(String username) {
@@ -100,6 +109,7 @@ public class User {
 
   /**
    * Password Getter method.
+   * 
    * @return password.
    */
   public String getPassword() {
@@ -108,6 +118,7 @@ public class User {
 
   /**
    * Password Setter method.
+   * 
    * @param password
    */
   public void setPassword(String password) {
@@ -116,6 +127,7 @@ public class User {
 
   /**
    * Firstname Getter method.
+   * 
    * @return firstname.
    */
   public String getFirstname() {
@@ -124,6 +136,7 @@ public class User {
 
   /**
    * Firstname Setter method.
+   * 
    * @param firstname
    */
   public void setFirstname(String firstname) {
@@ -132,6 +145,7 @@ public class User {
 
   /**
    * Lastname Getter method.
+   * 
    * @return lastname.
    */
   public String getLastname() {
@@ -140,6 +154,7 @@ public class User {
 
   /**
    * Lastname Setter method.
+   * 
    * @param lastname
    */
   public void setLastname(String lastname) {
@@ -148,7 +163,8 @@ public class User {
 
   /**
    * ID Getter method.
-   * @return id.
+   * 
+   * @return id
    */
   public String getId() {
     return id;
@@ -156,6 +172,7 @@ public class User {
 
   /**
    * ID Setter method.
+   * 
    * @param id
    */
   public void setId(String id) {

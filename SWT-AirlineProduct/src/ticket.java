@@ -1,7 +1,4 @@
-
-import java.awt.Graphics;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -23,7 +20,11 @@ import com.toedter.calendar.JDateChooser;
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-
+/**
+ * This class is all about the 'Book Ticket' screen that a user can access from the Main Menu
+ * window.
+ *
+ */
 public class ticket extends javax.swing.JInternalFrame {
 
   /**
@@ -400,7 +401,17 @@ public class ticket extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+  /**
+   * jButton3 is a 'Search' button on the 'Book Ticket' screen, although this button searches for
+   * arrival and departure combinations of flights stored in the database.
+   * <p>
+   * After it finds a valid pair of arrival and departure destinations in the database, details
+   * about flight objects related to the results will be translated into the jTable1.
+   * 
+   * @param evt Whenever a user clicks on the 'Search' button for flights, this method is invoked.
+   */
+  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
 
     String source = txtsource.getSelectedItem().toString().trim();
@@ -448,6 +459,18 @@ public class ticket extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton3ActionPerformed
 
+  /**
+   * This method automatically generates an ID for a ticket before they are added to the system.
+   * 
+   * <p>
+   * First, the method establishes a connection with the 'airline' database to look at the ticket
+   * table. It uses a query to select the highest ID value saved in the database. If the ticket
+   * table within the 'airline' database is completely empty, then this method will assign the next
+   * created ticket object to have the staring ID, TO001. By grabbing the highest ID value each time
+   * and incrementing it, the system prevents two tickets from having identical IDs. This also means
+   * the user is unable to tamper with ID values while running the program.
+   * 
+   */
   public void autoID() {
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -474,6 +497,14 @@ public class ticket extends javax.swing.JInternalFrame {
 
   }
 
+  /**
+   * This method is tied to the 'Search' button on the 'Book Ticket' screen, and searches for a
+   * customer to reserve a ticket for using a database connection.
+   * <p>
+   * A customer must be specified using this method before a ticket can be booked.
+   * 
+   * @param evt Whenever a user clicks on the 'Search' button, this method is invoked.
+   */
   private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton4ActionPerformed
     // TODO add your handling code here:
@@ -509,7 +540,16 @@ public class ticket extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton4ActionPerformed
 
-  private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
+  /**
+   * This method is bound to the table element on the 'Book Ticket' screen and is called when a user
+   * clicks on any non header cell within the jTable shown on the 'Book Ticket' screen.
+   * <p>
+   * Note that a flight must exist for a user to be able to interact with this method.
+   * 
+   * @param evt Whenever a user clicks on a valid non-header cell, this method is invoked.
+   */
+  private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {
+    // GEN-FIRST:event_jTable1MouseClicked
     // TODO add your handling code here:
 
     DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
@@ -539,7 +579,18 @@ public class ticket extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jTable1MouseClicked
 
-  private void txtseatsStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_txtseatsStateChanged
+  /**
+   * This method updates the price label on the 'Book Ticket' screen after a user changes the amount
+   * of seats they are attempting to book a ticket for.
+   * <p>
+   * Note that a user must have specified a flight to book tickets for before it is possible to
+   * interact with this method.
+   * 
+   * @param evt Whenever a user changes the number of seats for a ticket being booked, this method
+   *        is invoked.
+   */
+  private void txtseatsStateChanged(javax.swing.event.ChangeEvent evt) {
+    // GEN-FIRST:event_txtseatsStateChanged
     // TODO add your handling code here:
 
     int price = Integer.parseInt(txtprice.getText());
@@ -551,7 +602,14 @@ public class ticket extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_txtseatsStateChanged
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+  /**
+   * This method is tied to the 'Book' button on the 'Book Ticket' screen, and books a ticket after
+   * a user presses the button.
+   * 
+   * @param evt Whenever the 'Book' button is clicked, this method is invoked.
+   */
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
     String ticketid = txtticketno.getText();
@@ -588,7 +646,16 @@ public class ticket extends javax.swing.JInternalFrame {
 
   }// GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+  /**
+   * This method is bound to the 'Cancel' button on the 'Book Ticket' screen.
+   * 
+   * <p>
+   * All it does is close the 'Book Ticket' screen and return the user to the Main Menu window.
+   * 
+   * @param evt Whenever the 'Cancel' button is clicked, this method is invoked.
+   */
+  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
     this.hide();

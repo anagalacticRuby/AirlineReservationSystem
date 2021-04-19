@@ -4,7 +4,6 @@ import java.util.Date;
 /**
  * A class designed for the construction of Customer objects before they are inserted into the
  * database.
- * 
  *
  */
 public class Customer {

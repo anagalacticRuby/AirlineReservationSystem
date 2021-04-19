@@ -14,7 +14,11 @@ import javax.swing.table.DefaultTableModel;
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-
+/**
+ * This class handles all of the functions and elements of the 'Ticket Report' screen that can be
+ * accessed from the Main Menu window.
+ *
+ */
 public class ticketreport extends javax.swing.JInternalFrame {
 
   /**
@@ -58,29 +62,47 @@ public class ticketreport extends javax.swing.JInternalFrame {
     layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup().addContainerGap().addComponent(
-                    jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509,
+                .addGroup(layout.createSequentialGroup().addContainerGap(25, 50).addComponent(
+                    jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600,
                     javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createSequentialGroup().addGap(226, 226, 226).addComponent(
-                    jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155,
+                .addGroup(layout.createSequentialGroup().addGap(200, 200, 200).addComponent(
+                    jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300,
                     javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(35, Short.MAX_VALUE)));
+            .addContainerGap(50, Short.MAX_VALUE)));
     layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup().addGap(29, 29, 29)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(35, 35, 35).addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49,
+            .addGap(35, 35, 35).addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(37, Short.MAX_VALUE)));
+            .addContainerGap(50, Short.MAX_VALUE)));
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+  /**
+   * This method is bound to the "Cancel" button on the "Ticket Report" screen.
+   * 
+   * <p>
+   * All it does is close the "Ticket Report" screen and return the user to the Main Menu window.
+   * 
+   * @param evt Whenever the "Cancel" button is clicked, this method is invoked.
+   */
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
     this.hide();
   }// GEN-LAST:event_jButton1ActionPerformed
 
+  
+  /**
+   * Each time that the "Ticket Report" screen is opened by a user, this method will grab the most
+   * up to date values from the database for all ticket objects stored.
+   * <p>
+   * Due to the nature of Java Swing, this method will not automatically run each time the ticket
+   * table is updated. Which means that the "Ticket Report" screen will need to be opened each time
+   * that a user wants to refresh the current listings of ticket data.
+   */
   public void LoadData() {
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -106,11 +128,8 @@ public class ticketreport extends javax.swing.JInternalFrame {
           v2.add(rs.getString("price"));
           v2.add(rs.getString("seats"));
           v2.add(rs.getString("date"));
-
         }
-
         Df.addRow(v2);
-
       }
 
     } catch (ClassNotFoundException ex) {
@@ -118,7 +137,6 @@ public class ticketreport extends javax.swing.JInternalFrame {
     } catch (SQLException ex) {
       Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
