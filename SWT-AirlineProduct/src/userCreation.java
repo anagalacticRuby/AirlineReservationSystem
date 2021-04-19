@@ -279,6 +279,7 @@ public class userCreation extends javax.swing.JInternalFrame {
       }
     }
     DBUtil.dbDisconnect();
+    autoID();
     return newUser;
   }
 

@@ -369,6 +369,7 @@ public class addflight extends javax.swing.JInternalFrame {
       }
 
       DBUtil.dbDisconnect();
+      autoID();
       return flight;
     }
 

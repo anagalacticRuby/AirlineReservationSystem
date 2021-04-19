@@ -485,6 +485,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
       pst.executeUpdate();
 
       JOptionPane.showMessageDialog(null, "Registration Created.");
+      autoID();
 
     } catch (ClassNotFoundException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
@@ -501,7 +502,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
-
     this.hide();
   }// GEN-LAST:event_jButton3ActionPerformed
 

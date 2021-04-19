@@ -638,6 +638,8 @@ public class ticket extends javax.swing.JInternalFrame {
       pst.executeUpdate();
 
       JOptionPane.showMessageDialog(null, "Ticket Booked.");
+      autoID();
+      
     } catch (ClassNotFoundException ex) {
       Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
