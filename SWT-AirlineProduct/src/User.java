@@ -14,17 +14,22 @@ public class User {
   private String firstname;
   private String lastname;
   private String id;
+  
+  /**
+   * No-arguments constructor for User objects
+   */
+  public User() {}
 
   /**
    * User constructor used to create or store a new User.
    * 
-   * @param username String parameter used to hold a User's username.
-   * @param password String parameter used to hold a User's password.
-   * @param firstname String parameter used to hold a User's firstname.
-   * @param lastname String parameter used to hold a User's lastname.
-   * @param id String parameter used to hold a User's ID.
+   * @param id String parameter used to hold a User's username.
+   * @param firstname String parameter used to hold a User's password.
+   * @param lastname String parameter used to hold a User's firstname.
+   * @param username String parameter used to hold a User's lastname.
+   * @param password String parameter used to hold a User's ID.
    */
-  public User(String username, String password, String firstname, String lastname, String id) {
+  public User(String id, String firstname, String lastname, String username, String password) {
     this.username = username;
     this.password = password;
     this.firstname = firstname;
@@ -59,6 +64,8 @@ public class User {
 
     getUserInfo();
   }
+
+
 
   /**
    * This method is called within the User constructor to obtain a User's username, password,

@@ -18,7 +18,7 @@ public class DBUtil {
   private static Connection con = null;
 
   // Database Credentials
-  private final static String DB_URL = "jdbc:mysql://localhost/airline";
+  private final static String DB_URL = "jdbc:mysql://localhost/airline?useSSL=false";
   private final static String USER = "root";
   private final static String PASS = "";
 

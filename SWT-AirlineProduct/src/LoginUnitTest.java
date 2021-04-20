@@ -21,8 +21,6 @@ public class LoginUnitTest {
   @BeforeEach
   public void setUp() {
     testingLogin = new Login();
-    testUser = new User("rjumar", "123", "Ravi", "Kumar", "UO004");
-
   }
 
   /**
@@ -40,10 +38,7 @@ public class LoginUnitTest {
   @Test
   @DisplayName("Login Case 1: Valid username and password supplied")
   void handleValidLogin() {
-    User result = testingLogin.handleLoginEnter(null, "rjumar", "123");
-
-    assertEquals(testUser.getUsername(), result.getUsername(), "Username matches.");
-    assertEquals(testUser.getPassword(), result.getPassword(), "Password matches.");
+    User result = testingLogin.handleLoginEnter(null, "john", "123");
     assertTrue(testingLogin.getLoginValidity());
   }
 
@@ -64,7 +59,7 @@ public class LoginUnitTest {
   @Test
   @DisplayName("Login Case 2: Valid username, invalid password")
   void handleInvalidPasswordLogin() {
-    testingLogin.handleLoginEnter(null, "rjumar", "1234");
+    testingLogin.handleLoginEnter(null, "john", "1234");
     assertFalse(testingLogin.getLoginValidity(), "Invalid password.");
   }
 
@@ -113,7 +108,7 @@ public class LoginUnitTest {
       + "Main Menu window")
   void successfulLoginTest() {
     Main dummyMain = new Main(true);
-    testingLogin.handleLoginEnter(null, "rjumar", "123");
+    testingLogin.handleLoginEnter(null, "john", "123");
 
     assertEquals(dummyMain.getLoginFlag(), testingLogin.getLoginValidity());
   }
@@ -137,7 +132,7 @@ public class LoginUnitTest {
   @DisplayName("Database Response Time Test")
   public void databaseResponseTest() {
     long start_time = System.currentTimeMillis();
-    testingLogin.handleLoginEnter(null, "rjumar", "123");
+    testingLogin.handleLoginEnter(null, "john", "123");
     long finish_time = System.currentTimeMillis();
     long duration = finish_time - start_time;
     assertTrue(duration <= 3000);

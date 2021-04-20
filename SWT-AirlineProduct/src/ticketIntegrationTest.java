@@ -1,21 +1,16 @@
 import static org.mockito.Mockito.when;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.internal.util.reflection.FieldSetter;
-
 import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 public class ticketIntegrationTest {
 	

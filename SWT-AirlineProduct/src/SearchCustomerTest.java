@@ -1,7 +1,10 @@
 import static org.junit.Assert.assertEquals;
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 
 /**
  * Class used to perform testing on the searchCustomer.java class.

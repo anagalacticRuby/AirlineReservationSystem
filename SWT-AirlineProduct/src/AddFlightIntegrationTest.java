@@ -19,10 +19,10 @@ import com.mysql.jdbc.Statement;
 
 public class AddFlightIntegrationTest {
 
-  @Test
   public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 
-
+    Flight mockFlight =
+        new Flight("FO005", "TestFlight", "USA", "India", "2021-04-05", "9:00AM", "7:00PM", "$729");
     String id = "FO005";
     String flightname = "Test Flight";
     String source = "USA";
@@ -32,19 +32,18 @@ public class AddFlightIntegrationTest {
     String arrtime = "7:00 PM";
     String flightcharge = "$729";
 
-		MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
+    MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
 
 
 
-    Mockito.mockStatic(DBUtil.class);
+    //Mockito.mockStatic(DBUtil.class);
 
     Connection conn = Mockito.mock(Connection.class);
     PreparedStatement pst = Mockito.mock(PreparedStatement.class);
     when(DBUtil.dbConnect()).thenReturn(conn);
     when(conn.prepareStatement(
         "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
-        + "values(?,?,?,?,?,?,?,?)"))
-            .thenReturn(pst);
+            + "values(?,?,?,?,?,?,?,?)")).thenReturn(pst);
     Statement statement = Mockito.mock(Statement.class);
     when(conn.createStatement()).thenReturn(statement);
 
@@ -52,10 +51,10 @@ public class AddFlightIntegrationTest {
     when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
 
     JLabel txtflightid = Mockito.mock(JLabel.class);
-    //FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtflightid"),
-     //  txtflightid);
+    FieldSetter.setField(addflight.class, addflight.class.getDeclaredField("txtflightid"),
+        txtflightid);
 
-    // addflight.addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
-  		staticClass.close();
-  		}
+    //addflight.addFlight(mockFlight);
+    staticClass.close();
+  }
 }

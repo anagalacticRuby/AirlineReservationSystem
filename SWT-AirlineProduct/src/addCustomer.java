@@ -264,7 +264,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     jButton2.setText("Add");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-    	  addCustomer(evt);
+    	  jButton2ActionPerformed(evt);
       }
     });
 
@@ -453,7 +453,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * 
    * @param evt Whenever the "Add" button is clicked this method is called.
    */
-  public void addCustomer(java.awt.event.ActionEvent evt) {
+  public void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 

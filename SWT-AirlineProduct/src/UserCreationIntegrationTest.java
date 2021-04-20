@@ -26,13 +26,12 @@ public class UserCreationIntegrationTest {
   /**
    *
    */
-  @Test()
+  @Test
   public void mockDuplicateUsername(){
     userCreation mockCreation = Mockito.mock(userCreation.class);
     Exception exception = new NullPointerException("Username cannot be a duplicate.");
 
-    when(mockCreation.createUser( dummyUser.getUsername(), dummyUser.getPassword(), dummyUser.getFirstname(),
-        dummyUser.getPassword(), dummyUser.getId())).thenThrow(exception);
+    when(mockCreation.createUser( dummyUser)).thenThrow(exception);
 
     assertEquals("Username cannot be a duplicate.", exception.getMessage());
   }
