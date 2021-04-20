@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +21,10 @@ public class userCreationTest {
     userCreation = new userCreation();
   }
 
+  @AfterEach
+  public void tearDown() {
+    
+  }
   /**
    * Test Case ID: PosTest—UserCreation1
    * Requirement ID/Description: REQ-5 The system shall require the user to create a password for
