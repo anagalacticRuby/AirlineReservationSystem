@@ -22,7 +22,7 @@ public class AddFlightIntegrationTest {
   @Test
   public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 
-<<<<<<< HEAD
+
     String id = "FO005";
     String flightname = "Test Flight";
     String source = "USA";
@@ -31,11 +31,9 @@ public class AddFlightIntegrationTest {
     String departtime = "9:00 AM";
     String arrtime = "7:00 PM";
     String flightcharge = "$729";
-=======
-		MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
->>>>>>> branch 'master' of https://github.com/anagalacticRuby/AirlineReservationSystem.git
 
-<<<<<<< HEAD
+		MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
+
 
 
     Mockito.mockStatic(DBUtil.class);
@@ -58,25 +56,6 @@ public class AddFlightIntegrationTest {
      //  txtflightid);
 
     // addflight.addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
-  }
-=======
-		Connection conn = Mockito.mock(Connection.class);
-		PreparedStatement pst = Mockito.mock(PreparedStatement.class);
-		when(DBUtil.dbConnect()).thenReturn(conn);
-		when(conn.prepareStatement(
-				"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)"))
-						.thenReturn(pst);
-		Statement statement = Mockito.mock(Statement.class);
-		when(conn.createStatement()).thenReturn(statement);
-		
-		ResultSet rs = Mockito.mock(ResultSet.class);
-		when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
-		
-		JLabel txtflightid = Mockito.mock(JLabel.class);
-		FieldSetter.setField(addflight,addflight.getClass().getDeclaredField("txtflightid"), txtflightid);
-		
-		addflight.addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
-		staticClass.close();
-	}
->>>>>>> branch 'master' of https://github.com/anagalacticRuby/AirlineReservationSystem.git
+  		staticClass.close();
+  		}
 }
