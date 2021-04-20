@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 
 /**
  * This class is solely designed to perform unit testing on requirements tied to the Login.Java
@@ -24,97 +25,126 @@ public class LoginUnitTest {
   }
 
   /**
-   * Test Case ID: NegTest-LoginCase1 Requirement ID/Description: REQ-10 The system shall allow
-   * users to log in to the system if they provide the correct credentials (Username & Password).
-   * Purpose: To test that a user can access the home page by ensuring that both username and
-   * password are valid. Test setup: An object of the User class is created with the
-   * username='rjumar' and password='123' Test Strategy: Decision Table Testing ID Condition/Action
-   * Test Case 1 Test Case 2 Test Case 3 Test Case 4 Condition 1 Valid Username T T F F Condition 2
-   * Valid Password T F T F Action 1 Home Page Execute Action 2 Show a message displaying 'Username
-   * or password do not match.' Execute Execute Execute Input: Call method handleLoginEnter(null,
-   * "rjumar", "123") Expected Output: Method handleLoginEnter return an object of User with
-   * username='rjumar' and password='123'
+   * Test Case ID: NegTest-LoginCase1
+   * Requirement ID/Description: REQ-1 The system shall require a user to log in before they can
+   *                             access the full program.
+   * Purpose: To test that a user can access the home page by ensuring that the login validity is
+   *          true and the login flag for Main.class is true.
+   * Test setup: An object of type User is created with the username='john' and password='123'
+   * Test Strategy: Decision Table Testing
+   * ID	          Condition/Action                  Test Case 1
+   * Condition 1	Valid Username	                       T
+   * Condition 2	Valid Password	                       T
+   * Action 1	    Home Page	                           Execute
+   * Action 2   	Show a message displaying
+   *              'Username or password do not match.'
+   * Input: Call method handleLoginEnter(null, "john", "123"). Dummy object of type Main is set to
+   *        True.
+   * Expected Output: The login validity is retrieved after handleLoginEnter method is called and
+   *                  access the the home page is visible.
    */
   @Test
   @DisplayName("Login Case 1: Valid username and password supplied")
   void handleValidLogin() {
-    User result = testingLogin.handleLoginEnter(null, "john", "123");
-    assertTrue(testingLogin.getLoginValidity());
-  }
-
-
-  /**
-   * Test Case ID: NegTest-LoginCase2 Requirement ID/Description: REQ-10 The system shall allow
-   * users to log in to the system if they provide the correct credentials (Username & Password).
-   * Purpose: To test that the system performs correct exception handling by not allowing a user to
-   * access the home page if password is incorrect. Test setup: An object of the User class is
-   * created with the username='rjumar' and password='123' Test Strategy: Decision Table Testing ID
-   * Condition/Action Test Case 1 Test Case 2 Test Case 3 Test Case 4 Condition 1 Valid Username T T
-   * F F Condition 2 Valid Password T F T F Action 1 Home Page Execute Action 2 Show a message
-   * displaying 'Username or password do not match.' Execute Execute Execute Input: Call method
-   * handleLoginEnter(null, "rjumar", "1234") Expected Output: Method handleLoginEnter returns an
-   * exception message 'Username or Password do not match.', as well as a dialog box displaying the
-   * number of attempts left.
-   */
-  @Test
-  @DisplayName("Login Case 2: Valid username, invalid password")
-  void handleInvalidPasswordLogin() {
-    testingLogin.handleLoginEnter(null, "john", "1234");
-    assertFalse(testingLogin.getLoginValidity(), "Invalid password.");
-  }
-
-  /**
-   * Test Case ID: NegTest-LoginCase3 Requirement ID/Description: REQ-10 The system shall allow
-   * users to log in to the system if they provide the correct credentials (Username & Password).
-   * Purpose: To test that the system performs correct exception handling by not allowing a user to
-   * access the home page if username is incorrect. Test setup: An object of the User class is
-   * created with the username='rjumar' and password='123' Test Strategy: Decision Table Testing ID
-   * Condition/Action Test Case 1 Test Case 2 Test Case 3 Test Case 4 Condition 1 Valid Username T T
-   * F F Condition 2 Valid Password T F T F Action 1 Home Page Execute Action 2 Show a message
-   * displaying 'Username or password do not match.' Execute Execute Execute Input: Call method
-   * handleLoginEnter(null, "rjumarr", "123") Expected Output: Method handleLoginEnter returns an
-   * exception message 'Username or Password do not match.'
-   */
-  @Test
-  @DisplayName("Login Case 3: Invalid username, valid password")
-  void handleInvalidUsernameLogin() {
-    testingLogin.handleLoginEnter(null, "rjumarr", "123");
-    assertFalse(testingLogin.getLoginValidity(), "Invalid username.");
-  }
-
-  /**
-   * Test Case ID: NegTest-LoginCase4 Requirement ID/Description: REQ-10 The system shall allow
-   * users to log in to the system if they provide the correct credentials (Username & Password).
-   * Purpose: To test that the system performs correct exception handling by not allowing a user to
-   * access the home page if username and password is incorrect. Test setup: An object of the User
-   * class is created with the username='rjumar' and password='123' Test Strategy: Decision Table
-   * Testing ID Condition/Action Test Case 1 Test Case 2 Test Case 3 Test Case 4 Condition 1 Valid
-   * Username T T F F Condition 2 Valid Password T F T F Action 1 Home Page Execute Action 2 Show a
-   * message displaying 'Username and Password must be filled.' Execute Execute Execute Input: Call
-   * method handleLoginEnter(null, "", "") Expected Output: Method handleLoginEnter returns an
-   * exception message 'Username or Password cannot be blank.'
-   */
-  @Test
-  @DisplayName("Login Case 4: Empty username and password fields")
-  void handleLoginEmpty() {
-    testingLogin.handleLoginEnter(null, "", "");
-    assertFalse(testingLogin.getLoginValidity(), "Username and Password cannot be blank.");
-  }
-
-  // This test is supposed to pass, you are asserting that the login flag is true which should also
-  // be the same value as the login validity.
-  @Test
-  @DisplayName("Login Access Case 1: A user successfully logs in and is granted access to the "
-      + "Main Menu window")
-  void successfulLoginTest() {
     Main dummyMain = new Main(true);
     testingLogin.handleLoginEnter(null, "john", "123");
 
     assertEquals(dummyMain.getLoginFlag(), testingLogin.getLoginValidity());
   }
 
+  /**
+   * Test Case ID: NegTest-LoginCase2
+   * Requirement ID/Description: REQ-1 The system shall require a user to log in before they can
+   *                             access the full program.
+   * Purpose: To test that a user cannot access the home page by ensuring that the login validity is
+   *          false.
+   * Test setup: An object of the User class is created with the username='john' and password='1234'
+   * Test Strategy: Decision Table Testing
+   * ID	          Condition/Action                        Test Case 2
+   * Condition 1	Valid Username	                            T
+   * Condition 2	Valid Password	                            F
+   * Action 1	    Home Page
+   * Action 2   	Show a message displaying                Execute
+   *              'Username or password do not match.'
+   * Input: Call method handleLoginEnter(null, "john", "1234")
+   * Expected Output: Method handleLoginEnter return an object of User with username='john' and
+   *                  password='1234'. The login validity is retrieved and is false to denote an
+   *                  invalid login.
+   */
+  @Test
+  @DisplayName("Login Case 2: Valid username, invalid password")
+  void handleInvalidPasswordLogin() {
+    testingLogin.handleLoginEnter(null, "john", "1234");
 
-  // This test is supposed to pass to indicate that the user has been locked out of the system.
+    assertFalse(testingLogin.getLoginValidity(), "Invalid password.");
+  }
+
+  /**
+   * Test Case ID: NegTest-LoginCase3
+   * Requirement ID/Description: REQ-1 The system shall require a user to log in before they can
+   *                             access the full program.
+   * Purpose: To test that a user cannot access the home page by ensuring that the login validity is
+   *          false.
+   * Test setup: An object of the User class is created with the username='rjumarr' and password='1234'
+   * Test Strategy: Decision Table Testing
+   * ID	          Condition/Action                        Test Case 3
+   * Condition 1	Valid Username	                            F
+   * Condition 2	Valid Password	                            T
+   * Action 1	    Home Page
+   * Action 2   	Show a message displaying                Execute
+   *              'Username or password do not match.'
+   * Input: Call method handleLoginEnter(null, "rjumarr", "123")
+   * Expected Output: Method handleLoginEnter return an object of User with username='rjumarr' and
+   *                  password='123'. The login validity is retrieved and is false to denote an
+   *                  invalid login.
+   */
+  @Test
+  @DisplayName("Login Case 3: Invalid username, valid password")
+  void handleInvalidUsernameLogin() {
+    testingLogin.handleLoginEnter(null, "rjumarr", "123");
+
+    assertFalse(testingLogin.getLoginValidity(), "Invalid username.");
+  }
+
+  /**
+   * Test Case ID: NegTest-LoginCase4
+   * Requirement ID/Description: REQ-1 The system shall require a user to log in before they can
+   *                             access the full program.
+   * Purpose: To test that a user cannot access the home page by ensuring that the login validity is
+   *          false.
+   * Test setup: An object of the User class is created with the username='' and password=''
+   * Test Strategy: Decision Table Testing
+   * ID	          Condition/Action                        Test Case 4
+   * Condition 1	Valid Username	                            F
+   * Condition 2	Valid Password	                            F
+   * Action 1	    Home Page
+   * Action 2   	Show a message displaying                Execute
+   *              'Username or password do not match.'
+   * Input: Call method handleLoginEnter(null, "", "")
+   * Expected Output: Method handleLoginEnter return an message: "Username and Password cannot be blank."
+   *                  The login validity is retrieved and is false to denote an
+   *                  invalid login.
+   */
+  @Test
+  @DisplayName("Login Case 4: Empty username and password fields")
+  void handleLoginEmpty() {
+    testingLogin.handleLoginEnter(null, "", "");
+
+    assertFalse(testingLogin.getLoginValidity(), "Username and Password cannot be blank.");
+  }
+
+  /**
+   * Test Case ID:
+   * Requirement ID/Description: REQ-21 The system shall prevent illegal access by terminating after
+   *                             three failed login attempts.
+   * Purpose: To test that a user cannot access the system after three unsuccessful attempts.
+   * Test setup: Attempts are set to zero and User(null, "blah, "blah")
+   * Test Strategy: Negative Testing
+   * Input: Attempts left are set to zero and a call method handleLoginEnter(null, "blah", "blah")
+   *        is executed.
+   * Expected Output: Method handleLoginEnter return an message: "Maximum number of attempts exceeded."
+   *                  The login visibility is retrieved is false.
+   */
   @Test
   @DisplayName("Failed Login Case 1: A user fails to log in three times and the system terminates.")
   void failedLoginTest() {
@@ -123,10 +153,18 @@ public class LoginUnitTest {
     assertFalse(testingLogin.isVisible());
   }
 
-  /*
-   * Because I couldn't figure out how to get the Timeout annotation working, this test Uses a
-   * shorthand timer to confirm that the database operations take less than 3 seconds. You compare
-   * the duration to 3000 because duration is in milliseconds and 3000 milliseconds is 3 seconds.
+  /**
+   * Test Case ID:
+   * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
+   *                             database operations.
+   * Purpose: To test that the response time is less than three seconds.
+   * Test setup: System time before and after handleLoginEnter is established to determine the total
+   *             time the system took. The assertTrue is used to compare the condition where the
+   *             duration is less than 3000 milliseconds, 3 seconds.
+   * Test Strategy: Positive Testing
+   * Input: Call to handleLoginEnter is executed with valid credentials.
+   * Expected Output: Method handleLoginEnter return an message: "Maximum number of attempts exceeded."
+   *                  The login visibility is retrieved is false.
    */
   @Test
   @DisplayName("Database Response Time Test")
@@ -137,5 +175,4 @@ public class LoginUnitTest {
     long duration = finish_time - start_time;
     assertTrue(duration <= 3000);
   }
-
 }
