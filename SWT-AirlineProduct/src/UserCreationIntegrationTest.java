@@ -24,7 +24,16 @@ public class UserCreationIntegrationTest {
   }
 
   /**
-   *
+   * Test Case ID:
+   * Requirement ID/Description: REQ-16 The system shall require that every username be distinct
+   *                             from one another.
+   * Purpose: The purpose is to mock the creation of a user object and throw an exception.
+   * Test Setup: A Mock of userCreation.class is created to mock the createUser method. A stub is then
+   *             used to create the expected exception.
+   * Test Strategy: Mock
+   * Input: Mock of createUser method with an expected exception.
+   * Expected Output: Mock call to createUser return an exception throws an exception:
+   *                  "Username cannot be a duplicate."
    */
   @Test
   public void mockDuplicateUsername(){
@@ -36,8 +45,20 @@ public class UserCreationIntegrationTest {
     assertEquals("Username cannot be a duplicate.", exception.getMessage());
   }
 
+  /**
+   * Test Case ID:
+   * Requirement: REQ-4 The system shall require that every field is filled before
+   *              processing requests.
+   * Purpose: The purpose is to stub the exception when an object of type User is created.
+   * Test Setup: A mock of User.class is created to stub the NullPointerException for when the password
+   *             field is left empty.
+   * Test Strategy: Stub
+   * Input: Call to method test object to get password attribute that is current empty.
+   * Expected Output: Stub call to getPassword returns an exception message 'Username or Password
+   *                  cannot be blank.'
+   */
   @Test
-  public void stubInvalidPWCreation() {
+  public void stubEmptyField() {
 
     User test = mock(User.class);
     Exception exception = new NullPointerException("Username or Password cannot be blank.");

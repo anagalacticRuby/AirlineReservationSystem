@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.sql.Connection;
@@ -51,8 +52,9 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID: Requirement: REQ-4 The system shall require that every field is filled before
-   *               processing requests.
+   * Test Case ID:
+   * Requirement: REQ-4 The system shall require that every field is filled before
+   *              processing requests.
    * Purpose: The purpose is to test when a user has left an empty field on user creation and
    *          shows the response from the system.
    * Test Setup: A dummy object of type User is declared within the setup method with the following
