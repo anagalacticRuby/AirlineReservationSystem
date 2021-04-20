@@ -85,7 +85,8 @@ public class userCreationTest {
    * Purpose: The purpose is to test the creation of a user with valid credentials.
    * Test Setup: A dummy object of type User is declared within the setup method with the following
    *             data: User("UO004", "Ricky", "Jumar", "rjumar", "1234"). A result object of class User is
-   *             returned after insertion to the database and the password attributes are compared.
+   *             returned after insertion to the database. The ReflectionEquals is used to compare the
+   *             dummyUser object to the result object to determine if createUser was executed properly.
    * Test Strategy: Decision Table Testing
    * ID	            Condition/Action                    Test Case 1
    * Condition 1	  Valid Username	                        T
@@ -98,11 +99,11 @@ public class userCreationTest {
    *                  message, "User Created.", is display to confirm the creation.
    */
   @Test
-  @DisplayName("User creation should be valid due to an full password.")
-  void handleValidPWCreation() {
+  @DisplayName("System shall allow for user creation.")
+  void handleUserCreation() {
     User result = userCreation.createUser(dummyUser);
 
-    assertEquals("1234", result.getPassword(), "Password matches.");
+    assertTrue(new ReflectionEquals(dummyUser).matches(result));
   }
 
   /**
@@ -131,23 +132,31 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID: Requirement ID/Description: REQ-9 The system shall save all user profiles in a
-   * database.
+   * Test Case ID:
+   * ID/Description: REQ-2 The system shall store all user accounts in a database.
+   * Purpose: The purpose is to test that the new user's data is stored to the database.
+   * Test Setup: A dummy object of type User is declared within the setup method with the following
+   *             data: User("UO004", "Ricky", "Jumar", "rjumar", "1234"). A current user object of
+   *             type User is created data: User("rjumar", "1234"). Within the current user, a call to
+   *             getUserInfo() method is created to retrieve the data from the database.
+   * Testing Strategy: Positive Testing
+   * Input: Initial call to method createUser with dummyUser attributes. New current user object of
+   *        type User is created to retrieve database data.
+   * Expected Output: Method call createUser returns an object of type User to be compared and display
+   *                  message, "User Created.", is display to confirm the creation. The assertEquals
+   *                  compared the dummy attributes from what currentUser retrieved from the database.
    */
   @Test
   @DisplayName("The user credentials should be stored within the database.")
   void handleDatabaseStorage() {
 
-    User newUser = new User("UO004","Ronald","Smith", "rsmith32","ronsmith" );
-    userCreation.createUser(newUser);
-    User currentUser = new User("rsmith32", "ronsmith");
+    userCreation.createUser(dummyUser);
+    User currentUser = new User("rjumar", "1234");
 
-    assertEquals(newUser.getUsername(), currentUser.getUsername());
-    assertEquals(newUser.getPassword(), currentUser.getPassword());
-    assertEquals(newUser.getFirstname(), currentUser.getFirstname());
-    assertEquals(newUser.getLastname(), currentUser.getLastname());
-    assertEquals(newUser.getId(), currentUser.getId());
+    assertEquals(dummyUser.getUsername(), currentUser.getUsername());
+    assertEquals(dummyUser.getPassword(), currentUser.getPassword());
+    assertEquals(dummyUser.getFirstname(), currentUser.getFirstname());
+    assertEquals(dummyUser.getLastname(), currentUser.getLastname());
+    assertEquals(dummyUser.getId(), currentUser.getId());
   }
-
-
 }
