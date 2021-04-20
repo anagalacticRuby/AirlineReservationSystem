@@ -76,7 +76,7 @@ public class userCreationTest {
   void handleValidPWCreation() {
     User result = userCreation.createUser(dummyUser);
 
-    assertEquals("4321", result.getPassword(), "Password matches.");
+    assertEquals("1234", result.getPassword(), "Password matches.");
   }
 
   /**
@@ -103,8 +103,9 @@ public class userCreationTest {
   @DisplayName("The user credentials should be stored within the database.")
   void handleDatabaseStorage() {
 
-    User newUser = new User("UO0013","Ronald","Smith", "rsmith32","ronsmith" );
-    User currentUser = new User("ronsmith", "rsmith32");
+    User newUser = new User("UO004","Ronald","Smith", "rsmith32","ronsmith" );
+    userCreation.createUser(newUser);
+    User currentUser = new User("rsmith32", "ronsmith");
 
     assertEquals(newUser.getUsername(), currentUser.getUsername());
     assertEquals(newUser.getPassword(), currentUser.getPassword());
