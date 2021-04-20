@@ -1,11 +1,17 @@
 import static org.mockito.Mockito.when;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.swing.JLabel;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.util.reflection.FieldSetter;
+
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
 /****************************************************************************************************************
  * Integration test for adding a flight from addflight class. In this test we mock the database connection,
  * prepared statement, and DBUtil class which allows for the connection to be opened and closed.
@@ -16,8 +22,8 @@ import com.mysql.jdbc.PreparedStatement;
 public class AddFlightIntegrationTest {
 
 	@Test
-	public void testFlightAdd() throws SQLException {
-		addflight addflight = new addflight();
+	public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
+		addflight addflight = new addflight(false, false);
 		String id = "FO005";
 		String flightname = "Test Flight";
 		String source = "USA";
@@ -35,7 +41,15 @@ public class AddFlightIntegrationTest {
 		when(conn.prepareStatement(
 				"insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)"))
 						.thenReturn(pst);
-
+		Statement statement = Mockito.mock(Statement.class);
+		when(conn.createStatement()).thenReturn(statement);
+		
+		ResultSet rs = Mockito.mock(ResultSet.class);
+		when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
+		
+		JLabel txtflightid = Mockito.mock(JLabel.class);
+		FieldSetter.setField(addflight,addflight.getClass().getDeclaredField("txtflightid"), txtflightid);
+		
 		addflight.addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
 	}
 }

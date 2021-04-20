@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /*
@@ -34,10 +35,19 @@ public class addflight extends javax.swing.JInternalFrame {
   /**
    * Creates new form addflight
    */
-  public addflight() {
-    initComponents();
-    autoID();
-  }
+	public addflight() {
+		this(true, true);
+	}
+  
+	public addflight(boolean initComponents, boolean autoID) {
+		if (initComponents) {
+			initComponents();
+		}
+		
+		if (autoID) {
+			autoID();
+		}
+	}
 
   Connection con;
   PreparedStatement pst;
