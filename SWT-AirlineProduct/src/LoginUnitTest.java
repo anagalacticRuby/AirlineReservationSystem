@@ -9,18 +9,19 @@ import org.junit.jupiter.api.Test;
  * This class is solely designed to perform unit testing on requirements tied to the Login.Java
  * class.
  */
-public class LoginTest {
-  private Login login;
-  private User user;
+public class LoginUnitTest {
+  private Login testingLogin;
+  private User testUser;
 
+  
   /**
    * The code within @BeforeEach is run before each test method execution. An object of class User is
    * created so that the expected and actual are compared.
    */
   @BeforeEach
   public void setUp() {
-    login = new Login();
-    user = new User("rjumar", "123", "Ravi", "Kumar", "UO004");
+    testingLogin = new Login();
+    testUser = new User("rjumar", "123", "Ravi", "Kumar", "UO004");
 
   }
 
@@ -45,11 +46,11 @@ public class LoginTest {
   @Test
   @DisplayName("Login Case 1: Valid username and password supplied")
   void handleValidLogin() {
-    User result = login.handleLoginEnter(null, "rjumar", "123");
+    User result = testingLogin.handleLoginEnter(null, "rjumar", "123");
 
-    assertEquals(user.getUsername(), result.getUsername(), "Username matches.");
-    assertEquals(user.getPassword(), result.getPassword(), "Password matches.");
-    assertTrue(login.getLoginValidity());
+    assertEquals(testUser.getUsername(), result.getUsername(), "Username matches.");
+    assertEquals(testUser.getPassword(), result.getPassword(), "Password matches.");
+    assertTrue(testingLogin.getLoginValidity());
   }
 
 
@@ -74,8 +75,8 @@ public class LoginTest {
   @Test
   @DisplayName("Login Case 2: Valid username, invalid password")
   void handleInvalidPasswordLogin() {
-    login.handleLoginEnter(null, "rjumar", "1234");
-    assertFalse(login.getLoginValidity(), "Invalid password.");
+    testingLogin.handleLoginEnter(null, "rjumar", "1234");
+    assertFalse(testingLogin.getLoginValidity(), "Invalid password.");
   }
 
   /**
@@ -99,8 +100,8 @@ public class LoginTest {
   @Test
   @DisplayName("Login Case 3: Invalid username, valid password")
   void handleInvalidUsernameLogin() {
-    login.handleLoginEnter(null, "rjumarr", "123");
-    assertFalse(login.getLoginValidity(), "Invalid username.");
+    testingLogin.handleLoginEnter(null, "rjumarr", "123");
+    assertFalse(testingLogin.getLoginValidity(), "Invalid username.");
   }
 
   /**
@@ -124,7 +125,29 @@ public class LoginTest {
   @Test
   @DisplayName("Login Case 4: Empty username and password fields")
   void handleLoginEmpty() {
-    login.handleLoginEnter(null,"","");
-    assertFalse(login.getLoginValidity(), "Username and Password cannot be blank.");
+    testingLogin.handleLoginEnter(null,"","");
+    assertFalse(testingLogin.getLoginValidity(), "Username and Password cannot be blank.");
+  }
+  
+  //This test is supposed to pass, you are asserting that the login flag is true which should also
+  //be the same value as the login validity.
+  @Test
+  @DisplayName("Login Access Case 1: A user successfully logs in and is granted access to the "
+      + "Main Menu window")
+  void successfulLoginTest(){
+    Main dummyMain = new Main(true);
+    testingLogin.handleLoginEnter(null,"rjumar","123");
+    
+    assertEquals(dummyMain.getLoginFlag(),testingLogin.getLoginValidity());
+  }
+  
+  
+  //This test is supposed to pass to indicate that the user has been locked out of the system.
+  @Test
+  @DisplayName("Failed Login Case 1: A user fails to log in three times and the system terminates.")
+ void failedLoginTest() {
+    testingLogin.setAttemptsLeft(0);
+    testingLogin.handleLoginEnter(null, "blah", "blah");
+    assertFalse(testingLogin.isVisible());
   }
 }
