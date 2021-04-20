@@ -30,10 +30,19 @@ public class ticket extends javax.swing.JInternalFrame {
   /**
    * Creates new form ticket
    */
-  public ticket() {
-    initComponents();
-    autoID();
-  }
+	public ticket() {
+		this(true, true);
+	}
+	
+	public ticket(boolean initComponents, boolean autoID) {
+		if (initComponents) {
+			initComponents();
+		}
+
+		if (autoID) {
+			autoID();
+		}
+	}
 
   Connection con;
   PreparedStatement pst;
@@ -104,7 +113,7 @@ public class ticket extends javax.swing.JInternalFrame {
     jButton3.setText("Search");
     jButton3.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton3ActionPerformed(evt);
+        search(evt);
       }
     });
 
@@ -410,7 +419,7 @@ public class ticket extends javax.swing.JInternalFrame {
    * 
    * @param evt Whenever a user clicks on the 'Search' button for flights, this method is invoked.
    */
-  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+  public void search(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
 
