@@ -425,53 +425,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
-
     update();
-//    String id = txtcustid.getText();
-//    String firstname = txtfirstname.getText();
-//    String lastname = txtlastname.getText();
-//    String nic = txtnic.getText();
-//    String passport = txtpassport.getText();
-//    String address = txtaddress.getText();
-//
-//    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-//    String date = da.format(txtdob.getDate());
-//    String Gender;
-//    if (r1.isSelected()) {
-//      Gender = "Male";
-//    } else {
-//      Gender = "FeMale";
-//    }
-//
-//    String contact = txtcontact.getText();
-//
-//    try {
-//      Class.forName("com.mysql.jdbc.Driver");
-//      con = DBUtil.dbConnect();
-//      pst = con
-//          .prepareStatement("
-//          update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,"
-//              + "address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
-//
-//      pst.setString(1, firstname);
-//      pst.setString(2, lastname);
-//      pst.setString(3, nic);
-//      pst.setString(4, passport);
-//      pst.setString(5, address);
-//      pst.setString(6, date);
-//      pst.setString(7, Gender);
-//      pst.setString(8, contact);
-//      pst.setBytes(9, userimage);
-//      pst.setString(10, id);
-//      pst.executeUpdate();
-//
-//      JOptionPane.showMessageDialog(null, "Registration Updated.");
-//
-//    } catch (ClassNotFoundException ex) {
-//      Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-//    } catch (SQLException ex) {
-//      Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
-//    }
 
   }// GEN-LAST:event_jButton2ActionPerformed
 
