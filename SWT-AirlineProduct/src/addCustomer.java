@@ -14,11 +14,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import com.toedter.calendar.JDateChooser;
 
 /*
@@ -45,9 +47,19 @@ public class addCustomer extends javax.swing.JInternalFrame {
   /**
    * Creates new form addCustomer
    */
-  public addCustomer() {
-    initComponents();
-    autoID();
+	public addCustomer() {
+		this(true, true);
+	}
+	
+	
+  public addCustomer(boolean initComponents, boolean autoID) {
+	  if(initComponents) {
+		  initComponents();
+	  }
+	  
+	  if(autoID) {
+		  autoID();  
+	  }
   }
 
   Connection con;
@@ -252,7 +264,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     jButton2.setText("Add");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton2ActionPerformed(evt);
+    	  addCustomer(evt);
       }
     });
 
@@ -441,7 +453,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * 
    * @param evt Whenever the "Add" button is clicked this method is called.
    */
-  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+  public void addCustomer(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 

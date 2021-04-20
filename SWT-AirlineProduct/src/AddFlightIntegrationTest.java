@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JLabel;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.internal.util.reflection.FieldSetter;
 
@@ -33,7 +34,7 @@ public class AddFlightIntegrationTest {
 		String arrtime = "7:00 PM";
 		String flightcharge = "$729";
 
-		Mockito.mockStatic(DBUtil.class);
+		MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
 
 		Connection conn = Mockito.mock(Connection.class);
 		PreparedStatement pst = Mockito.mock(PreparedStatement.class);
@@ -51,5 +52,6 @@ public class AddFlightIntegrationTest {
 		FieldSetter.setField(addflight,addflight.getClass().getDeclaredField("txtflightid"), txtflightid);
 		
 		addflight.addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+		staticClass.close();
 	}
 }
