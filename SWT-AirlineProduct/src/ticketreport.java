@@ -27,6 +27,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
   public ticketreport() {
     initComponents();
     LoadData();
+    list();
   }
 
   Connection con;

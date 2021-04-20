@@ -21,6 +21,14 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
   private int attemptsLeft = 3;
+
+
+
+  /*
+   * validLogin is a flag that determines if a user has successfully logged in to the system or not.
+   * It is initialized to false by default to indicate a valid login attempt has not yet been
+   * recorded.
+   */
   private boolean validLogin = false;
 
   /**
@@ -203,8 +211,8 @@ public class Login extends javax.swing.JFrame {
             // Update the validLogin flag to True, indicating a successful login attempt.
             Main m = new Main(true);
             /*
-             * //Because the user has successfully logged in, the Main window that is called needs
-             * to know that they have been granted permission to access the rest of the program.
+             * Because the user has successfully logged in, the Main window that is created needs to
+             * know that they have been granted permission to access the rest of the program.
              */
             this.setVisible(false);
             // Set the Login window to become invisible, which also hides it from interaction.
@@ -288,7 +296,7 @@ public class Login extends javax.swing.JFrame {
         } else {
           JOptionPane.showMessageDialog(this, "Maximum number of attempts exceeded.");
           System.out.println("Maximum number of attempts exceeded.");
-          System.exit(0);
+          this.setVisible(false);
         }
       } catch (SQLException ex) {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -344,6 +352,22 @@ public class Login extends javax.swing.JFrame {
     });
   }
 
+  /**
+   * Obtains the number of attempts that a user has left to perform the process of logging in.
+   * @return the attemptsLeft The number of attempts a user has left.
+   */
+  public int getAttemptsLeft() {
+    return attemptsLeft;
+  }
+
+  /**
+   * Sets the number of attempts that a user has left before they are locked out of the system.
+   * @param attemptsLeft the attemptsLeft to set
+   */
+  public void setAttemptsLeft(int attemptsLeft) {
+    this.attemptsLeft = attemptsLeft;
+  }
+  
   /**
    * This method's only purpose is to obtain the boolean value of the validLogin attribute.
    * <p>
