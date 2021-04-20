@@ -426,7 +426,61 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
+    update();
+//    String id = txtcustid.getText();
+//    String firstname = txtfirstname.getText();
+//    String lastname = txtlastname.getText();
+//    String nic = txtnic.getText();
+//    String passport = txtpassport.getText();
+//    String address = txtaddress.getText();
+//
+//    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+//    String date = da.format(txtdob.getDate());
+//    String Gender;
+//    if (r1.isSelected()) {
+//      Gender = "Male";
+//    } else {
+//      Gender = "FeMale";
+//    }
+//
+//    String contact = txtcontact.getText();
+//
+//    try {
+//      Class.forName("com.mysql.jdbc.Driver");
+//      con = DBUtil.dbConnect();
+//      pst = con
+//          .prepareStatement("
+//          update customer set firstname = ?,lastname = ?,nic = ?,passport = ?,"
+//              + "address= ?,dob = ?,gender = ?,contact = ?,photo = ? where id = ?");
+//
+//      pst.setString(1, firstname);
+//      pst.setString(2, lastname);
+//      pst.setString(3, nic);
+//      pst.setString(4, passport);
+//      pst.setString(5, address);
+//      pst.setString(6, date);
+//      pst.setString(7, Gender);
+//      pst.setString(8, contact);
+//      pst.setBytes(9, userimage);
+//      pst.setString(10, id);
+//      pst.executeUpdate();
+//
+//      JOptionPane.showMessageDialog(null, "Registration Updated.");
+//
+//    } catch (ClassNotFoundException ex) {
+//      Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+//    } catch (SQLException ex) {
+//      Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+
+  }// GEN-LAST:event_jButton2ActionPerformed
+
+  public Customer update() {
+
+    Customer currentCustomer = new Customer();
+
     String id = txtcustid.getText();
+    currentCustomer.setId(id);
     String firstname = txtfirstname.getText();
     String lastname = txtlastname.getText();
     String nic = txtnic.getText();
@@ -463,6 +517,14 @@ public class searchCustomer extends javax.swing.JInternalFrame {
       pst.setString(10, id);
       pst.executeUpdate();
 
+      currentCustomer.setFirstname(txtfirstname.getText());
+      currentCustomer.setLastname(txtlastname.getText());
+      currentCustomer.setNic(txtnic.getText());
+      currentCustomer.setPassport(txtpassport.getText());
+      currentCustomer.setAddressString(txtaddress.getText());
+      currentCustomer.setContact(txtcontact.getText());
+      currentCustomer.setDob(txtdob.getDate());
+
       JOptionPane.showMessageDialog(null, "Registration Updated.");
 
     } catch (ClassNotFoundException ex) {
@@ -470,8 +532,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     } catch (SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return currentCustomer;
+  }
 
-  }// GEN-LAST:event_jButton2ActionPerformed
 
   /**
    * This method is bound to the "Cancel" button on the "Search Customer" screen.
