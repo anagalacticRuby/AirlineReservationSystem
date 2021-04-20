@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.naming.NameAlreadyBoundException;
 import javax.swing.JOptionPane;
 
 /*
@@ -35,19 +35,10 @@ public class addflight extends javax.swing.JInternalFrame {
   /**
    * Creates new form addflight
    */
-	public addflight() {
-		this(true, true);
-	}
-  
-	public addflight(boolean initComponents, boolean autoID) {
-		if (initComponents) {
-			initComponents();
-		}
-		
-		if (autoID) {
-			autoID();
-		}
-	}
+  public addflight() {
+      initComponents();
+      autoID();
+  }
 
   Connection con;
   PreparedStatement pst;
@@ -284,7 +275,9 @@ public class addflight extends javax.swing.JInternalFrame {
     String arrtime = txtarrtime.getText();
     String flightcharge = txtflightcharge.getText();
 
-    addFlight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+    Flight newFlight =
+        new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+    addFlight(newFlight);
   }// GEN-LAST:event_jButton1ActionPerformed
 
   /**
@@ -343,46 +336,66 @@ public class addflight extends javax.swing.JInternalFrame {
    * @param arrtime A string explaining what time a flight will be arriving
    * @param flightcharge A string that describes the cost of the flight.
    */
-  public Flight addFlight(String id, String flightname, String source, String depart, String date,
-      String departtime, String arrtime, String flightcharge) {
+  public Flight addFlight(Flight newFlight) {
 
-    Flight flight =
-        new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
 
-    if (id.isEmpty() || flightname.isEmpty() || source.isEmpty() || depart.isEmpty()
-        || date.isEmpty() || departtime.isEmpty() || arrtime.isEmpty() || flightcharge.isEmpty()) {
+
+
+    if (newFlight.getId().isEmpty() || newFlight.getFlightName().isEmpty()
+        || newFlight.getSource().isEmpty() || newFlight.getDepart().isEmpty()
+        || newFlight.getDate().isEmpty() || newFlight.getDepartTime().isEmpty()
+        || newFlight.getArrivalTime().isEmpty() || newFlight.getFlightCharge().isEmpty()) {
       JOptionPane.showMessageDialog(this, "Fields must not be empty");
       throw new NullPointerException("Fields must not be empty.");
     } else {
 
       try {
         con = DBUtil.dbConnect();
+        
+        pst = con.prepareStatement(
+            "select * from flight where exists (select * from flight where id = ?)");
+        pst.setString(1, newFlight.getId());
+        ResultSet rs;
+        rs = pst.executeQuery();
+        if(rs.next()) {
+          try {
+            throw new NameAlreadyBoundException("Flights must have a unique ID!");
+          } catch (NameAlreadyBoundException nabe) {
+            // TODO Auto-generated catch block
+            Logger.getLogger(addflight.class.getName()).log(Level.SEVERE,null,nabe);
+          }
+        }
+        else {
+        
         pst = con.prepareStatement(
             "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
                 + "values(?,?,?,?,?,?,?,?)");
 
-        pst.setString(1, id);
-        pst.setString(2, flightname);
-        pst.setString(3, source);
-        pst.setString(4, depart);
-        pst.setString(5, date);
-        pst.setString(6, departtime);
-        pst.setString(7, arrtime);
-        pst.setString(8, flightcharge);
+        pst.setString(1, newFlight.getId());
+        pst.setString(2, newFlight.getFlightName());
+        pst.setString(3, newFlight.getSource());
+        pst.setString(4, newFlight.getDepart());
+        pst.setString(5, newFlight.getDate());
+        pst.setString(6, newFlight.getDepartTime());
+        pst.setString(7, newFlight.getArrivalTime());
+        pst.setString(8, newFlight.getFlightCharge());
 
         pst.executeUpdate();
-
+        }
 
         JOptionPane.showMessageDialog(null, "Flight Created.");
       } catch (SQLException ex) {
         Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+      }catch(NullPointerException npe) {
+        Logger.getLogger(addflight.class.getName()).log(Level.SEVERE,null,npe);
       }
 
       DBUtil.dbDisconnect();
       autoID();
-      return flight;
+      newFlight.setId(txtflightid.getText());
+      return newFlight;
     }
-
+    
   }
 
   /**
