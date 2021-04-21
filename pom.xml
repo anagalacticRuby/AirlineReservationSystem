@@ -64,5 +64,10 @@
 			<artifactId>junit-platform-runner</artifactId>
 			<version>1.2.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-swing-junit</artifactId>
+			<version>3.17.1</version>
+		</dependency>
 	</dependencies>
 </project>
