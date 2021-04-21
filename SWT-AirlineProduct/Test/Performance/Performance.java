@@ -60,7 +60,7 @@ public class Performance {
    *                  The login visibility is retrieved is false.
    */
   @Test
-  @DisplayName("Database Response Time Test")
+  @DisplayName("Database Response Time for Logging into the System")
   public void databaseResponseTestLogin() {
     long start_time = System.currentTimeMillis();
     login.handleLoginEnter(null, "john", "123");
@@ -74,7 +74,7 @@ public class Performance {
    * database operations.
    */
   @Test
-  @DisplayName("Database Response Time Test")
+  @DisplayName("Database Response Time for Adding Users")
   public void databaseResponseTestUserCreation() {
     long start_time = System.currentTimeMillis();
     user = new User("UO004", "Ricardo", "Montoya", "Rmontoya", "Montoya1");
@@ -89,7 +89,7 @@ public class Performance {
    * database operations.
    */
   @Test
-  @DisplayName("Database Response Time Test")
+  @DisplayName("Database Response Time for Adding Flight")
   public void databaseResponseAddFlight() {
     flight = new Flight("FO009", "JetBlue", "USA", "UK", "2021-09-13",
         "9:00AM", "10:00PM", "9000");
@@ -101,7 +101,7 @@ public class Performance {
   }
 
   @Test
-  @DisplayName("Database Response Time Test")
+  @DisplayName("Database Response Time for Adding Customers ")
   public void databaseResponseAddCustomer() {
 
     addCustomer.userimage = new byte[0];
@@ -113,7 +113,19 @@ public class Performance {
     long finish_time = System.currentTimeMillis();
     long duration = finish_time - start_time;
     assertTrue(duration <= 3000);
+  }
 
+  @Test
+  @DisplayName("Database Response Time for Searching for Tickets")
+  public void databaseResponseTicketSearch() {
+    ticket ticket = new ticket();
+    ticket.txtsource.setSelectedItem("India");
+    ticket.txtdepart.setSelectedItem("Uk");
+    long start_time = System.currentTimeMillis();
+    ticket.search(null);
+    long finish_time = System.currentTimeMillis();
+    long duration = finish_time - start_time;
+    assertTrue(duration <= 3000);
   }
 
   public void deleteUser() {

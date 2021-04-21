@@ -1,16 +1,18 @@
+
 import static org.mockito.Mockito.when;
+import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import org.junit.jupiter.api.AfterEach;
+import javax.swing.JTextField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.FieldSetter;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -27,55 +29,71 @@ public class AddFlightIntegrationTest {
   addflight addflight;
   Flight mockFlight;
 
-  Connection connection;
-  @InjectMocks
-  public DBUtil dbUtil;
-  @Mock
-  public  Connection mockConnection;
-  @Mock
-  public java.sql.PreparedStatement mockStatement;
-  @Mock
-  public ResultSet resultSet;
-
   @BeforeEach
   public void startUp() {
     addflight = new addflight();
-    mockFlight = new Flight("FO005", "TestFlight", "USA", "India",
+    mockFlight = new Flight("FO010", "TestFlight", "USA", "India",
         "2021-04-05", "9:00AM", "7:00PM", "$729");
 
-    connection = DBUtil.dbConnect();
-    MockitoAnnotations.initMocks(this);
-  }
-  @AfterEach
-  public void tearDown() {
-
-    DBUtil.dbDisconnect();
   }
 
-  //@Test
-  public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
+  @Test
+  public void handleFlightAdd() throws SQLException, NoSuchFieldException, ParseException {
+    JLabel txtFlightID = Mockito.mock(JLabel.class);
+    when(txtFlightID.getText()).thenReturn(mockFlight.getId());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtflightid"), txtFlightID);
 
-    //MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
+    JTextField txtFlightName = Mockito.mock(JTextField.class);
+    when(txtFlightName.getText()).thenReturn(mockFlight.getFlightName());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtflightname"), txtFlightName);
 
-    Mockito.mock(DBUtil.class);
+    JComboBox txtSource = Mockito.mock(JComboBox.class);
+    when(txtSource.getActionCommand()).thenReturn(mockFlight.getSource());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtsource"), txtSource);
+
+    JComboBox txtDepart = Mockito.mock(JComboBox.class);
+    when(txtDepart.getActionCommand()).thenReturn(mockFlight.getDepart());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtdepart"), txtDepart);
+
+    JDateChooser txtDate = Mockito.mock(JDateChooser.class);
+    when(txtDate.getDate()).thenReturn(new Date());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtdate"), txtDate);
+
+
+    JTextField txtDepartTme = Mockito.mock(JTextField.class);
+    when(txtDepartTme.getText()).thenReturn(mockFlight.getDepartTime());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtdtime"), txtDepartTme);
+
+    JTextField txtArrivalTime = Mockito.mock(JTextField.class);
+    when(txtArrivalTime.getText()).thenReturn(mockFlight.getArrivalTime());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtarrtime"), txtArrivalTime);
+
+    JTextField txtFlightCharge = Mockito.mock(JTextField.class);
+    when(txtFlightCharge.getText()).thenReturn(mockFlight.getFlightCharge());
+    FieldSetter.setField(addflight, addflight.getClass().getDeclaredField("txtflightcharge"), txtFlightCharge);
+
+    MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
 
     Connection conn = Mockito.mock(Connection.class);
     PreparedStatement pst = Mockito.mock(PreparedStatement.class);
     when(DBUtil.dbConnect()).thenReturn(conn);
-    when(conn.prepareStatement(
-        "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)"
-            + "values(?,?,?,?,?,?,?,?)")).thenReturn(pst);
+
+    when(conn.prepareStatement(Mockito.anyString())).thenReturn(pst);
     Statement statement = Mockito.mock(Statement.class);
     when(conn.createStatement()).thenReturn(statement);
 
     ResultSet rs = Mockito.mock(ResultSet.class);
     when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
 
-    JLabel txtflightid = Mockito.mock(JLabel.class);
-    FieldSetter.setField(addflight.class, addflight.class.getDeclaredField("txtflightid"),
-        txtflightid);
+    Flight flight = new Flight(txtFlightID.getText(), txtFlightName.getText(), txtSource.getActionCommand(),
+        txtDepart.getActionCommand(), txtDate.getDate().toString(), txtDepartTme.getText(),
+        txtArrivalTime.getText(), txtFlightCharge.getText());
 
-    addflight.addFlight(mockFlight);
-    //staticClass.close();
+
+    addflight.addFlight(flight);
+
+    staticClass.close();
   }
+
+
 }

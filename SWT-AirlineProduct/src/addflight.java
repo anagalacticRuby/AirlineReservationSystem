@@ -255,8 +255,7 @@ public class addflight extends javax.swing.JInternalFrame {
    * When a user presses the 'Add' button, the values that have been provided by the user in the
    * appropriate text fields, date picker, and such will be grabbed and put into variable form.
    * Then, these newly set variables will be passed as arguments into the addFlight method.
-   * 
-   * @see #addFlight(String, String, String, String, String, String, String, String) addFlight()
+   *
    * @param evt An ActionListener that is invoked when the 'Add' button (jButton1) is pressed.
    */
   private void jButton1ActionPerformed(ActionEvent evt) {
@@ -326,15 +325,7 @@ public class addflight extends javax.swing.JInternalFrame {
    * otherwise an error will occur. If all of the passed parameters contain valid strings, then the
    * statement can successfully execute and insert a Flight into the database with values
    * corresponding to the ones passed in as parameters.
-   * 
-   * @param id A string that contains the ID of the flight to add into the database.
-   * @param flightname A string that contains the name of the flight being added into the database.
-   * @param source A string containing the source location of the flight being added
-   * @param depart A string containing the departure location of the flight to be added
-   * @param date A string that describes the date of the flight's departure
-   * @param departtime A string that tells what time a flight will be departing
-   * @param arrtime A string explaining what time a flight will be arriving
-   * @param flightcharge A string that describes the cost of the flight.
+   *
    */
   public Flight addFlight(Flight newFlight) {
 
