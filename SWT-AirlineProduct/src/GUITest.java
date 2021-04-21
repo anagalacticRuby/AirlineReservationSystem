@@ -9,6 +9,14 @@ import org.junit.Test;
 
 public class GUITest {
 
+  /**
+   * Test Case ID:
+   * Requirement ID/Description:
+   * Purpose:
+   * Test Setup:
+   * Test Strategy:
+   * Input:
+   */
   @Test
   public void testLogin() throws AWTException {
     Login login = new Login();

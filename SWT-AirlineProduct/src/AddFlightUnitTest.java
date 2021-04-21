@@ -57,7 +57,16 @@ public class AddFlightUnitTest {
   }
 
   /**
-   * Test Case ID: Requirement: #5, The system shall allow a user to add flights into the database.
+   * Test Case ID: UnitTest-AddFlight-001
+   * Requirement ID/Description: REQ-5 The system shall allow a user to add flights into the
+   * database.
+   * Purpose: To confirm that any flights the user adds will be successfully added into the
+   * database.
+   * Test Setup: We create a dummy flight to act as the input, and attempt to add it into the
+   * database.
+   * Test Strategy: A unit test to confirm if a flight has been added or not.
+   * Input: A dummy flight to be added into the database.
+   * Expected Output: Confirmation that the flight has been successfully added into the databse.
    */
   @Test
   @DisplayName("Test Case 1: A flight object is created and stored in the database.")
@@ -67,6 +76,19 @@ public class AddFlightUnitTest {
 
   }
 
+  /**
+   * Test Case ID: UnitTest-AddFlight-002
+   * Requirement ID/Description: REQ-4 The system shall require that every field is filled before
+   * processing requests.
+   * Purpose: To test if the program will not allow flights that are missing a field to be
+   * processed and added into the database.
+   * Test Setup: We will create a dummy flight with an empty Arrival Time field, and observe
+   * how the system reacts.
+   * Test Strategy: We'll use a Unit Test to confirm that the system will not accept the input
+   * we give it.
+   * Input: A dummy flight with an empty Arrival Time field.
+   * Expected Output: An exception and an error message that reads "Fields must not be empty."
+   */
   /**
    * Test Case ID: Requirement: #4, The system shall require that every field is filled before
    * processing requests.
@@ -87,8 +109,18 @@ public class AddFlightUnitTest {
    * the duration to 3000 because duration is in milliseconds and 3000 milliseconds is 3 seconds.
    */
   /**
-   * Test Case ID: Requirement #15, The system shall take no longer than 3 seconds to perform
+   * Test Case ID: UnitTest-ProcessTime-001
+   * Requirement ID/Description: REQ-15 The system shall take no longer than 3 seconds to perform
    * database operations.
+   * Purpose: To ensure that all database operations are being completed and processed at an
+   * acceptable rate of time.
+   * Test Setup: Creating a dummy flight to be inputted into the database so we can have it
+   * process an operation for us to take the runtime of.
+   * Test Strategy: A Unit Test to confirm that the response time for database operations is
+   * less than 3 seconds by inputting a dummy value into the database and recording how long
+   * it takes by taking the time before and after the process to find the total time spent.
+   * Input: A dummy flight to be added to the database.
+   * Expected Output: The time we receive as output should be less than 3 seconds.
    */
   @Test
   @DisplayName("Database Response Time Test")
@@ -101,8 +133,16 @@ public class AddFlightUnitTest {
   }
 
   /**
-   * Test Case ID: Requirement #14, The system shall automatically handle the generation of unique
-   * IDs for items inserted into the airline database.
+   * Test Case ID: UnitTest-AddFlight-003
+   * Requirement ID/Description: REQ-14 The system shall automatically handle the generation of
+   * unique IDs for items inserted into the airline database.
+   * Purpose: To ensure that a unique ID is generated for every item, or flight in this test case,
+   * added into the database by the system.
+   * Test Setup: We create a dummy flight with a pre-made ID.
+   * Test Strategy: We add a dummy flight to the database with an original ID, and then we add
+   * it to the database and see if it has a new, unique ID.
+   * Input: The dummy flight with a pre-made ID.
+   * Expected Output: Confirmation that the new ID is unique from the pre-made one.
    */
   @Test
   @DisplayName("Test that the system generates new IDs after each database insertion")
@@ -118,6 +158,17 @@ public class AddFlightUnitTest {
     assertNotEquals(dummyFlight.getId(), originalID);
   }
 
+  /**
+   * Test Case ID: UnitTest-AddFlight-004
+   * Requirement ID/Description: REQ-13 The system shall require that all entries to the airline
+   * databse have unique IDs.
+   * Purpose: To ensure no two flights within the database can have the same ID as the other.
+   * Test Setup:
+   * Test Strategy: We use a Unit Test with negative testing, since failure will indicate that the
+   * exception we are looking for has been caught successfully.
+   * Input:
+   * Expected Output:
+   */
   /**
    * Test Case ID: Requirement #13, The system shall require that all entries to the airline
    * database have unique IDs. The testing technique used here is negative testing, because the test
