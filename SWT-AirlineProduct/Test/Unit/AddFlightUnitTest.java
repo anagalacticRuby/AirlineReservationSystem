@@ -80,26 +80,6 @@ public class AddFlightUnitTest {
     assertEquals("Fields must not be empty.", testExcept.getMessage());
   }
 
-
-  /*
-   * Because I couldn't figure out how to get the Timeout annotation working, this test Uses a
-   * shorthand timer to confirm that the database operations take less than 3 seconds. You compare
-   * the duration to 3000 because duration is in milliseconds and 3000 milliseconds is 3 seconds.
-   */
-  /**
-   * Test Case ID: Requirement #15, The system shall take no longer than 3 seconds to perform
-   * database operations.
-   */
-  @Test
-  @DisplayName("Database Response Time Test")
-  public void databaseResponseTest() {
-    long start_time = System.currentTimeMillis();
-    addflight.addFlight(dummyFlight);
-    long finish_time = System.currentTimeMillis();
-    long duration = finish_time - start_time;
-    assertTrue(duration <= 3000);
-  }
-
   /**
    * Test Case ID: Requirement #14, The system shall automatically handle the generation of unique
    * IDs for items inserted into the airline database.

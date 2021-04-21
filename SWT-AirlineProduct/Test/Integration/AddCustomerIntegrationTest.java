@@ -27,32 +27,32 @@ import com.toedter.calendar.JDateChooser;
 
 public class AddCustomerIntegrationTest {
 
-
+	@Test
 	public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 		addCustomer addCustomer = new addCustomer(true, false);
 		
 		JLabel txtid = Mockito.mock(JLabel.class);
-		when(txtid.getText()).thenReturn("");
+		when(txtid.getText()).thenReturn("CS020");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtid"), txtid);
 		
 		JTextField txtfirstname = Mockito.mock(JTextField.class);
-		when(txtfirstname.getText()).thenReturn("");
+		when(txtfirstname.getText()).thenReturn("Peter");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtfirstname"), txtfirstname);
 		
 		JTextField txtlastname = Mockito.mock(JTextField.class);
-		when(txtlastname.getText()).thenReturn("");
+		when(txtlastname.getText()).thenReturn("Parker");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtlastname"), txtlastname);
 		
 		JTextField txtnic = Mockito.mock(JTextField.class);
-		when(txtnic.getText()).thenReturn("");
+		when(txtnic.getText()).thenReturn("56155");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtnic"), txtnic);
 		
 		JTextField txtpassport = Mockito.mock(JTextField.class);
-		when(txtpassport.getText()).thenReturn("");
+		when(txtpassport.getText()).thenReturn("56156");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtpassport"), txtpassport);
 		
 		JTextArea txtaddress = Mockito.mock(JTextArea.class);
-		when(txtaddress.getText()).thenReturn("");
+		when(txtaddress.getText()).thenReturn("56151");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtaddress"), txtaddress);
 		
 		JDateChooser txtdob = Mockito.mock(JDateChooser.class);
@@ -64,7 +64,7 @@ public class AddCustomerIntegrationTest {
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("r1"), r1);
 		
 		JTextField txtcontact = Mockito.mock(JTextField.class);
-		when(txtcontact.getText()).thenReturn("");
+		when(txtcontact.getText()).thenReturn("21315");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtcontact"), txtcontact);
 		
 		MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
@@ -79,8 +79,11 @@ public class AddCustomerIntegrationTest {
 		
 		ResultSet rs = Mockito.mock(ResultSet.class);
 		when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
-		
-		addCustomer.addCustomer(null);
+
+		Customer customer = new Customer(txtid.getText(), txtfirstname.getText(), txtlastname.getText(), txtnic.getText(),
+				txtpassport.getText(), txtaddress.getText(), txtdob.getDate(), r1.getText(), txtcontact.getText(), null);
+
+		addCustomer.handleAddCustomer(customer);
 		
 		staticClass.close();
 	}

@@ -51,6 +51,7 @@ public class AddFlightIntegrationTest {
 
     DBUtil.dbDisconnect();
   }
+
   //@Test
   public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 

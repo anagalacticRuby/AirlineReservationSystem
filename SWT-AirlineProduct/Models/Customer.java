@@ -16,7 +16,7 @@ public class Customer {
   private Date dob;
   private String gender;
   private String contact;
-  private Blob photo;
+  private byte[] photo;
 
   /**
    * Empty constructor for Customer objects.
@@ -38,7 +38,7 @@ public class Customer {
    * @param photo A path that tells the system where to find a customer's photo.
    */
   public Customer(String id, String firstname, String lastname, String nic, String passport,
-      String address, Date dob, String gender, String contact, Blob photo) {
+      String address, Date dob, String gender, String contact, byte[] photo) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -218,7 +218,7 @@ public class Customer {
    * 
    * @return Returns the photo path of an image file
    */
-  public Blob getPhoto() {
+  public byte[] getPhoto() {
     return photo;
   }
 
@@ -227,7 +227,7 @@ public class Customer {
    * 
    * @param photo The path of an image path assigned to the photo attribute.
    */
-  public void setPhoto(Blob photo) {
+  public void setPhoto(byte[] photo) {
     this.photo = photo;
   }
 }

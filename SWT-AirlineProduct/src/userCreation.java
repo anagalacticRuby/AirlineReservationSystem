@@ -253,7 +253,6 @@ public class userCreation extends javax.swing.JInternalFrame {
    */
   public User createUser(User newUser) {
 
-
     if (newUser.getUsername().isEmpty() || newUser.getPassword().isEmpty()) {
       JOptionPane.showMessageDialog(this, "Username or Password is blank");
       throw new NullPointerException("Username or Password cannot be blank.");

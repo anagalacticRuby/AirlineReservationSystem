@@ -1,8 +1,12 @@
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,40 +17,32 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 @TestInstance(Lifecycle.PER_CLASS)
 public class Performance {
 
-  Login login;
-  userCreation userCreation;
   Main main;
-  searchCustomer searchCustomer;
+  Login login;
   User user;
+  Flight flight;
+  Customer customer;
+  userCreation userCreation;
+  searchCustomer searchCustomer;
+  addflight addflight;
+  addCustomer addCustomer;
 
   @BeforeEach
   public void setUp() {
     login = new Login();
     login.setLoginValidity(true);
     main = new Main(true);
+    addflight = new addflight();
+    addCustomer = new addCustomer();
     userCreation = new userCreation();
-    searchCustomer = new searchCustomer();
+
   }
 
   @AfterEach
   public void tearDown() {
-    Connection con = DBUtil.dbConnect();
-    PreparedStatement pst;
-
-    try {
-      pst = con.prepareStatement("Delete from user where id=?");
-      /*
-       * SQL will know what rows to delete based on the condition. Because all of the dummyUser
-       * objects have the same ID, we are able to delete them before the next test is run, and
-       * therefore do not require hundreds of dummy items.
-       */
-      pst.setString(1, "UO004");
-      pst.executeUpdate();
-      // Execute the delete operation on the database
-    } catch (SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    deleteUser();
+    deleteFlight();
+    deleteCustomer();
   }
 
 
@@ -65,7 +61,7 @@ public class Performance {
    */
   @Test
   @DisplayName("Database Response Time Test")
-  public void databaseResponseTest() {
+  public void databaseResponseTestLogin() {
     long start_time = System.currentTimeMillis();
     login.handleLoginEnter(null, "john", "123");
     long finish_time = System.currentTimeMillis();
@@ -73,8 +69,13 @@ public class Performance {
     assertTrue(duration <= 3000);
   }
 
+  /**
+   * Test Case ID: Requirement #15, The system shall take no longer than 3 seconds to perform
+   * database operations.
+   */
   @Test
-  public void handleUserCreationSpeed() {
+  @DisplayName("Database Response Time Test")
+  public void databaseResponseTestUserCreation() {
     long start_time = System.currentTimeMillis();
     user = new User("UO004", "Ricardo", "Montoya", "Rmontoya", "Montoya1");
     userCreation.createUser(user);
@@ -82,6 +83,78 @@ public class Performance {
     long duration = finish_time - start_time;
     assertTrue(duration <= 3000);
   }
+
+  /**
+   * Test Case ID: Requirement #15, The system shall take no longer than 3 seconds to perform
+   * database operations.
+   */
+  @Test
+  @DisplayName("Database Response Time Test")
+  public void databaseResponseAddFlight() {
+    flight = new Flight("FO009", "JetBlue", "USA", "UK", "2021-09-13",
+        "9:00AM", "10:00PM", "9000");
+    long start_time = System.currentTimeMillis();
+    addflight.addFlight(flight);
+    long finish_time = System.currentTimeMillis();
+    long duration = finish_time - start_time;
+    assertTrue(duration <= 3000);
+  }
+
+  @Test
+  @DisplayName("Database Response Time Test")
+  public void databaseResponseAddCustomer() {
+
+    addCustomer.userimage = new byte[0];
+    customer = new Customer("CS010", "Peter", "Park", "415685486", "551513", "USA", new Date(), "Male",
+        "123485495", addCustomer.userimage);
+
+    long start_time = System.currentTimeMillis();
+    addCustomer.handleAddCustomer(customer);
+    long finish_time = System.currentTimeMillis();
+    long duration = finish_time - start_time;
+    assertTrue(duration <= 3000);
+
+  }
+
+  public void deleteUser() {
+    Connection con = DBUtil.dbConnect();
+    PreparedStatement pst;
+    try {
+      pst = con.prepareStatement("Delete from user where id=?");
+      pst.setString(1, "UO004");
+      pst.executeUpdate();
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteFlight() {
+    Connection con = DBUtil.dbConnect();
+    PreparedStatement pst;
+    try {
+      pst = con.prepareStatement("Delete from flight where id=?");
+      pst.setString(1, "FO009");
+      pst.executeUpdate();
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteCustomer() {
+    Connection con = DBUtil.dbConnect();
+    PreparedStatement pst;
+    try {
+      pst = con.prepareStatement("Delete from customer where id=?");
+      pst.setString(1, "CS010");
+      pst.executeUpdate();
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
 
 
 }

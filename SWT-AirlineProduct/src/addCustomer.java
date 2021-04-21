@@ -39,7 +39,6 @@ import com.toedter.calendar.JDateChooser;
  * device.
  * jButton3 is simply the 'Cancel' button, and all it does is close out of the 'Add Customer' 
  * window.
- * @see autoID()
  *
  */
 public class addCustomer extends javax.swing.JInternalFrame {
@@ -457,28 +456,45 @@ public class addCustomer extends javax.swing.JInternalFrame {
   public Integer addCustomer(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
-	  Integer i = null;
+    Integer i = 1;
 
-    String id = txtid.getText();
-    String firstname = txtfirstname.getText();
-    String lastname = txtlastname.getText();
-    String nic = txtnic.getText();
-    String passport = txtpassport.getText();
-    String address = txtaddress.getText();
+    Customer addCustomer = new Customer();
+    addCustomer.setId(txtid.getText());
+    addCustomer.setFirstname(txtfirstname.getText());
+    addCustomer.setLastname(txtlastname.getText());
+    addCustomer.setNic(txtnic.getText());
+    addCustomer.setPassport(txtpassport.getText());
+    addCustomer.setAddressString(txtaddress.getText());
+    addCustomer.setDob(txtdob.getDate());
+    addCustomer.setContact(txtcontact.getText());
 
-    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-    // Establishing a format for the date to be in creates consistency.
-    String date = da.format(txtdob.getDate());
     String Gender;
-
     if (r1.isSelected()) {
       Gender = "Male";
     } else {
       Gender = "Female";
     }
+    addCustomer.setGender(Gender);
+    addCustomer.setPhoto(userimage);
+    handleAddCustomer(addCustomer);
 
-    String contact = txtcontact.getText();
-    
+    return i++;
+  }// GEN-LAST:event_jButton2ActionPerformed
+
+
+  public Customer handleAddCustomer(Customer customer) {
+    String id = customer.getId();
+    String firstname = customer.getFirstname();
+    String lastname = customer.getLastname();
+    String nic = customer.getNic();
+    String passport = customer.getPassport();
+    String address = customer.getAddressString();
+    String Gender = customer.getGender();
+    String contact = customer.getContact();
+
+    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+    String date = da.format(customer.getDob());
+
     Integer contactInteger = Integer.parseInt(contact);
 
     try {
@@ -498,7 +514,19 @@ public class addCustomer extends javax.swing.JInternalFrame {
       pst.setString(8, Gender);
       pst.setInt(9, contactInteger);
       pst.setBytes(10, userimage);
-      i = pst.executeUpdate();
+      pst.executeUpdate();
+
+      customer.setId(id);
+      customer.setFirstname(firstname);
+      customer.setLastname(lastname);
+      customer.setNic(nic);
+      customer.setPassport(passport);
+      customer.setAddressString(address);
+      customer.setDob(txtdob.getDate());
+      customer.setGender(Gender);
+      customer.setContact(txtcontact.getText());
+
+      customer.setPhoto(userimage);
 
       JOptionPane.showMessageDialog(null, "Registration Created.");
       autoID();
@@ -508,8 +536,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
     } catch (SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
-    return i;
-  }// GEN-LAST:event_jButton2ActionPerformed
+    return customer;
+  }
 
   /**
    * This method closes the 'Add Customer' screen and returns a user to the 'Main' screen.
