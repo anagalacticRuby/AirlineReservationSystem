@@ -24,7 +24,7 @@ public class UserCreationIntegrationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: IntegrationTest-UserCreate-001
    * Requirement ID/Description: REQ-16 The system shall require that every username be distinct
    *                             from one another.
    * Purpose: The purpose is to mock the creation of a user object and throw an exception.
@@ -46,7 +46,7 @@ public class UserCreationIntegrationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: IntegrationTest-UserCreate-002
    * Requirement: REQ-4 The system shall require that every field is filled before
    *              processing requests.
    * Purpose: The purpose is to stub the exception when an object of type User is created.

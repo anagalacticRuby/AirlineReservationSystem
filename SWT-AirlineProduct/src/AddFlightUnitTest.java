@@ -89,10 +89,6 @@ public class AddFlightUnitTest {
    * Input: A dummy flight with an empty Arrival Time field.
    * Expected Output: An exception and an error message that reads "Fields must not be empty."
    */
-  /**
-   * Test Case ID: Requirement: #4, The system shall require that every field is filled before
-   * processing requests.
-   */
   @Test
   @DisplayName("Empty Flight Test: A flight object with an empty field attempts to be added.")
   public void emptyFlightTest() {
@@ -161,18 +157,14 @@ public class AddFlightUnitTest {
   /**
    * Test Case ID: UnitTest-AddFlight-004
    * Requirement ID/Description: REQ-13 The system shall require that all entries to the airline
-   * databse have unique IDs.
+   * database have unique IDs.
    * Purpose: To ensure no two flights within the database can have the same ID as the other.
-   * Test Setup:
+   * Test Setup: We create a dummy flight, and give it an ID identical to one that already
+   * exists so it will throw an exception.
    * Test Strategy: We use a Unit Test with negative testing, since failure will indicate that the
    * exception we are looking for has been caught successfully.
-   * Input:
-   * Expected Output:
-   */
-  /**
-   * Test Case ID: Requirement #13, The system shall require that all entries to the airline
-   * database have unique IDs. The testing technique used here is negative testing, because the test
-   * failure indicates that the exceptional behavior has been caught.
+   * Input: A dummy flight with an ID that matches one that already exists.
+   * Expected Output: An exception with a message that says "Flights must have a unique ID!"
    */
   @Test
   @DisplayName("Test that the system does not allow duplicate IDs")

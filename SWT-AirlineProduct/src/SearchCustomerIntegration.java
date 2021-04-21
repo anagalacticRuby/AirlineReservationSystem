@@ -42,12 +42,16 @@ public class SearchCustomerIntegration {
   }
 
   /**
-   * Test Case ID:
-   * Requirement ID/Description:
-   * Purpose:
-   * Test Setup:
-   * Test Strategy:
-   * Input:
+   * Test Case ID: IntegrationTest-Search-001
+   * Requirement ID/Description: REQ-7 The system shall allow a user to search for existing
+   * customer accounts in the database.
+   * Purpose: To confirm that the system can successfully search for a customer based on their
+   * ID.
+   * Test Setup: We create a mock customer with a specified ID and a mock database connection.
+   * Test Strategy: We add the mock customer into the database, and then search for them by
+   * their ID.
+   * Input: A mock customer with a specified ID.
+   * Expected Output: Confirmation that we have successfully found the customer via their ID.
    */
   @Test
   @DisplayName("Mock for searching customer by ID.")
@@ -66,12 +70,17 @@ public class SearchCustomerIntegration {
   }
 
   /**
-   * Test Case ID:
-   * Requirement ID/Description:
-   * Purpose:
-   * Test Setup:
-   * Test Strategy:
-   * Input:
+   * Test Case ID: IntegrationTest-Search-002
+   * Requirement ID/Description: REQ-7 The system shall allow a user to search for existing
+   * customer accounts in the database.
+   * Purpose: To confirm we can search for a customer in the database via their last name.
+   * Test Setup: We create a mock customer with a specified last name and a mock database
+   * connection.
+   * Test Strategy: We add the mock customer into the database, and then search for them by
+   * their last name.
+   * Input: A mock customer with a specified last name.
+   * Expected Output: Confirmation that we have successfully found the customer via their
+   * last name.
    */
   @Test
   public void updateSearchFields() throws ParseException, SQLException {

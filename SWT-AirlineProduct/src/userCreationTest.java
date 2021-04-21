@@ -52,7 +52,7 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: UnitTest-UserCreate-001
    * Requirement: REQ-4 The system shall require that every field is filled before
    *              processing requests.
    * Purpose: The purpose is to test when a user has left an empty field on user creation and
@@ -82,7 +82,7 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: UnitTest-UserCreate-002
    * Requirement ID/Description: REQ-3 The system shall allow users to create user accounts for other users.
    * Purpose: The purpose is to test the creation of a user with valid credentials.
    * Test Setup: A dummy object of type User is declared within the setup method with the following
@@ -109,7 +109,7 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: UnitTest-UserCreate-003
    * Requirement ID/Description: REQ-16 The system shall require that every username be distinct
    *                             from one another.
    * Purpose: The purpose is to test the system for exception handling when the user enters a username
@@ -134,7 +134,7 @@ public class userCreationTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: UnitTest-UserCreate-004
    * ID/Description: REQ-2 The system shall store all user accounts in a database.
    * Purpose: The purpose is to test that the new user's data is stored to the database.
    * Test Setup: A dummy object of type User is declared within the setup method with the following

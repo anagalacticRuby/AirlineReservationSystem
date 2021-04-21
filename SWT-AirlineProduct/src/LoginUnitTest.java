@@ -134,7 +134,7 @@ public class LoginUnitTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: NegTest-LoginCase5
    * Requirement ID/Description: REQ-21 The system shall prevent illegal access by terminating after
    *                             three failed login attempts.
    * Purpose: To test that a user cannot access the system after three unsuccessful attempts.
@@ -154,7 +154,7 @@ public class LoginUnitTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: PosTest-LoginCase1
    * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
    *                             database operations.
    * Purpose: To test that the response time is less than three seconds.

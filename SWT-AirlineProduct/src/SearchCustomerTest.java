@@ -28,13 +28,16 @@ public class SearchCustomerTest {
   }
 
   /**
-   * Test Case ID: PosTest-searchCustomerLastname-lastname Requirement ID/Description: REQ-26 The
-   * system shall allow users to search for a customer. Purpose: To test that a user can search for
-   * a customer using their last name. Test setup: An object of the User class is created with the
-   * id='CS001', firstname='john', lastname='Alex', nic=34232222, passport=3443, address=Uk,
-   * dob='null', gender='Male', contact=3432434, photo='null' Test Strategy: Positive Testing Input:
-   * Call method findCustomerByLastName('Alex') Expected Output: Method findCustomerByLastName
-   * return an object of class Customer with a firstname='Alex'
+   * Test Case ID: PosTest-searchCustomerLastname-lastname
+   * Requirement ID/Description: REQ-26 The system shall allow users to search for a customer.
+   * Purpose: To test that a user can search for a customer using their last name.
+   * Test Setup: An object of the User class is created with the id='CS001', firstname='john',
+   * lastname='Alex', nic=34232222, passport=3443, address=Uk, dob='null', gender='Male',
+   * contact=3432434, photo='null'
+   * Test Strategy: Positive Testing
+   * Input: Call method findCustomerByLastName('Alex')
+   * Expected Output: Method findCustomerByLastName will return an object of class Customer
+   * with a firstname='Alex'
    */
   @Test
   @DisplayName("Testing searchCustomer by last name.")
@@ -46,13 +49,16 @@ public class SearchCustomerTest {
   }
 
   /**
-   * Test Case ID: PosTest-searchCustomerLastname-null Requirement ID/Description: REQ-26 The system
-   * shall allow users to search for a customer. Purpose: To test that the system handles null
-   * values when searching for a customer by last name. Test setup: An object of the User class is
-   * created with the id='CS001', firstname='john', lastname='Alex', nic=34232222, passport=3443,
-   * address=Uk, dob='null', gender='Male', contact=3432434, photo='null' Test Strategy: Input
-   * Validation Testing Input: Call method findCustomerByLastName('null') Expected Output: Method
-   * findCustomerByLastName returns as null.
+   * Test Case ID: PosTest-searchCustomerLastname-null
+   * Requirement ID/Description: REQ-26 The system shall allow users to search for a customer.
+   * Purpose: To test that the system handles null values when searching for a customer
+   * by last name.
+   * Test Setup: An object of the User class is created with the id='CS001', firstname='john',
+   * lastname='Alex', nic=34232222, passport=3443, address=Uk, dob='null', gender='Male',
+   * contact=3432434, photo='null'
+   * Test Strategy: Input Validation
+   * Testing Input: Call method findCustomerByLastName('null')
+   * Expected Output: Method findCustomerByLastName returns as null.
    */
   @Test
   @DisplayName("Testing searchCustomer with no record being returned.")
