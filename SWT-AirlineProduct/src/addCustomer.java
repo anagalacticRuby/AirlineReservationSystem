@@ -264,7 +264,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     jButton2.setText("Add");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-    	  jButton2ActionPerformed(evt);
+    	  addCustomer(evt);
       }
     });
 
@@ -452,10 +452,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * connection to the database is required for this function to work.
    * 
    * @param evt Whenever the "Add" button is clicked this method is called.
+ * @return 
    */
-  public void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+  public Integer addCustomer(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
+	  Integer i = null;
 
     String id = txtid.getText();
     String firstname = txtfirstname.getText();
@@ -476,6 +478,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
     }
 
     String contact = txtcontact.getText();
+    
+    Integer contactInteger = Integer.parseInt(contact);
 
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -492,9 +496,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
       pst.setString(6, address);
       pst.setString(7, date);
       pst.setString(8, Gender);
-      pst.setString(9, contact);
+      pst.setInt(9, contactInteger);
       pst.setBytes(10, userimage);
-      pst.executeUpdate();
+      i = pst.executeUpdate();
 
       JOptionPane.showMessageDialog(null, "Registration Created.");
       autoID();
@@ -504,7 +508,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     } catch (SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
-
+    return i;
   }// GEN-LAST:event_jButton2ActionPerformed
 
   /**
@@ -535,14 +539,14 @@ public class addCustomer extends javax.swing.JInternalFrame {
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JRadioButton r1;
   private javax.swing.JRadioButton r2;
-  private javax.swing.JTextArea txtaddress;
-  private javax.swing.JTextField txtcontact;
-  private javax.swing.JTextField txtfirstname;
-  private javax.swing.JLabel txtid;
-  private javax.swing.JTextField txtlastname;
-  private javax.swing.JTextField txtnic;
-  private javax.swing.JTextField txtpassport;
+  public javax.swing.JTextArea txtaddress;
+  public javax.swing.JTextField txtcontact;
+  public javax.swing.JTextField txtfirstname;
+  public javax.swing.JLabel txtid;
+  public javax.swing.JTextField txtlastname;
+  public javax.swing.JTextField txtnic;
+  public javax.swing.JTextField txtpassport;
   private javax.swing.JLabel txtphoto;
-  private JDateChooser txtdob;
+  public JDateChooser txtdob;
   // End of variables declaration//GEN-END:variables
 }

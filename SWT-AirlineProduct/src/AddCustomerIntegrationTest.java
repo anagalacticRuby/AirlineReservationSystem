@@ -80,7 +80,7 @@ public class AddCustomerIntegrationTest {
 		ResultSet rs = Mockito.mock(ResultSet.class);
 		when(statement.executeQuery(Mockito.anyString())).thenReturn(rs);
 		
-		addCustomer.jButton2ActionPerformed(null);
+		addCustomer.addCustomer(null);
 		
 		staticClass.close();
 	}
