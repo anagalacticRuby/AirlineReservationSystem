@@ -1,4 +1,5 @@
 import javax.security.auth.login.LoginException;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 /*
@@ -87,6 +88,11 @@ public class Main extends javax.swing.JFrame {
     jMenuItem4 = new javax.swing.JMenuItem();
     jMenu4 = new javax.swing.JMenu();
     jMenuItem5 = new javax.swing.JMenuItem();
+
+    jMenu1.setName("customer");
+    jMenu2.setName("ticket");
+    jMenu3.setName("flight");
+    jMenu4.setName("user");
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setPreferredSize(new java.awt.Dimension(1366, 768));
