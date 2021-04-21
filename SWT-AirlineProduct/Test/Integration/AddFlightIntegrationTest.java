@@ -19,6 +19,7 @@ import com.mysql.jdbc.Statement;
 
 public class AddFlightIntegrationTest {
 
+
   public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 
     Flight mockFlight =

@@ -27,7 +27,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class AddCustomerIntegrationTest {
 
-	@Test
+
 	public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 		addCustomer addCustomer = new addCustomer(true, false);
 		
