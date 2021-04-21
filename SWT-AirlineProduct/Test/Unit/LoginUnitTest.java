@@ -152,27 +152,4 @@ public class LoginUnitTest {
     testingLogin.handleLoginEnter(null, "blah", "blah");
     assertFalse(testingLogin.isVisible());
   }
-
-  /**
-   * Test Case ID:
-   * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
-   *                             database operations.
-   * Purpose: To test that the response time is less than three seconds.
-   * Test setup: System time before and after handleLoginEnter is established to determine the total
-   *             time the system took. The assertTrue is used to compare the condition where the
-   *             duration is less than 3000 milliseconds, 3 seconds.
-   * Test Strategy: Positive Testing
-   * Input: Call to handleLoginEnter is executed with valid credentials.
-   * Expected Output: Method handleLoginEnter return an message: "Maximum number of attempts exceeded."
-   *                  The login visibility is retrieved is false.
-   */
-  @Test
-  @DisplayName("Database Response Time Test")
-  public void databaseResponseTest() {
-    long start_time = System.currentTimeMillis();
-    testingLogin.handleLoginEnter(null, "john", "123");
-    long finish_time = System.currentTimeMillis();
-    long duration = finish_time - start_time;
-    assertTrue(duration <= 3000);
-  }
 }

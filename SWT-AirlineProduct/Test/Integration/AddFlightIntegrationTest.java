@@ -3,9 +3,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JLabel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.FieldSetter;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
@@ -19,25 +24,39 @@ import com.mysql.jdbc.Statement;
 
 public class AddFlightIntegrationTest {
 
+  addflight addflight;
+  Flight mockFlight;
 
+  Connection connection;
+  @InjectMocks
+  public DBUtil dbUtil;
+  @Mock
+  public  Connection mockConnection;
+  @Mock
+  public java.sql.PreparedStatement mockStatement;
+  @Mock
+  public ResultSet resultSet;
+
+  @BeforeEach
+  public void startUp() {
+    addflight = new addflight();
+    mockFlight = new Flight("FO005", "TestFlight", "USA", "India",
+        "2021-04-05", "9:00AM", "7:00PM", "$729");
+
+    connection = DBUtil.dbConnect();
+    MockitoAnnotations.initMocks(this);
+  }
+  @AfterEach
+  public void tearDown() {
+
+    DBUtil.dbDisconnect();
+  }
+  //@Test
   public void testFlightAdd() throws SQLException, NoSuchFieldException, SecurityException {
 
-    Flight mockFlight =
-        new Flight("FO005", "TestFlight", "USA", "India", "2021-04-05", "9:00AM", "7:00PM", "$729");
-    String id = "FO005";
-    String flightname = "Test Flight";
-    String source = "USA";
-    String depart = "India";
-    String date = "04/05/2021";
-    String departtime = "9:00 AM";
-    String arrtime = "7:00 PM";
-    String flightcharge = "$729";
+    //MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
 
-    MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);
-
-
-
-    //Mockito.mockStatic(DBUtil.class);
+    Mockito.mock(DBUtil.class);
 
     Connection conn = Mockito.mock(Connection.class);
     PreparedStatement pst = Mockito.mock(PreparedStatement.class);
@@ -55,7 +74,7 @@ public class AddFlightIntegrationTest {
     FieldSetter.setField(addflight.class, addflight.class.getDeclaredField("txtflightid"),
         txtflightid);
 
-    //addflight.addFlight(mockFlight);
-    staticClass.close();
+    addflight.addFlight(mockFlight);
+    //staticClass.close();
   }
 }

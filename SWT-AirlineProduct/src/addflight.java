@@ -338,9 +338,6 @@ public class addflight extends javax.swing.JInternalFrame {
    */
   public Flight addFlight(Flight newFlight) {
 
-
-
-
     if (newFlight.getId().isEmpty() || newFlight.getFlightName().isEmpty()
         || newFlight.getSource().isEmpty() || newFlight.getDepart().isEmpty()
         || newFlight.getDate().isEmpty() || newFlight.getDepartTime().isEmpty()
