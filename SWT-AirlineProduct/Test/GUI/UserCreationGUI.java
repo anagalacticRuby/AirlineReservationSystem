@@ -8,6 +8,7 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class UserCreationGUI extends AssertJSwingJUnitTestCase {
@@ -28,6 +29,7 @@ public class UserCreationGUI extends AssertJSwingJUnitTestCase {
   }
 
   @Test
+  @DisplayName("GUI Testing for user creation.")
   public void handleValidUserCreation() {
 
     User user = new User("UO004", "Ricardo", "Montoya", "Rmontoya", "Montoya1");
@@ -43,6 +45,7 @@ public class UserCreationGUI extends AssertJSwingJUnitTestCase {
   }
 
   @Test
+  @DisplayName("GUI Testing for duplicate user creation.")
   public void handleDuplicateUserCreation() {
     User user = new User("john", "123");
 

@@ -6,10 +6,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 public class GUITest {
 
   @Test
+  @DisplayName("GUI login testing.")
   public void testLogin() throws AWTException {
     Login login = new Login();
     login.main(null);
