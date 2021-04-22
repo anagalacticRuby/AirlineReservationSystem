@@ -272,7 +272,7 @@ public class userCreation extends javax.swing.JInternalFrame {
         selectQuery = "select * from user where username ='" + newUser.getUsername() + "'";
         ResultSet rs = pst.executeQuery(selectQuery);
 
-        if (rs.next() == false) {
+        if (!rs.next()) {
           pst.executeUpdate();
           JOptionPane.showMessageDialog(null, "User Created");
         } else {

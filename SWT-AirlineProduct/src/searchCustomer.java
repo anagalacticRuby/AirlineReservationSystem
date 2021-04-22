@@ -542,7 +542,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
       pst.setString(1, customerID);
       ResultSet rs = pst.executeQuery();
 
-      if (rs.next() == false) {
+      if (!rs.next()) {
         JOptionPane.showMessageDialog(this, "Record not Found.");
       } else {
         String fname = rs.getString("firstname");

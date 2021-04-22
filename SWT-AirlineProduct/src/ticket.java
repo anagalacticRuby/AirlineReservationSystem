@@ -443,7 +443,7 @@ public class ticket extends javax.swing.JInternalFrame {
       Df.setRowCount(0);
 
       while (rs.next()) {
-        Vector<String> v2 = new Vector<String>();
+        Vector<String> v2 = new Vector<>();
 
         for (int i = 1; i <= c; i++) {
           v2.add(rs.getString("id"));
@@ -526,7 +526,7 @@ public class ticket extends javax.swing.JInternalFrame {
       pst.setString(1, id);
       ResultSet rs = pst.executeQuery();
 
-      if (rs.next() == false) {
+      if (!rs.next()) {
         JOptionPane.showMessageDialog(this, "Record not Found");
       } else {
         String fname = rs.getString("firstname");

@@ -28,7 +28,7 @@ import com.toedter.calendar.JDateChooser;
  * template file, choose Tools | Templates and open the template in the editor.
  */
 /**
- * The addCustomer class is primarily focused on adding Customer objects into the database.
+ * The prepareCustomer class is primarily focused on adding Customer objects into the database.
  * <p> This class is accessed from Main.Java, and uses swing elements to wait for a user to interact
  * with the 'Add Customer' screen before doing anything.
  * Every customer object is given a unique ID thanks to the autoID() method, ensuring that no two
@@ -44,7 +44,7 @@ import com.toedter.calendar.JDateChooser;
 public class addCustomer extends javax.swing.JInternalFrame {
 
   /**
-   * Creates new form addCustomer
+   * Creates new form prepareCustomer
    */
 	public addCustomer() {
 		this(true, true);
@@ -263,7 +263,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
     jButton2.setText("Add");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-    	  addCustomer(evt);
+    	  prepareCustomer(evt);
       }
     });
 
@@ -451,12 +451,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
    * connection to the database is required for this function to work.
    * 
    * @param evt Whenever the "Add" button is clicked this method is called.
- * @return 
+ * @return  Returns an int for some reason? :)
    */
-  public Integer addCustomer(java.awt.event.ActionEvent evt) {
+  public int prepareCustomer(java.awt.event.ActionEvent evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
-    Integer i = 1;
+    int i = 1;
 
     Customer addCustomer = new Customer();
     addCustomer.setId(txtid.getText());
@@ -495,8 +495,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
     DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
     String date = da.format(customer.getDob());
 
-    Integer contactInteger = Integer.parseInt(contact);
-
     try {
       Class.forName("com.mysql.jdbc.Driver");
       con = DBUtil.dbConnect();
@@ -512,7 +510,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
       pst.setString(6, address);
       pst.setString(7, date);
       pst.setString(8, Gender);
-      pst.setInt(9, contactInteger);
+      pst.setString(9, contact);
       pst.setBytes(10, userimage);
       pst.executeUpdate();
 

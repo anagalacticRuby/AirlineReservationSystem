@@ -1,4 +1,3 @@
-import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -21,7 +20,7 @@ public class Customer {
   /**
    * Empty constructor for Customer objects.
    */
-  public Customer() {};
+  public Customer() {}
 
   /**
    * A completely outfitted constructor for Customer Objects.
@@ -198,7 +197,7 @@ public class Customer {
   /**
    * Gets the phone number of a Customer object.
    * 
-   * @return
+   * @return Retuns the phone number or email of a Customer
    */
   public String getContact() {
     return contact;

@@ -1,5 +1,4 @@
 import javax.security.auth.login.LoginException;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 /*
@@ -19,7 +18,7 @@ public class Main extends javax.swing.JFrame {
    * @throws LoginException
    */
   public Main() {
-    if (loginFlag == true) {
+    if (loginFlag) {
       initComponents();
     } else {
       terminateSystem();
@@ -33,7 +32,7 @@ public class Main extends javax.swing.JFrame {
    */
   public Main(boolean loginFlag) {
     setLoginFlag(loginFlag);
-    if (getLoginFlag() == true) {
+    if (getLoginFlag()) {
       initComponents();
     } else {
       terminateSystem();
@@ -46,7 +45,7 @@ public class Main extends javax.swing.JFrame {
    * <p>
    * After the user clicks on the pop-up window that appears alongside the exception throwing, the
    * program will terminate itself.
-   * @throws LoginException 
+   * @throws LoginException Throws a loginException if the user accesses Main directly
    */
   public void terminateSystem() {
     try {

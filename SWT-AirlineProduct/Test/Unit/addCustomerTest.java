@@ -1,9 +1,8 @@
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Date;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class addCustomerTest {
 
@@ -19,8 +18,8 @@ public class addCustomerTest {
 		addCustomer.txtdob.setDate(new Date());
 		addCustomer.userimage = new byte[0];
 		
-		Integer i = addCustomer.addCustomer(null);
+		int i = addCustomer.prepareCustomer(null);
 		assertNotNull(i);
-		assertTrue(i==1);
+		assertEquals(1, i);
 	}
 }
