@@ -37,10 +37,8 @@ public class SearchCustomerTest {
   @Test
   @DisplayName("Testing searchCustomer by last name.")
   void testSearchByLastnamePositive() {
-    // Customer customer = searchCustomer.findCustomerByLastName(this.dummyCustomer.getLastname());
     Customer testCustomer = searchCustomer.searchByID(this.dummyCustomer.getId());
     Assertions.assertEquals(testCustomer.getFirstname(), dummyCustomer.getFirstname());
-
   }
 
   /**

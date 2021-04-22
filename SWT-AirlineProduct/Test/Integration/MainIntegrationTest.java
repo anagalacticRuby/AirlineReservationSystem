@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -8,6 +10,7 @@ public class MainIntegrationTest {
   Main main;
 
   @Test
+  @DisplayName("Mock for the invalid authentication functionality.")
   public void handleInvalidAuthentication() {
 
     Main mockMain = Mockito.mock(Main.class);
@@ -19,6 +22,7 @@ public class MainIntegrationTest {
   }
 
   @Test
+  @DisplayName("Mock for the valid authentication functionality.")
   public void handleValidAuthentication() {
     Main mockMain = Mockito.mock(Main.class);
     main = new Main(true);

@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -38,6 +39,7 @@ public class AddFlightIntegrationTest {
   }
 
   @Test
+  @DisplayName("Mock for adding flight functionality.")
   public void handleFlightAdd() throws SQLException, NoSuchFieldException, ParseException {
     JLabel txtFlightID = Mockito.mock(JLabel.class);
     when(txtFlightID.getText()).thenReturn(mockFlight.getId());

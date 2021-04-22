@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.junit.jupiter.api.DisplayName;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -40,11 +41,9 @@ public class DBUtilIntegration {
     DBUtil.dbDisconnect();
   }
 
-  /**
-   *
-   * @throws SQLException
-   */
+
   @Test
+  @DisplayName("Mock for closing prepare statement functionality.")
   public void closeStatement() throws SQLException {
     PreparedStatement statement = connection.prepareStatement("");
     DBUtil.closePreparedStatement(statement);
@@ -52,17 +51,16 @@ public class DBUtilIntegration {
   }
 
   @Test
+  @DisplayName("Mock for closing the resultSet.")
   public void closeResultSet() throws SQLException {
     when(resultSet.next()).thenReturn(false).thenReturn(false);
     DBUtil.closeResultSet(resultSet);
     assertEquals(false, resultSet.isClosed());
   }
 
-  /**
-   *
-   * @throws Exception
-   */
+
   @Test
+  @DisplayName("The constant connection to the database will be mocked.")
   public void mockDBUtilConnection() throws Exception {
     when(mockConnection.prepareStatement("")).thenReturn(mockStatement);
     when(mockConnection.prepareStatement("").executeUpdate(Mockito.any())).thenReturn(0);

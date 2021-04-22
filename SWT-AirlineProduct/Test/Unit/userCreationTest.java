@@ -22,7 +22,7 @@ public class userCreationTest {
   @BeforeEach
   public void setUp() {
     userCreation = new userCreation();
-    dummyUser = new User("UO004", "Ricky", "Jumar", "rjumar", "1234");
+    dummyUser = new User("UO004", "Rumar", "Jumar", "rjumar", "1234");
   }
 
   /**

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -36,6 +37,7 @@ public class UserCreationIntegrationTest {
    *                  "Username cannot be a duplicate."
    */
   @Test
+  @DisplayName("Mock for the duplicate username functionality.")
   public void mockDuplicateUsername(){
     userCreation mockCreation = Mockito.mock(userCreation.class);
     Exception exception = new NullPointerException("Username cannot be a duplicate.");
@@ -58,6 +60,7 @@ public class UserCreationIntegrationTest {
    *                  cannot be blank.'
    */
   @Test
+  @DisplayName("Stub used to determine the Empty Field functionality.")
   public void stubEmptyField() {
 
     User test = mock(User.class);

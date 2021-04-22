@@ -10,6 +10,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -28,6 +29,7 @@ import com.toedter.calendar.JDateChooser;
 public class AddCustomerIntegrationTest {
 
 	@Test
+	@DisplayName("Mocking the addCustomer functionality.")
 	public void testAddCustomer() throws SQLException, NoSuchFieldException, SecurityException {
 		addCustomer addCustomer = new addCustomer(true, false);
 		
@@ -64,7 +66,7 @@ public class AddCustomerIntegrationTest {
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("r1"), r1);
 		
 		JTextField txtcontact = Mockito.mock(JTextField.class);
-		when(txtcontact.getText()).thenReturn("21315");
+		when(txtcontact.getText()).thenReturn("245954891");
 		FieldSetter.setField(addCustomer, addCustomer.getClass().getDeclaredField("txtcontact"), txtcontact);
 		
 		MockedStatic<DBUtil> staticClass = Mockito.mockStatic(DBUtil.class);

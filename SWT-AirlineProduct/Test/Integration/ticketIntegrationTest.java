@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -15,6 +16,7 @@ import com.mysql.jdbc.PreparedStatement;
 public class ticketIntegrationTest {
 	
 	@Test
+	@DisplayName("Mocking the search ticket functionality.")
 	public void testSearchTicket() throws NoSuchFieldException, SecurityException, SQLException {
 		ticket ticket = new ticket(true, false);
 		
@@ -47,7 +49,7 @@ public class ticketIntegrationTest {
 		
 		when(rs.next()).thenReturn(true).thenReturn(false);
 		
-		when(rs.getString("id")).thenReturn("");
+		when(rs.getString("id")).thenReturn("CS000");
 		when(rs.getString("flightname")).thenReturn("");
 		when(rs.getString("source")).thenReturn("");
 		when(rs.getString("depart")).thenReturn("");

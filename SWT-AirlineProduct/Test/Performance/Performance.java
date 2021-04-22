@@ -97,7 +97,6 @@ public class Performance {
   @Test
   @DisplayName("Database Response Time for Adding Customers ")
   public void databaseResponseAddCustomer() {
-
     addCustomer.userimage = new byte[0];
     customer = new Customer("CS010", "Peter", "Park", "415685486", "551513", "USA", new Date(), "Male",
         "123485495", addCustomer.userimage);
@@ -160,7 +159,4 @@ public class Performance {
       e.printStackTrace();
     }
   }
-
-
-
 }

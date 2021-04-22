@@ -1,12 +1,14 @@
 import java.util.Date;
 
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.*;
 
 public class addCustomerTest {
 
 	@Test
+	@DisplayName("Customer creation should be executed.")
 	public void testAddCustomer() {
 		addCustomer addCustomer = new addCustomer();
 		addCustomer.txtaddress.setText("Test");

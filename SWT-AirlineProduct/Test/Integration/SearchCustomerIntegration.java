@@ -59,6 +59,7 @@ public class SearchCustomerIntegration {
   }
 
   @Test
+  @DisplayName("Mock for the update of customer functionality.")
   public void updateSearchFields() throws ParseException, SQLException {
     searchCustomer mockUpdate = Mockito.mock(searchCustomer.class);
     mockCustomer.setLastname("BOB");
