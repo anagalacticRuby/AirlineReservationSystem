@@ -38,6 +38,18 @@ public class AddFlightIntegrationTest {
 
   }
 
+  /**
+	 * Test Case ID: IntegrationTest-AddFlight-001
+	 * Requirement ID/Description: REQ-12 The system shall allow users to add flights.
+	 * Purpose: To test that one of the major functions of the system, adding flights,
+	 * works without failure.
+	 * Test Setup: A flight is created via the guidelines set by the program.
+	 * Test Strategy: We'll use a mock to act as the database connection to see if the flight
+	 * created will be accepted by the program, and therefore the database.
+	 * Input: The needed information for a flight, being the id, name, source, departure, date,
+	 * departure time, arrival time,and ticket fee.
+	 * Expected Output: The system will add a flight successfully.
+	 */
   @Test
   @DisplayName("Mock for adding flight functionality.")
   public void handleFlightAdd() throws SQLException, NoSuchFieldException, ParseException {
