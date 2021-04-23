@@ -15,6 +15,18 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class ticketIntegrationTest {
 	
+	/**
+	 * Test Case ID: IntegrationTest-Ticket-001
+	 * Requirement ID/Description: REQ-11 The system shall allow a user to view every ticket entry
+	 * stored in the database.
+	 * Purpose: To verify that the user can view the tickets they desire in the database without
+	 * issue.
+	 * Test Setup: A pre-existing ticket within the database that the user can search for.
+	 * Test Strategy: An Integration Test using mocks to help guide us through the process of
+	 * finding a ticket to view.
+	 * Input: User Input that will lead to the viewing of a ticket.
+	 * Expected Output: The desired ticket and its details will be displayed on screen to the user.
+	 */
 	@Test
 	@DisplayName("Mocking the search ticket functionality.")
 	public void testSearchTicket() throws NoSuchFieldException, SecurityException, SQLException {
