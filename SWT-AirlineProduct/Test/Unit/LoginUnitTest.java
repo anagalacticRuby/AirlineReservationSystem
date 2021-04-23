@@ -133,7 +133,7 @@ public class LoginUnitTest {
   }
 
   /**
-   * Test Case ID:
+   * Test Case ID: PosTest-LoginCase1
    * Requirement ID/Description: REQ-21 The system shall prevent illegal access by terminating after
    *                             three failed login attempts.
    * Purpose: To test that a user cannot access the system after three unsuccessful attempts.
