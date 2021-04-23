@@ -41,7 +41,7 @@ public class Performance {
 
 
   /**
-   * Test Case ID:
+   * Test Case ID: PerformanceTest-001
    * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
    *                             database operations.
    * Purpose: To test that the response time is less than three seconds.
@@ -64,8 +64,17 @@ public class Performance {
   }
 
   /**
-   * Test Case ID: Requirement #15, The system shall take no longer than 3 seconds to perform
-   * database operations.
+   * Test Case ID: PerformanceTest-002
+   * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
+   *                             database operations.
+   * Purpose: To test that the response time is less than three seconds.
+   * Test setup: System time before and after createUser is established to determine the total
+   *             time the system took. The assertTrue is used to compare the condition where the
+   *             duration is less than 3000 milliseconds, 3 seconds.
+   * Test Strategy: Positive Testing
+   * Input: Call to createUser is executed with valid credentials.
+   * Expected Output: Method createUser return an message: "Maximum number of attempts exceeded."
+   *                  The user creation visibility is retrieved is false.
    */
   @Test
   @DisplayName("Database Response Time for Adding Users")
@@ -79,8 +88,17 @@ public class Performance {
   }
 
   /**
-   * Test Case ID: Requirement #15, The system shall take no longer than 3 seconds to perform
-   * database operations.
+   * Test Case ID: PerformanceTest-003
+   * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
+   *                             database operations.
+   * Purpose: To test that the response time is less than three seconds.
+   * Test setup: System time before and after addFlight is established to determine the total
+   *             time the system took. The assertTrue is used to compare the condition where the
+   *             duration is less than 3000 milliseconds, 3 seconds.
+   * Test Strategy: Positive Testing
+   * Input: Call to addFlight is executed with valid credentials.
+   * Expected Output: Method addFlight return an message: "Maximum number of attempts exceeded."
+   *                  The add flight visibility is retrieved is false.
    */
   @Test
   @DisplayName("Database Response Time for Adding Flight")
@@ -94,6 +112,19 @@ public class Performance {
     assertTrue(duration <= 3000);
   }
 
+  /**
+   * Test Case ID: PerformanceTest-004
+   * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
+   *                             database operations.
+   * Purpose: To test that the response time is less than three seconds.
+   * Test setup: System time before and after addCustomer is established to determine the total
+   *             time the system took. The assertTrue is used to compare the condition where the
+   *             duration is less than 3000 milliseconds, 3 seconds.
+   * Test Strategy: Positive Testing
+   * Input: Call to addCustomer is executed with valid credentials.
+   * Expected Output: Method addCustomer return an message: "Maximum number of attempts exceeded."
+   *                  The add customer visibility is retrieved is false.
+   */
   @Test
   @DisplayName("Database Response Time for Adding Customers ")
   public void databaseResponseAddCustomer() {
@@ -108,6 +139,19 @@ public class Performance {
     assertTrue(duration <= 3000);
   }
 
+  /**
+   * Test Case ID: PerformanceTest-005
+   * Requirement ID/Description: REQ-15 The system shall take no more than three seconds to perform
+   *                             database operations.
+   * Purpose: To test that the response time is less than three seconds.
+   * Test setup: System time before and after search is established to determine the total
+   *             time the system took. The assertTrue is used to compare the condition where the
+   *             duration is less than 3000 milliseconds, 3 seconds.
+   * Test Strategy: Positive Testing
+   * Input: Call to search is executed with valid credentials.
+   * Expected Output: Method search return an message: "Maximum number of attempts exceeded."
+   *                  The search visibility is retrieved is false.
+   */
   @Test
   @DisplayName("Database Response Time for Searching for Tickets")
   public void databaseResponseTicketSearch() {
