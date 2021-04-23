@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class MainUnitTest {
 
   /**
-   * Test Case ID:
+   * Test Case ID: UnitTest-Login-001
    * Requirement ID/Description: REQ-1 The system shall require a user to log in before they can
    *                             access the full program.
    * Purpose: This test is supposed to pass in order to indicate that the system has not terminated
@@ -28,7 +28,7 @@ public class MainUnitTest {
 
 
   /**
-   * Test Case ID:
+   * Test Case ID: UnitTest-Login-002
    * Requirement ID/Description: REQ-1 The system shall require a user to log in before they can
    *                             access the full program.
    * Purpose: This test is supposed to fail in order to indicate that the system has caught and
