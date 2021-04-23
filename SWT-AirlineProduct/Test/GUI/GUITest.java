@@ -10,6 +10,16 @@ import org.junit.jupiter.api.DisplayName;
 
 public class GUITest {
 
+  /**
+   * Test Case ID: UnitTest-GUI-001
+   * Requirement ID/Description: N/A
+   * Purpose: To ensure that the GUI for the Login Screen works properly.
+   * Test Setup: We simply run the program and verify the GUI for the specified screen is in
+   * proper condition.
+   * Test Strategy: A Unit Test where we run the program and verify everything is in order.
+   * Input: Running the program.
+   * Expected Output: A normal Login screen without any discrepancies.
+   */
   @Test
   @DisplayName("GUI login testing.")
   public void testLogin() throws AWTException {
