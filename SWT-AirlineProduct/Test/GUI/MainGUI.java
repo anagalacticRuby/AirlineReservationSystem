@@ -19,14 +19,16 @@ public class MainGUI extends AssertJSwingJUnitTestCase {
   }
 
   /**
-   * Test Case ID: UnitTest-MainGUI-001
+   * Test Case ID: GUITest-MainGUI-001
    * Requirement ID/Description: N/A
-   * Purpose: To ensure that the GUI for the userMenu Screen works properly.
-   * Test Setup: We simply run the program and verify the GUI for the specified screen is in
-   * proper condition.
-   * Test Strategy: A Unit Test where we run the program and verify everything is in order.
+   * Purpose: To ensure that the GUI for the userMenu Screen is displayed properly when the
+   * specified button is selected.
+   * Test Setup: We simply run the program and click the necessary button to verify that
+   * the userMenu screen appears.
+   * Test Strategy: A GUI Test where we run the program and verify action events are working
+   * properly.
    * Input: Running the program.
-   * Expected Output: A normal Login screen without any discrepancies.
+   * Expected Output: The userMenu screen will appear without issue.
    */
   @Test
   @DisplayName("GUI Test for menu click.")
@@ -36,15 +38,16 @@ public class MainGUI extends AssertJSwingJUnitTestCase {
   }
 
   /**
-   * Test Case ID: UnitTest-MainGUI-002
+   * Test Case ID: GUITest-MainGUI-002
    * Requirement ID/Description: N/A
-   * Purpose: To ensure that the GUI for the flightMenu Screen works properly.
-   * Test Setup: We simply run the program and verify the GUI for the specified screen is in
-   * proper condition.
-   * Test Strategy: A Unit Test where we run the program and verify everything is in order.
+   * Purpose: To ensure that the GUI for the flightMenu Screen is displayed properly when the
+   * specified button is selected.
+   * Test Setup: We simply run the program and click the necessary button to verify that
+   * the flightMenu screen appears.
+   * Test Strategy: A GUI Test where we run the program and verify action events are working
+   * properly.
    * Input: Running the program.
-   * Expected Output: A normal Login screen without any discrepancies.
-   */
+   * Expected Output: The flightMenu screen will appear without issue.
   @Test
   @DisplayName("GUI Test for flight click.")
   public void flightMenu() {
@@ -53,15 +56,16 @@ public class MainGUI extends AssertJSwingJUnitTestCase {
   }
 
   /**
-   * Test Case ID: UnitTest-MainGUI-003
+   * Test Case ID: GUITest-MainGUI-003
    * Requirement ID/Description: N/A
-   * Purpose: To ensure that the GUI for the ticketMenu Screen works properly.
-   * Test Setup: We simply run the program and verify the GUI for the specified screen is in
-   * proper condition.
-   * Test Strategy: A Unit Test where we run the program and verify everything is in order.
+   * Purpose: To ensure that the GUI for the ticketMenu Screen is displayed properly when the
+   * specified button is selected.
+   * Test Setup: We simply run the program and click the necessary button to verify that
+   * the ticketMenu screen appears.
+   * Test Strategy: A GUI Test where we run the program and verify action events are working
+   * properly.
    * Input: Running the program.
-   * Expected Output: A normal Login screen without any discrepancies.
-   */
+   * Expected Output: The ticketMenu screen will appear without issue.
   @Test
   @DisplayName("GUI Test for ticket click.")
   public void ticketMenu() {
@@ -69,16 +73,17 @@ public class MainGUI extends AssertJSwingJUnitTestCase {
     frameFixture.cleanUp();
   }
 
-  /**
-   * Test Case ID: UnitTest-MainGUI-004
+ /**
+   * Test Case ID: GUITest-MainGUI-004
    * Requirement ID/Description: N/A
-   * Purpose: To ensure that the GUI for the customerMenu Screen works properly.
-   * Test Setup: We simply run the program and verify the GUI for the specified screen is in
-   * proper condition.
-   * Test Strategy: A Unit Test where we run the program and verify everything is in order.
+   * Purpose: To ensure that the GUI for the customerMenu Screen is displayed properly when the
+   * specified button is selected.
+   * Test Setup: We simply run the program and click the necessary button to verify that
+   * the customerMenu screen appears.
+   * Test Strategy: A GUI Test where we run the program and verify action events are working
+   * properly.
    * Input: Running the program.
-   * Expected Output: A normal Login screen without any discrepancies.
-   */
+   * Expected Output: The customerMenu screen will appear without issue.
   @Test
   @DisplayName("GUI Test for menu click.")
   public void customerMenu() {
